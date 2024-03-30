@@ -6,27 +6,53 @@ import pulse from '../images/pulse.png';
 
 const projects = [
   {
-    title: 'Movie Review Website',
+    title: 'Coming soon...',
     image: MovieReviewWebsite,
    // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
-    shortDesc: 'A website that provides movie reviews, ratings, and recommendations to help users make informed decisions about what to watch.',
-    fullDesc: 'Our movie review website allows users to view trailers for upcoming movies and submit their own reviews based on personal opinions. To enhance the user experience, our website is designed to be user-friendly and visually appealing, with a modern and responsive design. No account creation is necessary to access our website',
+    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
   {
-    title: 'Full Stack Development',
+    title: 'Coming soon...',
+    image: MovieReviewWebsite,
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  },
+  {
+    title: 'Coming soon...',
     image: FullStackDevelopment,
     //link: '',
-    shortDesc: 'Interstellar Cargo Transportation is a Python API project designed to simulate the transportation of cargo across the galaxy.',
-    fullDesc: 'The project is built using Python Flask, a micro web framework, and integrates with a MySQL database to store cargo and ship information. The API allows users to add, edit, and delete cargo and ship information, as well as track the status of cargo shipments. Users can also view detailed information about each shipment, including its origin, destination, and current status. In addition to the API functionality, the project includes a basic user interface built using HTML, CSS, and JavaScript, allowing users to interact with the API through a web browser.',
+    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit turpis. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Ut tristique et egestas quis ipsum. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Id venenatis a condimentum vitae sapien pellentesque. Ut tristique et egestas quis ipsum suspendisse. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Vitae aliquet nec ullamcorper sit. Eu nisl nunc mi ipsum faucibus vitae aliquet. Pellentesque id nibh tortor id aliquet lectus. Lectus nulla at volutpat diam. Nulla aliquet enim tortor at auctor urna nunc id cursus. Urna porttitor rhoncus dolor purus non enim praesent.',
   },
+  {
+    title: 'Coming soon...',
+    image: FullStackDevelopment,
+    //link: '',
+    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit turpis. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Ut tristique et egestas quis ipsum. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Id venenatis a condimentum vitae sapien pellentesque. Ut tristique et egestas quis ipsum suspendisse. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Vitae aliquet nec ullamcorper sit. Eu nisl nunc mi ipsum faucibus vitae aliquet. Pellentesque id nibh tortor id aliquet lectus. Lectus nulla at volutpat diam. Nulla aliquet enim tortor at auctor urna nunc id cursus. Urna porttitor rhoncus dolor purus non enim praesent.',
+  },
+  {
+    title: 'Coming soon...',
+    image: FullStackDevelopment,
+    //link: '',
+    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit turpis. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Ut tristique et egestas quis ipsum. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Id venenatis a condimentum vitae sapien pellentesque. Ut tristique et egestas quis ipsum suspendisse. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Vitae aliquet nec ullamcorper sit. Eu nisl nunc mi ipsum faucibus vitae aliquet. Pellentesque id nibh tortor id aliquet lectus. Lectus nulla at volutpat diam. Nulla aliquet enim tortor at auctor urna nunc id cursus. Urna porttitor rhoncus dolor purus non enim praesent.',
+  },
+  
+  
+/*
 {
-    title: 'Discord Bot',
-    image: pulse,
+   // title: 'Discord Bot',
+    //image: pulse,
    // link: '',
-    shortDesc: 'Discord Bot is a versatile bot that provides various features and commands for managing your Discord server.',
-    fullDesc: 'The Discord Bot is a versatile bot that provides various features and commands for managing your Discord server. The bot is built using the disnake library, which allows it to interact with the Discord API and respond to user commands. Some of the features of the bot include the ability to play music, create custom commands and assign role, and moderate chat messages. Overall, the Discord Bot is a useful tool for server owners and administrators looking to enhance their Discord server with additional features and functionality.',
+   // shortDesc: 'Discord Bot is a versatile bot that provides various features and commands for managing your Discord server.',
+   // fullDesc: 'The Discord Bot is a versatile bot that provides various features and commands for managing your Discord server. The bot is built using the disnake library, which allows it to interact with the Discord API and respond to user commands. Some of the features of the bot include the ability to play music, create custom commands and assign role, and moderate chat messages. Overall, the Discord Bot is a useful tool for server owners and administrators looking to enhance their Discord server with additional features and functionality.',
 },
+*/
   // Add more projects here...
+
 ];
 
 function Projects() {
