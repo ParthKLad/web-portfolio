@@ -1,132 +1,126 @@
 import React, { useState, useContext } from 'react';
 import {
-  AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemText,
-  useMediaQuery, useTheme, CssBaseline
+  AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemIcon, ListItemText,
+  useMediaQuery, useTheme, CssBaseline, Tooltip
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import HomeIcon from '@mui/icons-material/HomeOutlined';
+import PersonIcon from '@mui/icons-material/PersonOutline';
+import WorkIcon from '@mui/icons-material/WorkOutline';
+import CodeIcon from '@mui/icons-material/CodeOutlined';
+import EmailIcon from '@mui/icons-material/EmailOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { ThemeContext } from '../context/ThemeContext';
-import '../components/Navbar.css';
 
 function Navbar({ refs }) {
   const { themeType, toggleTheme } = useContext(ThemeContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('Home');
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleDrawerOpen = () => {
-    setDrawerOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setDrawerOpen(false);
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
   };
 
   const navItems = [
-    { name: 'Home', ref: refs.homeRef },
-    { name: 'About', ref: refs.aboutRef },
-    { name: 'Projects', ref: refs.projectsRef },
-    { name: 'Skills', ref: refs.skillsRef },
-    { name: 'Contact', ref: refs.contactsRef },
+    { name: 'Home', ref: refs.homeRef, icon: <HomeIcon />, label: 'Home' },
+    { name: 'About', ref: refs.aboutRef, icon: <PersonIcon />, label: 'About' },
+    { name: 'Projects', ref: refs.projectsRef, icon: <WorkIcon />, label: 'Projects' },
+    { name: 'Skills', ref: refs.skillsRef, icon: <CodeIcon />, label: 'Skills' },
+    { name: 'Contact', ref: refs.contactsRef, icon: <EmailIcon />, label: 'Contact' },
   ];
 
-  const handleNavItemClicked = (name, ref) => {
-    setActiveSection(name);
-    handleDrawerClose();
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
+  const handleNavItemClicked = (item) => {
+    if (item.ref && item.ref.current) {
+      item.ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (isMobile) {
+      handleDrawerToggle();
     }
   };
 
   return (
     <>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ background: '#123456', color: '#fff' }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed" sx={{ background: '#1A1A1A', color: '#fff', boxShadow: 'none' }}>
+        <Toolbar sx={{ justifyContent: 'space-between', padding: '0 10px' }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, userSelect: 'none' }}>
             Parth Lad
           </Typography>
           
+          {!isMobile && (
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              {navItems.map((item, index) => (
+                <Box key={index} sx={{ display: 'flex', alignItems: 'center', mx: 2 }}>
+                  <IconButton
+                    onClick={() => handleNavItemClicked(item)}
+                    color="inherit"
+                    sx={{ padding: 0, marginRight: '8px' }}
+                  >
+                    {item.icon}
+                  </IconButton>
+                  <Typography
+                    onClick={() => handleNavItemClicked(item)}
+                    sx={{ cursor: 'pointer', display: 'block', color: '#fff', '&:hover': { color: '#11B9C5' } }}
+                  >
+                    {item.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          )}
+          
           {/* Theme Toggle Button */}
-          <IconButton onClick={toggleTheme} color="inherit">
-            {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-          </IconButton>
+          <Tooltip title="Toggle light/dark theme">
+            <IconButton onClick={toggleTheme} color="inherit">
+              {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+          </Tooltip>
           
           {/* Hamburger Menu for Mobile */}
-          {isMobile ? (
-            <>
-              <IconButton
-                color="inherit"
-                aria-label={drawerOpen ? "close drawer" : "open drawer"}
-                edge="end"
-                onClick={drawerOpen ? handleDrawerClose : handleDrawerOpen}
-                sx={{
-                  ...(drawerOpen && {
-                    transform: "rotate(180deg)",
-                    transition: theme.transitions.create("transform", {
-                      duration: theme.transitions.duration.short,
-                    }),
-                  }),
-                }}
-              >
-                {drawerOpen ? <CloseIcon /> : <MenuIcon />}
-              </IconButton>
-              <Drawer
-                anchor={'right'}
-                open={drawerOpen}
-                onClose={handleDrawerClose}
-                sx={{
-                  '& .MuiDrawer-paper': {
-                    boxSizing: 'border-box',
-                    width: 240,
-                    backgroundColor: '#333',
-                    color: '#fff',
-                    padding: '0 8px',
-                  },
-                }}
-              >
-                <Box
-                  role="presentation"
-                  onClick={handleDrawerClose}
-                  onKeyDown={handleDrawerClose}
-                >
-                  <List>
-                    {navItems.map((item, index) => (
-                      <ListItem button key={index} onClick={() => handleNavItemClicked(item.name, item.ref)}>
-                        <ListItemText primary={item.name} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </Box>
-              </Drawer>
-            </>
-          ) : (
-            // Navigation for Larger Screens
-            navItems.map((item, index) => (
-              <Typography
-                key={index}
-                onClick={() => handleNavItemClicked(item.name, item.ref)}
-                sx={{
-                  margin: '0 10px',
-                  cursor: 'pointer',
-                  borderBottom: activeSection === item.name ? '3px solid #fff' : 'none',
-                  '&:hover': {
-                    color: '#0af5e1',
-                  },
-                }}
-              >
-                {item.name}
-              </Typography>
-            ))
+          {isMobile && (
+            <IconButton
+              color="inherit"
+              aria-label="menu"
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
+            </IconButton>
           )}
         </Toolbar>
       </AppBar>
-      {/* Add padding to the content so it isn't hidden behind the AppBar */}
-      <Box sx={{ pt: 8 }}>
-        {/* Your page content goes here */}
+
+      {/* Mobile Drawer */}
+      {isMobile && (
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={handleDrawerToggle}
+          sx={{
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              backgroundColor: '#1A1A1A',
+              color: '#fff',
+              width: 240
+            },
+          }}
+        >
+          <List>
+            {navItems.map((item) => (
+              <ListItem button key={item.name} onClick={() => handleNavItemClicked(item)}>
+                <ListItemIcon sx={{ color: '#fff' }}>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.label} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+      )}
+
+      {/* Padding to offset content behind AppBar */}
+      <Box sx={{ pt: 10 }}>
+        {/* Page Content */}
       </Box>
     </>
   );

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, } from '@mui/material';
+import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Grow } from '@mui/material';
 import MovieReviewWebsite from '../images/MovieReviewWebsite.png';
 import FullStackDevelopment from '../images/FullStackDevelopment.png';
+import './Projects.css';
 //import pulse from '../images/pulse.png';
 
 const projects = [
@@ -55,6 +56,7 @@ const projects = [
 
 ];
 
+// Projects component
 function Projects() {
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState();
@@ -69,23 +71,22 @@ function Projects() {
   };
 
   return (
-    <Box sx={{ py: 5, textAlign: 'center' }}>
+    <Box sx={{ py: 5, textAlign: 'center', maxWidth: 1200, margin: '0 auto' }}>
       <Typography variant="h4" gutterBottom>My Projects</Typography>
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container spacing={3} justifyContent="center">
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card>
-              <CardActionArea onClick={() => handleClickOpen(project)}>
-                <a href={project.link} target="_blank" rel="noopener noreferrer">
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={project.image}
-                    alt={project.title}
-                    title={project.title}
-                  />
-                </a>
-                <CardContent>
+            <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1000 + index * 200 } : {})}>
+              <Card className="project-card" onClick={() => handleClickOpen(project)}>
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={project.image}
+                  alt={project.title}
+                  title={project.title}
+                  className="project-image"
+                />
+                <CardContent className="project-content">
                   <Typography gutterBottom variant="h5" component="div">
                     {project.title}
                   </Typography>
@@ -93,22 +94,22 @@ function Projects() {
                     {project.shortDesc}
                   </Typography>
                 </CardContent>
-              </CardActionArea>
-            </Card>
+              </Card>
+            </Grow>
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>{selectedProject?.title}</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  {selectedProject?.fullDesc}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Close</Button>
+              </DialogActions>
+            </Dialog>
           </Grid>
         ))}
       </Grid>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{selectedProject?.title}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            {selectedProject?.fullDesc}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 }

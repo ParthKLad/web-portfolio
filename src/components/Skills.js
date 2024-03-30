@@ -1,9 +1,11 @@
 import React from 'react';
 import { keyframes } from '@emotion/react';
-import { Box, Typography, Grid } from '@mui/material';
+import { Typography, Box, Paper, Grid, Grow } from '@mui/material';
 import { styled } from '@mui/system';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
+import 'aos/dist/aos.css'; 
+
+
 //Icon imports
 import htmlIcon from '../images/html.png';
 import cssIcon from '../images/css.png';
@@ -81,45 +83,55 @@ const CategoryTitle = styled(Typography)(({ theme }) => ({
 }));
 
    
-  // Skills component
-  function Skills() {
-    // Group skills by category
-    const categories = skills.reduce((groups, skill) => {
-      const category = skill.category;
-      if (!groups[category]) {
-        groups[category] = [];
-      }
-      groups[category].push(skill);
-      return groups;
-    }, {});
+// Skills component
+function Skills() {
+  // Group skills by category
+  const categories = skills.reduce((groups, skill) => {
+    const category = skill.category;
+    if (!groups[category]) {
+      groups[category] = [];
+    }
+    groups[category].push(skill);
+    return groups;
+  }, {});
+
   // Emoji icons for each category
-    const categoryEmojis = {
-      'Frontend': '💻',
-      'Backend': '🖥️',
-      'Database': '🗄️',
-      'Tools': '🛠️',
-      'Cloud': '☁️',
-      'Operating System': '💽',
-    };
+  const categoryEmojis = {
+    'Frontend': '💻',
+    'Backend': '🖥️',
+    'Database': '🗄️',
+    'Tools': '🛠️',
+    'Cloud': '☁️',
+    'Operating System': '💽',
+  };
+
   // Render each category with its skills
-    return (
-      <Box sx={{ py: 5, textAlign: 'center' }} id="skills" data-aos="fade-up">
-        <Typography variant="h4" gutterBottom>My Skills</Typography>
+  return (
+    <Box sx={{ py: 5, textAlign: 'center' }} id="skills" data-aos="fade-up">
+      <Typography variant="h4" gutterBottom>My Skills</Typography>
+      <Grid container spacing={3} justifyContent="center" alignItems="stretch">
         {Object.entries(categories).map(([category, skills]) => (
-          <Box key={category} sx={{ my: 4 }}>
-            <CategoryTitle variant="h5" gutterBottom>{categoryEmojis[category]} {category}</CategoryTitle>
-            <Grid container spacing={2} justifyContent="center">
-              {skills.map((skill, index) => (
-                <Grid item xs={6} sm={4} md={3} key={index}>
-                  <SkillIcon src={skill.icon} alt={skill.name} />
-                  <Typography variant="subtitle1">{skill.name}</Typography>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
+          <Grid item xs={12} sm={6} md={4} key={category}>
+            <Paper elevation={3} sx={{ p: 3, my: 2, height: '100%' }}>
+              <CategoryTitle variant="h5" gutterBottom>{categoryEmojis[category]} {category}</CategoryTitle>
+              <Grid container spacing={2} justifyContent="center">
+                {skills.map((skill, index) => (
+                  <Grid item xs={6} sm={4} md={3} key={skill.name}>
+                    <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1000 + index * 200 } : {})}>
+                      <Box sx={{ my: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <SkillIcon src={skill.icon} alt={skill.name} />
+                        <Typography variant="subtitle1">{skill.name}</Typography>
+                      </Box>
+                    </Grow>
+                  </Grid>
+                ))}
+              </Grid>
+            </Paper>
+          </Grid>
         ))}
-      </Box>
-    );
-  }
-  
-  export default Skills;
+      </Grid>
+    </Box>
+  );
+}
+
+export default Skills;

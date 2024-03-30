@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, TextField, Button, Grid, Link } from '@mui/material';
+import { Box, Typography, TextField, Button, Grid, Link, styled } from '@mui/material';
 import { LinkedIn, GitHub, Person, Email } from '@mui/icons-material';
 
 const contactInfo = {
@@ -11,37 +11,52 @@ const contactInfo = {
   ],
 };
 
+const StyledLink = styled(Link)(({ theme }) => ({
+  mx: 1,
+  transition: 'transform .2s',
+  '&:hover': {
+    transform: 'scale(1.2)',
+  },
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  transition: 'background-color .2s',
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+  },
+}));
+
 function Contact() {
   return (
     <Box sx={{ py: 5, textAlign: 'left' }}>
-      <Typography variant="h4" gutterBottom>Contact me</Typography>
+      <Typography variant="h3" gutterBottom>Contact me</Typography>
       <Grid container spacing={2} justifyContent="flex-start">
         <Grid item xs={12} sm={6}>
-          <Typography variant="h5" gutterBottom>Get in Touch</Typography>
+          <Typography variant="h4" gutterBottom>Get in Touch</Typography>
           <Typography variant="body1">
             If you would like to contact me regarding any of the information provided above, you can reach me by filling out the form or sending an email to the address provided.
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <Typography variant="h6"><Person fontSize="large" sx={{ mr: 1 }} /> {contactInfo.name}</Typography>
+            <Typography variant="h5"><Person fontSize="large" sx={{ mr: 1 }} /> {contactInfo.name}</Typography>
             <Typography variant="body1"><Email fontSize="large" sx={{ mr: 1 }} /> {contactInfo.email}</Typography>
           </Box>
           <Box sx={{ mt: 2 }}>
             {contactInfo.socials.map((social, index) => (
-              <Link key={index} href={social.url} target="_blank" rel="noopener" sx={{ mx: 1 }}>
+              <StyledLink key={index} href={social.url} target="_blank" rel="noopener">
                 {React.cloneElement(social.icon, { fontSize: 'large' })}
-              </Link>
+              </StyledLink>
             ))}
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h5" gutterBottom>Message me</Typography>
+          <Typography variant="h4" gutterBottom>Message me</Typography>
           <form method="post" action="/success" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact" />
             <TextField name="name" label="Name" variant="outlined" fullWidth required sx={{ mb: 2 }} />
             <TextField name="email" label="Email" variant="outlined" fullWidth required sx={{ mb: 2 }} />
             <TextField name="subject" label="Subject" variant="outlined" fullWidth required sx={{ mb: 2 }} />
             <TextField name="message" label="Message" variant="outlined" multiline rows={4} fullWidth required sx={{ mb: 2 }} />
-            <Button type="submit" variant="contained" color="primary">Send</Button>
+            <StyledButton type="submit" variant="contained" color="primary">Send</StyledButton>
           </form>
         </Grid>
       </Grid>
