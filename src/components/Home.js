@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
 import '../style.css'
 
+const phrases = ["Developer", "Information Technology Specialist", "Cloud Specialist"];
+
 function Home() {
   const [phrase, setPhrase] = useState('');
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-  const phrases = ["Developer", "Information Technology Specialist", "Cloud Specialist"];
 
   useEffect(() => {
     if (subIndex === phrases[index].length + 1 && !reverse) {
@@ -28,7 +29,7 @@ function Home() {
     }, 150);
 
     return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, phrases]);
+  }, [subIndex, index, reverse]);
 
   return (
     <Box textAlign="center" p={5}>
