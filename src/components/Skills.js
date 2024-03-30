@@ -4,6 +4,7 @@ import { Box, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+//Icon imports
 import htmlIcon from '../images/html.png';
 import cssIcon from '../images/css.png';
 import JavascriptIcon from '../images/javascript.png';
@@ -20,6 +21,8 @@ import vueIcon from '../images/vue.png';
 import WindowsIcon from '../images/windows.png';
 import MacOsIcon from '../images/macos.png';
 
+
+// List of skills with their icons and categories
 const skills = [
   { name: 'HTML', icon: htmlIcon, category: 'Frontend' },
   { name: 'CSS', icon: cssIcon, category: 'Frontend' },
@@ -50,26 +53,35 @@ const SkillIcon = styled('img')({
       boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     },
   });
-  
-  const flip = keyframes`
-    from {
-      transform: rotateY(0deg);
-    }
-    to {
-      transform: rotateY(360deg);
-    }
-  `;
-  
-  const CategoryTitle = styled(Typography)({
-    '&:hover': {
-      animation: `${flip} 3s infinite`,
-    },
-    borderBottom: '5px solid ',
-    display: 'inline-block',
-    marginBottom: '1rem',
-        
-  });
-  
+
+  const gradient = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const CategoryTitle = styled(Typography)(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: '1rem',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    bottom: -10, // Adjust this value to increase or decrease the space
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '50%',
+    height: '5px',
+    backgroundImage: 'linear-gradient(45deg, #ff6347, #40e0d0)', // Updated colors
+    backgroundSize: '200% 100%',
+    animation: `${gradient} 5s ease infinite`,
+  },
+}));
+
+   
+  // Skills component
   function Skills() {
     // Group skills by category
     const categories = skills.reduce((groups, skill) => {
@@ -80,7 +92,7 @@ const SkillIcon = styled('img')({
       groups[category].push(skill);
       return groups;
     }, {});
-  
+  // Emoji icons for each category
     const categoryEmojis = {
       'Frontend': '💻',
       'Backend': '🖥️',
@@ -89,7 +101,7 @@ const SkillIcon = styled('img')({
       'Cloud': '☁️',
       'Operating System': '💽',
     };
-  
+  // Render each category with its skills
     return (
       <Box sx={{ py: 5, textAlign: 'center' }} id="skills" data-aos="fade-up">
         <Typography variant="h4" gutterBottom>My Skills</Typography>
