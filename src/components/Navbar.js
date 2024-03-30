@@ -28,6 +28,9 @@ function Navbar() {
           <>
             <Button color="inherit" href="/">Home</Button>
             <Button color="inherit" href="/about">About</Button>
+            <Button color="inherit" href="/skill">Skills</Button>
+            <Button color="inherit" href="/project">projects</Button>
+            <Button color="inherit" href="/contact">Contacts</Button>
           </>
         )}
         <IconButton onClick={toggleTheme} color="inherit">
@@ -61,6 +64,9 @@ function Navbar() {
             >
               <MenuItem onClick={handleClose} component="a" href="/">Home</MenuItem>
               <MenuItem onClick={handleClose} component="a" href="/about">About</MenuItem>
+              <MenuItem onClick={handleClose} component="a" href="/skills">Skills</MenuItem>
+              <MenuItem onClick={handleClose} component="a" href="/project">projects</MenuItem>
+              <MenuItem onClick={handleClose} component="a" href="/contact">Contacts</MenuItem>
             </Menu>
           </>
         )}

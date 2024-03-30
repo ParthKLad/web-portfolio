@@ -37,7 +37,7 @@ function About() {
             <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1500 } : {})}>
               <Box>
                 <Typography paragraph>
-                  Hello World! I'm Parth Lad, and my expertise lies in web development,Information Technology and deploment.
+                  Hello World! I'm Parth Lad, and my expertise lies in web development and Information Technology.
                 </Typography>
                 <Button onClick={handleExpandClick} endIcon={<ExpandMoreIcon />} sx={{ mb: 2 }}>
                   {expanded ? 'Less About Me' : 'More About Me'}

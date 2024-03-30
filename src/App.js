@@ -4,6 +4,10 @@ import Home from './components/Home';
 import About from './components/About';
 import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
+import './style.css'
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Contacts from './components/Contacts';
 
 function App() {
   return (
@@ -14,6 +18,9 @@ function App() {
           <main>
             <Home />
             <About />
+            <Skills />
+            <Projects />
+            <Contacts />
             {/* Your main content goes here */}
           </main>
         </div>
