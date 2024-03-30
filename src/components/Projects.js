@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Tooltip } from '@mui/material';
+import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, } from '@mui/material';
 import MovieReviewWebsite from '../images/MovieReviewWebsite.png';
 import FullStackDevelopment from '../images/FullStackDevelopment.png';
-import pulse from '../images/pulse.png';
+//import pulse from '../images/pulse.png';
 
 const projects = [
   {
