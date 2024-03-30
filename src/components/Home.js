@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
 import '../style.css'
 
-const phrases = ["Developer", "Information Technology Specialist", "Cloud Specialist"];
+// Shortened phrases
+const phrases = ["Devloper", "IT Specialist", "Cloud Spec"];
 
 function Home() {
   const [phrase, setPhrase] = useState('');

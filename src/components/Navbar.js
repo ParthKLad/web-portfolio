@@ -1,114 +1,111 @@
 import React, { useState, useContext } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem, useMediaQuery, Box } from '@mui/material';
+import {
+  AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemText,
+  useMediaQuery, useTheme 
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import BuildIcon from '@mui/icons-material/Build';
-import WorkIcon from '@mui/icons-material/Work';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import { ThemeContext } from '../context/ThemeContext'; // Adjust the import path as necessary
-import '../components/Navbar.css'; // Add this line to import the CSS file
+import { ThemeContext } from '../context/ThemeContext';
+import '../components/Navbar.css';
 
-function Navbar() {
+function Navbar({ refs }) {
   const { themeType, toggleTheme } = useContext(ThemeContext);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [activeTab, setActiveTab] = useState('Home');
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleTabClick = (tabName) => {
-    setActiveTab(tabName);
-    handleClose();
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
   };
 
   const navItems = [
-    { name: 'Home', icon: <HomeIcon />, href: '/' },
-    { name: 'About', icon: <InfoIcon />, href: '/about' },
-    { name: 'Skills', icon: <BuildIcon />, href: '/skill' },
-    { name: 'Projects', icon: <WorkIcon />, href: '/project' },
-    { name: 'Contacts', icon: <ContactMailIcon />, href: '/contact' },
+    { name: 'Home', ref: refs.homeRef },
+    { name: 'About', ref: refs.aboutRef },
+    { name: 'Projects', ref: refs.projectsRef },
+    { name: 'Skills', ref: refs.skillsRef },
+    { name: 'Contact', ref: refs.contactsRef },
   ];
 
+  const handleNavItemClicked = (ref) => {
+    // Close the drawer if open, navigate to the selected section
+    handleDrawerClose();
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <AppBar position="static" color="default" sx={{ marginBottom: 4 }}>
+    <AppBar position="static" sx={{ background: '#123456', color: '#fff' }}>
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Parth Lad
         </Typography>
-        {!isMobile && (
-          <>
-            {navItems.map((item) => (
-              <Button
-                key={item.name}
-                color="inherit"
-                href={item.href}
-                onClick={() => handleTabClick(item.name)}
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  textDecoration: activeTab === item.name ? 'underline' : 'none',
-                }}
-              >
-                {item.icon}
-                {item.name}
-              </Button>
-            ))}
-          </>
-        )}
+        
+        {/* Theme Toggle Button */}
         <IconButton onClick={toggleTheme} color="inherit">
           {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
-        {isMobile && (
+        
+        {/* Hamburger Menu for Mobile */}
+        {isMobile ? (
           <>
             <IconButton
-              size="large"
-              edge="end"
               color="inherit"
-              aria-label="menu"
-              onClick={handleMenu}
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+            <Drawer
+              anchor={'right'}
+              open={drawerOpen}
+              onClose={handleDrawerClose}
+              sx={{
+                '& .MuiDrawer-paper': {
+                  boxSizing: 'border-box',
+                  width: 'auto',
+                  backgroundColor: '#333',
+                  color: '#fff'
+                },
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
             >
-              {navItems.map((item) => (
-                <MenuItem
-                  key={item.name}
-                  onClick={() => handleTabClick(item.name)}
-                  component="a"
-                  href={item.href}
-                >
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    {item.icon}
-                    {item.name}
-                  </Box>
-                </MenuItem>
-              ))}
-            </Menu>
+              <Box
+                role="presentation"
+                onClick={handleDrawerClose}
+                onKeyDown={handleDrawerClose}
+                sx={{ width: '250px' }}
+              >
+                <IconButton onClick={handleDrawerClose} sx={{ justifyContent: 'flex-end', display: 'block' }}>
+                  <CloseIcon />
+                </IconButton>
+                <List>
+                  {navItems.map((item, index) => (
+                    <ListItem button key={index} onClick={() => handleNavItemClicked(item.ref)}>
+                      <ListItemText primary={item.name} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Drawer>
           </>
+        ) : (
+          // Navigation for Larger Screens
+          navItems.map((item, index) => (
+            <Typography
+              key={index}
+              onClick={() => handleNavItemClicked(item.ref)}
+              sx={{ margin: '0 10px', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+            >
+              {item.name}
+            </Typography>
+          ))
         )}
       </Toolbar>
     </AppBar>
