@@ -1,0 +1,23 @@
+/* src/components/Navbar.css */
+.navbar {
+  background-color: #23272a;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.navbar-links {
+  list-style: none;
+}
+
+.navbar-links li {
+  display: inline;
+  padding: 0 10px;
+}
+
+.navbar-links li a {
+  color: white;
+  text-decoration: none;
+}

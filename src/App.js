@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import Navbar from './components/Navbar'; // Add this line to import Navbar
+import Home from './components/Home';
+import About from './components/About';
+import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        <Navbar /> {/* Now Navbar is defined and should not cause an error */}
+        <div className="content">
+          <main>
+            <Home />
+            <About />
+            {/* Your main content goes here */}
+          </main>
+        </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

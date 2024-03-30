@@ -1,0 +1,69 @@
+/* About.css */
+.max-width {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .title {
+    text-align: center;
+  }
+  
+  .about-content, .home-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .column {
+    flex: 1;
+  }
+  
+  .left img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .right .text, .home-content .text-1, .home-content .text-2, .home-content .text-3 {
+    margin-bottom: 20px;
+  }
+  
+  .typing, .typing-2 {
+    border-right: 2px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black; }
+  }
+  
+  .menu-btn {
+    display: inline-block;
+    background: #07b6e2;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .menu-btn:hover {
+    background: #0aa3eb;
+  }
+  
+  /* Additional CSS for hover effects */
+.button:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+  }
+  
+

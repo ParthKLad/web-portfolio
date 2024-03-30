@@ -1,0 +1,29 @@
+/* Home.css */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .typing {
+    border-right: 2px solid;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .menu-btn {
+    display: inline-block;
+    background: #4B59F7;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .menu-btn:hover {
+    background: #5468FF;
+  }
+  
