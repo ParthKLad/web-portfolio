@@ -1,25 +1,71 @@
-import React from 'react';
-import { useTheme } from '../context/ThemeContext'; // Adjust the path as necessary
+import React, { useState, useContext } from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import './Navbar.css';
+import { ThemeContext } from '../context/ThemeContext'; // Adjust the import path as necessary
 
 function Navbar() {
-  const { themeType, toggleTheme } = useTheme();
+  const { themeType, toggleTheme } = useContext(ThemeContext);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <h2> Parth Lad</h2>
-      </div>
-      <ul className="navbar-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-      <button onClick={toggleTheme} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
-        {themeType === 'dark' ? <LightModeIcon style={{ color: '#FFF' }} /> : <DarkModeIcon style={{ color: '#000' }} />}
-      </button>
-    </nav>
+    <AppBar position="static" color="default" sx={{ marginBottom: 4 }}>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Parth Lad
+        </Typography>
+        {!isMobile && (
+          <>
+            <Button color="inherit" href="/">Home</Button>
+            <Button color="inherit" href="/about">About</Button>
+          </>
+        )}
+        <IconButton onClick={toggleTheme} color="inherit">
+          {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
+        {isMobile && (
+          <>
+            <IconButton
+              size="large"
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenu}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose} component="a" href="/">Home</MenuItem>
+              <MenuItem onClick={handleClose} component="a" href="/about">About</MenuItem>
+            </Menu>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 
