@@ -61,13 +61,18 @@ function Navbar({ refs }) {
       }}>
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-            <Typography variant="h6" sx={{ color: themeType === 'dark' ? '#0982B5' : '#FFF', '&:hover': { color: '#FFF' }, transition: 'color 0.3s' }}>Parth</Typography>
+            <Typography variant="h6" sx={{ color: themeType === 'dark' ? '#0982B5' : '#0982B5', '&:hover': { color: '#FFF' }, transition: 'color 0.3s' }}>Parth</Typography>
             <Typography variant="h6" sx={{ color: themeType === 'dark' ? '#FFF' : '#0982B5', '&:hover': { color: '#0982B5' }, transition: 'color 0.3s', ml: 1 }}>Lad</Typography>
           </Box>
           {isMobile ? ( // Render hamburger menu icon for mobile
-            <IconButton onClick={handleDrawerToggle} color="inherit">
-              <MenuIcon />
-            </IconButton>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <IconButton onClick={handleDrawerToggle} color="inherit">
+                <MenuIcon />
+              </IconButton>
+              <IconButton onClick={toggleTheme} color="inherit">
+                {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+              </IconButton>
+            </Box>
           ) : (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               {navItems.map((item, index) => (
@@ -84,15 +89,13 @@ function Navbar({ refs }) {
                       left: 0,
                       right: 0,
                       height: '2px',
-                      backgroundColor: theme.palette.primary.main,
+                      backgroundColor: '#0982B5',
                       opacity: 0,
                       transition: 'opacity 300ms',
                     },
                     '&:hover::after': {
                       opacity: 1,
                     },
-
-                    
                   }}
                 >
                   {item.name}
@@ -105,6 +108,7 @@ function Navbar({ refs }) {
           )}
         </Toolbar>
       </AppBar>
+      
       {isMobile && (
         <Drawer anchor='right' open={drawerOpen} onClose={handleDrawerToggle}>
           <List>
@@ -116,11 +120,12 @@ function Navbar({ refs }) {
           </List>
         </Drawer>
       )}
+      
       <Box sx={{ pt: 8 }}>
         {/* Page Content */}
       </Box>
     </>
   );
-}
-
-export default Navbar;
+            }
+  export default Navbar;
+  
