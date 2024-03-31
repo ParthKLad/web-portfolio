@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Grow } from '@mui/material';
+import { Box, Typography, Grid, Card, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Grow } from '@mui/material';
 import MovieReviewWebsite from '../images/MovieReviewWebsite.png';
 import FullStackDevelopment from '../images/FullStackDevelopment.png';
 import './Projects.css';

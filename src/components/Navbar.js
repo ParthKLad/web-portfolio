@@ -3,8 +3,9 @@ import {
   AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemIcon, ListItemText,
   useMediaQuery, useTheme, CssBaseline, Tooltip
 } from '@mui/material';
+
+// eslint-disable-next-line no-unused-vars
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/HomeOutlined';
 import PersonIcon from '@mui/icons-material/PersonOutline';
 import WorkIcon from '@mui/icons-material/WorkOutline';
