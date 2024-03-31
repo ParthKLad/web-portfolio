@@ -10,8 +10,8 @@ import { ThemeContext } from '../context/ThemeContext';
 
 function Navbar({ refs }) {
   const { themeType, toggleTheme } = useContext(ThemeContext);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeNav, setActiveNav] = useState('Home');
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -55,9 +55,10 @@ function Navbar({ refs }) {
     <>
       <CssBaseline />
       <AppBar position="fixed" sx={{
-        background: themeType === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
-        color: theme.palette.getContrastText(theme.palette.background.default),
-        transition: 'all 0.3s ease',
+         background: 'transparent', // Set AppBar background to transparent
+         boxShadow: 'none', // Remove box shadow
+         color: themeType === 'dark' ? '#FFF' : '#000', // Set text color based on themeType
+         transition: 'all 0.3s ease',
       }}>
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
