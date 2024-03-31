@@ -1,8 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import {
   AppBar, Toolbar, Box, Typography, Button, useMediaQuery, useTheme, CssBaseline,
-  Drawer, List, ListItem, ListItemText
+  Drawer, List, ListItem, ListItemText, IconButton
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu'; // Import the Menu icon for the hamburger menu
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import { ThemeContext } from '../context/ThemeContext';
 
 function Navbar({ refs }) {
@@ -24,8 +27,7 @@ function Navbar({ refs }) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [refs.homeRef]);
-
+  }, [refs]);
 
   const navItems = [
     { name: 'Home', ref: refs.homeRef },
@@ -44,106 +46,76 @@ function Navbar({ refs }) {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
-    handleDrawerToggle();
+    if (isMobile) {
+      handleDrawerToggle();
+    }
   };
-  
 
   return (
     <>
       <CssBaseline />
       <AppBar position="fixed" sx={{
-        background: 'transparent',
-        backdropFilter: 'blur(10px)',
-        boxShadow: 'none',
-        transition: 'all 0.3s',
+        background: themeType === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+        color: theme.palette.getContrastText(theme.palette.background.default),
+        transition: 'all 0.3s ease',
       }}>
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6" sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
-            <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)}>
-              <Typography
-                sx={{
-                  mr: 1, fontWeight: themeType === 'dark' ? 300 : 700,
-                  color: themeType === 'dark' ? '#0B83B3' : '#FFF',
-                  '&:hover': { color: themeType === 'dark' ? '#FFF' : '#0B83B3', },
-                }}
-              >
-                Parth
-              </Typography>
-              <Typography
-                sx={{
-                  fontWeight: themeType === 'dark' ? 700 : 300,
-                  color: themeType === 'dark' ? '#FFF' : '#0B83B3',
-                  '&:hover': { color: themeType === 'dark' ? '#0B83B3' : '#FFF', },
-                }}
-              >
-                Lad
-              </Typography>
-            </Box>
-          </Typography>
-
-          {!isMobile && (
+          <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" sx={{ color: themeType === 'dark' ? '#0982B5' : '#FFF', '&:hover': { color: '#FFF' }, transition: 'color 0.3s' }}>Parth</Typography>
+            <Typography variant="h6" sx={{ color: themeType === 'dark' ? '#FFF' : '#0982B5', '&:hover': { color: '#0982B5' }, transition: 'color 0.3s', ml: 1 }}>Lad</Typography>
+          </Box>
+          {isMobile ? ( // Render hamburger menu icon for mobile
+            <IconButton onClick={handleDrawerToggle} color="inherit">
+              <MenuIcon />
+            </IconButton>
+          ) : (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Button
-                  key={item.name}
+                  key={index}
                   onClick={() => handleNavItemClicked(item.name, item.ref)}
                   sx={{
-                    mx: 2,
                     color: 'inherit',
+                    position: 'relative',
                     '&::after': {
                       content: '""',
                       position: 'absolute',
-                      width: activeNav === item.name ? '100%' : '0',
-                      height: '2px',
-                      bottom: 0,
+                      bottom: '-3px',
                       left: 0,
-                      bgcolor: '#0B83B3',
-                      transition: 'width 0.3s',
+                      right: 0,
+                      height: '2px',
+                      backgroundColor: theme.palette.primary.main,
+                      opacity: 0,
+                      transition: 'opacity 300ms',
                     },
                     '&:hover::after': {
-                      width: '100%',
+                      opacity: 1,
                     },
-                    '&:hover': {
-                      color: '#0B83B3',
-                    },
+
+                    
                   }}
                 >
                   {item.name}
                 </Button>
               ))}
-              <Button onClick={toggleTheme} sx={{ ml: 2 }}>
-                {themeType === 'dark' ? <Typography>Light</Typography> : <Typography>Dark</Typography>}
-              </Button>
-            </Box>
-          )}
-
-          {isMobile && (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Button onClick={toggleTheme}>
-                {themeType === 'dark' ? <Typography>Light</Typography> : <Typography>Dark</Typography>}
-              </Button>
-              <Button onClick={handleDrawerToggle} sx={{ ml: 2 }}>
-                <Typography sx={{ transform: drawerOpen ? 'rotate(45deg)' : 'rotate(0)' }}>
-                  {drawerOpen ? '✕' : '☰'}
-                </Typography>
-              </Button>
+              <IconButton onClick={toggleTheme} color="inherit">
+                {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+              </IconButton>
             </Box>
           )}
         </Toolbar>
       </AppBar>
-
       {isMobile && (
-        <Drawer anchor='right' open={drawerOpen} onClose={handleDrawerToggle} sx={{ '.MuiDrawer-paper': { width: '75%' } }}>
+        <Drawer anchor='right' open={drawerOpen} onClose={handleDrawerToggle}>
           <List>
-            {navItems.map((item) => (
-              <ListItem button key={item.name} onClick={() => handleNavItemClicked(item.name, item.ref)}>
-                <ListItemText primary={item.name} sx={{ textAlign: 'center' }} />
+            {navItems.map((item, index) => (
+              <ListItem button key={index} onClick={() => handleNavItemClicked(item.name, item.ref)}>
+                <ListItemText primary={item.name} />
               </ListItem>
             ))}
           </List>
         </Drawer>
       )}
-
       <Box sx={{ pt: 8 }}>
         {/* Page Content */}
       </Box>
