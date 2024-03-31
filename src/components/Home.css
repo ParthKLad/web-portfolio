@@ -1,30 +1,40 @@
-/* Home.css */
-.home-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .typing {
-    border-right: 2px solid;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  
-  .menu-btn {
-    display: inline-block;
-    background: #4B59F7;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-  }
-  
-  .menu-btn:hover {
-    background: #5468FF;
-  }
-  
-  
+/* Home Section */
+.home {
+  display: flex;
+  flex-direction: column; /* Aligns children vertically */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally */
+  height: 100vh;
+  color: #fff;
+  min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center; /* Ensures text is centered within each flex child */
+}
+
+.typing {
+  color: rgb(20, 207, 220); /* Styling for typing effect if needed */
+  font-weight: 500;
+}
+
+/* Button Styling - Update class or inline styles as needed */
+.home button {
+  background: rgb(20, 207, 220);
+  color: #fff;
+  font-size: 25px;
+  padding: 12px 36px;
+  margin-top: 20px;
+  font-weight: 400;
+  border-radius: 6px;
+  border: 2px solid rgb(20, 207, 220);
+  transition: all 0.3s ease;
+}
+
+.home button:hover {
+  color: rgb(20, 207, 220);
+  background: none;
+}
+
+
+

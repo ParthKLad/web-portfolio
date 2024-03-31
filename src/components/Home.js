@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
-import '../style.css';
+import './Home.css';
 
 const phrases = ["Developer", "IT Specialist", "Cloud Specialist"];
 

@@ -1,18 +1,17 @@
-
-/* Add these to your CSS for animations */
-@keyframes jelly {
-  0%, 100% { transform: scale(1, 1); }
-  25% { transform: scale(0.9, 1.1); }
-  50% { transform: scale(1.1, 0.9); }
-  75% { transform: scale(0.95, 1.05); }
+@keyframes rotate-open {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
 }
 
-@keyframes rotateOpen {
-  0% { transform: rotate(0); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes rotateClose {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0); }
+@keyframes rotate-close {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }

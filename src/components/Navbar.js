@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
-  AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemIcon, ListItemText,
-  useMediaQuery, useTheme, CssBaseline, Tooltip
+  AppBar, Toolbar, IconButton, Box, Drawer, List, ListItem, ListItemIcon, ListItemText,
+  useMediaQuery, useTheme, CssBaseline, Tooltip, Typography
 } from '@mui/material';
-
-// eslint-disable-next-line no-unused-vars
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/HomeOutlined';
 import PersonIcon from '@mui/icons-material/PersonOutline';
 import WorkIcon from '@mui/icons-material/WorkOutline';
@@ -20,6 +19,21 @@ function Navbar({ refs }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [activeNav, setActiveNav] = useState('Home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const homePosition = refs.homeRef.current ? refs.homeRef.current.getBoundingClientRect() : null;
+      if (homePosition && homePosition.top >= -10) {
+        setActiveNav('Home');
+      } else {
+        setActiveNav('');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [refs.homeRef]);
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -34,93 +48,106 @@ function Navbar({ refs }) {
   ];
 
   const handleNavItemClicked = (item) => {
+    setActiveNav(item.name);
     if (item.ref && item.ref.current) {
       item.ref.current.scrollIntoView({ behavior: 'smooth' });
     }
-    if (isMobile) {
-      handleDrawerToggle();
-    }
+    handleDrawerToggle();
   };
 
   return (
     <>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ background: '#1A1A1A', color: '#fff', boxShadow: 'none' }}>
-        <Toolbar sx={{ justifyContent: 'space-between', padding: '0 10px' }}>
-          <Typography variant="h6" sx={{ flexGrow: 1, userSelect: 'none' }}>
-            Parth Lad
-          </Typography>
-          
+      <AppBar position="fixed" sx={{
+        background: activeNav === 'Home' ? 'transparent' : '#14CEDC',
+        backdropFilter: 'blur(10px)',
+        boxShadow: 'none',
+        transition: 'background-color 0.3s',
+        color: theme.palette.getContrastText(theme.palette.background.default),
+        height: '56px',
+        justifyContent: 'space-between',
+      }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           {!isMobile && (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              {navItems.map((item, index) => (
-                <Box key={index} sx={{ display: 'flex', alignItems: 'center', mx: 2 }}>
-                  <IconButton
-                    onClick={() => handleNavItemClicked(item)}
-                    color="inherit"
-                    sx={{ padding: 0, marginRight: '8px' }}
-                  >
-                    {item.icon}
-                  </IconButton>
-                  <Typography
-                    onClick={() => handleNavItemClicked(item)}
-                    sx={{ cursor: 'pointer', display: 'block', color: '#fff', '&:hover': { color: '#11B9C5' } }}
-                  >
-                    {item.label}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
+            <Typography variant="h6" sx={{ flexGrow: 1, userSelect: 'none' }}>
+              <div className="name-container">
+                <span className="name-part parth" style={{ marginRight: '10px' }}>Parth</span>
+                <span className="name-part lad">Lad</span>
+              </div>
+            </Typography>
           )}
-          
-          {/* Theme Toggle Button */}
-          <Tooltip title="Toggle light/dark theme">
-            <IconButton onClick={toggleTheme} color="inherit">
-              {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-            </IconButton>
-          </Tooltip>
-          
-          {/* Hamburger Menu for Mobile */}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {!isMobile && navItems.map((item, index) => (
+              <Tooltip key={index} title={item.label} placement="bottom">
+                <IconButton
+                  onClick={() => handleNavItemClicked(item)}
+                  color="inherit"
+                  sx={{
+                    mx: 2,
+                    borderRadius: '10px',
+                    '&:hover, &:focus': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    },
+                    ...(activeNav === item.name && {
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      boxShadow: 'inset 0 0 10px 5px rgba(0, 0, 0, 0.1)',
+                    }),
+                  }}
+                >
+                  {item.icon}
+                </IconButton>
+              </Tooltip>
+            ))}
+            {!isMobile && (
+              <Tooltip title="Toggle light/dark theme">
+                <IconButton onClick={toggleTheme} color="inherit">
+                  {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+                </IconButton>
+              </Tooltip>
+            )}
+          </Box>
           {isMobile && (
             <IconButton
               color="inherit"
-              aria-label="menu"
+              aria-label="open drawer"
+              edge="end"
               onClick={handleDrawerToggle}
+              sx={{
+                ml: 'auto', // ensures the icon button is aligned to the right on mobile
+                ...(drawerOpen && {
+                  // Apply the rotate animation when drawer is open
+                  animation: 'rotate-open 0.5s forwards',
+                }),
+                ...(!drawerOpen && {
+                  // Apply the rotate animation when drawer is closed
+                  animation: 'rotate-close 0.5s forwards',
+                }),
+              }}
             >
-              <MenuIcon />
+              {drawerOpen ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
           )}
         </Toolbar>
       </AppBar>
-
-      {/* Mobile Drawer */}
+      
       {isMobile && (
-        <Drawer
-          anchor="right"
-          open={drawerOpen}
-          onClose={handleDrawerToggle}
-          sx={{
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              backgroundColor: '#1A1A1A',
-              color: '#fff',
-              width: 240
-            },
-          }}
-        >
+        <Drawer anchor='right' open={drawerOpen} onClose={handleDrawerToggle}>
           <List>
-            {navItems.map((item) => (
-              <ListItem button key={item.name} onClick={() => handleNavItemClicked(item)}>
-                <ListItemIcon sx={{ color: '#fff' }}>{item.icon}</ListItemIcon>
+            {navItems.map((item, index) => (
+              <ListItem button key={index} onClick={() => handleNavItemClicked(item)}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.label} />
               </ListItem>
             ))}
+            <ListItem button onClick={toggleTheme}>
+              <ListItemIcon>{themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}</ListItemIcon>
+              <ListItemText primary="Toggle" />
+            </ListItem>
           </List>
         </Drawer>
       )}
 
-      {/* Padding to offset content behind AppBar */}
-      <Box sx={{ pt: 10 }}>
+      <Box sx={{ pt: 8 }}>
         {/* Page Content */}
       </Box>
     </>
