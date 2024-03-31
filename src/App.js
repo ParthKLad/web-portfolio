@@ -16,6 +16,20 @@ function App() {
   const projectsRef = useRef(null);
   const contactsRef = useRef(null);
 
+  const navItems = [
+    { name: 'Home', ref: homeRef },
+    { name: 'About', ref: aboutRef },
+    { name: 'Projects', ref: projectsRef },
+    { name: 'Skills', ref: skillsRef },
+    { name: 'Contact', ref: contactsRef },
+  ];
+
+  const handleNavItemClicked = (item) => {
+    if (item.ref && item.ref.current) {
+      item.ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <ThemeProvider>
       <div className="App">
@@ -30,7 +44,7 @@ function App() {
         />
         <div className="content">
           <main>
-            <div ref={homeRef}><Home /></div>
+            <div ref={homeRef}><Home handleNavItemClicked={handleNavItemClicked} navItems={navItems} /></div>
             <div ref={aboutRef}><About /></div>
             <div ref={skillsRef}><Skills /></div>
             <div ref={projectsRef}><Projects /></div>

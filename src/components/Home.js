@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
-import '../style.css'
+import '../style.css';
 
-// Shortened phrases
-const phrases = ["Devloper", "IT Specialist", "Cloud Spec"];
+const phrases = ["Developer", "IT Specialist", "Cloud Specialist"];
 
-function Home() {
+function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
@@ -43,7 +42,11 @@ function Home() {
       <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 2000 } : {})}>
         <Typography variant="h5">And I'm a <span className="typing">{phrase}</span></Typography>
       </Grow>
-      <Button variant="contained" sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }} href="#contact">
+      <Button 
+        variant="contained" 
+        sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }} 
+        onClick={() => handleNavItemClicked(navItems.find(item => item.name === 'Contact'))}
+      >
         Hire Me
       </Button>
     </Box>
