@@ -36,18 +36,18 @@ function About() {
           <Grid item xs={12} md={6}>
             <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1500 } : {})}>
               <Box>
-              <Typography paragraph align="left">
+              <Typography paragraph align="left" variant="h6" sx={{ flexGrow: 1, userSelect: 'none', fontFamily: 'Roboto, sans-serif', fontWeight: 'bold', animation: 'dynamic 2s infinite' }}>
                   Hello World! I'm Parth Lad, and my expertise lies in web development and Information Technology.
                 </Typography>
                 <Button onClick={handleExpandClick} endIcon={<ExpandMoreIcon />} sx={{ mb: 2 }}>
                   {expanded ? 'Less About Me' : 'More About Me'}
                 </Button>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <Typography paragraph align="left">
-                  I have a strong foundation in front-end technologies like HTML, CSS, and JavaScript. I have experience working with popular libraries and frameworks like React and Bootstrap, which have helped me build responsive and user-friendly websites.
-                  I am passionate about learning new technologies and keeping up with the latest trends in web development. I am a quick learner and enjoy working on challenging 
-                </Typography>
-              </Collapse>
+              <Typography paragraph align="left">
+                I have a strong foundation in front-end technologies like HTML, CSS, and JavaScript. I have experience working with popular libraries and frameworks like React and Bootstrap, which have helped me build responsive and user-friendly websites.
+                I am passionate about learning new technologies and keeping up with the latest trends in web development. I am a quick learner and enjoy working on challenging 
+              </Typography>
+            </Collapse>
 
                 <br></br>
                 <Button variant="contained" startIcon={<DownloadIcon />} href="https://ladresume.s3.amazonaws.com/Lad_Resume.pdf" target="_blank" sx={{ mt: 2, backgroundColor: 'rgb(20, 206, 220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }}>

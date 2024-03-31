@@ -1,4 +1,7 @@
+
 /* About.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
 .max-width {
     max-width: 1200px;
     margin: auto;
@@ -67,3 +70,9 @@
   }
   
 
+  @keyframes dynamic {
+    0% { color: rgb(11, 185, 238); }
+    50% { color: rgb(35, 142, 168); }
+    100% { color: rgb(20, 196, 172); }
+  }
+  
