@@ -104,3 +104,36 @@
 
 
 
+.led-effect {
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* LED glow effect on hover */
+.led-effect:hover {
+  color: #FFF; /* Fallback to white text */
+  text-shadow:
+    0 0 5px #10f3e8, /* Glowing effect */
+    0 0 10px #10f3e8,
+    0 0 15px #10f3e8,
+    0 0 20px #10f3e8,
+    0 0 25px #10f3e8,
+    0 0 30px #10f3e8;
+}
+
+/* If you have other specific styles for dark mode, you can adjust them accordingly */
+.theme-dark .led-effect {
+  color: #10f3e8; /* Use the same color for the text in dark mode */
+}
+
+.theme-dark .led-effect:hover {
+  /* You can keep the same glow color or use white for the glow */
+  text-shadow:
+    0 0 5px #10f3e8, /* Glowing effect with the given color */
+    0 0 10px #10f3e8,
+    0 0 15px #10f3e8,
+    0 0 20px #FFF, /* Optionally add white for a mixed glow */
+    0 0 25px #FFF,
+    0 0 30px #FFF;
+}
+
+
