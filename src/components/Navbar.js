@@ -78,8 +78,6 @@ function Navbar({ refs }) {
           <Typography variant="h5" className="led-effect" sx={{ color: themeType === 'dark' ? '#0982B5' : '#0982B5', transition: 'color 0.3s' }}>Parth</Typography>
           <Typography variant="h5" className="led-effect" sx={{ color: themeType === 'dark' ? '#FFF' : '#0982B5', transition: 'color 0.3s', ml: 0.5 }}>Lad</Typography>
         </Box>
-
-          
           {/* Mobile-specific Toolbar layout */}
           {isMobile ? (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -97,31 +95,33 @@ function Navbar({ refs }) {
           ) : (
             // Non-mobile navigation layout
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              {navItems.map((item, index) => (
-                <Button
-                  key={index}
-                  onClick={() => handleNavItemClicked(item.name, item.ref)}
-                  sx={{
-                    color: 'inherit',
-                    position: 'relative',
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      bottom: '-3px',
-                      left: 0,
-                      right: 0,
-                      height: '2px',
-                      backgroundColor: '#0982B5',
-                      opacity: 0,
-                      transition: 'opacity 300ms',
-                    },
-                    '&:hover::after': {
-                      opacity: 1,
-                    },
-                  }}
-                >
-                  {item.name}
-                </Button>
+            {navItems.map((item, index) => (
+              <Button
+                key={index}
+                onClick={() => handleNavItemClicked(item.name, item.ref)}
+                className="nav-item" // Added a class for targeting
+                sx={{
+                  color: 'inherit',
+                  position: 'relative',
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: '-3px',
+                    left: 0,
+                    right: 0,
+                    height: '2px',
+                    backgroundColor: 'transparent', // Default state is transparent
+                    opacity: 0,
+                    transition: 'opacity 300ms, backgroundColor 300ms', // Added backgroundColor to the transition
+                  },
+                  '&:hover::after': {
+                    opacity: 1,
+                    backgroundColor: themeType === 'dark' ? '#10f3e8' : '#10f3e8', // LED color on hover
+                  },
+                }}
+              >
+                {item.name}
+              </Button>
               ))}
               {/* Theme mode toggle button for non-mobile */}
               <IconButton onClick={toggleTheme} color="inherit">

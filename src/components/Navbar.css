@@ -136,4 +136,9 @@
     0 0 30px #FFF;
 }
 
-
+/* Flip effect */
+.flip-effect {
+  display: inline-block; /* Allows the flip effect */
+  transition: transform 0.6s; /* Smooth flip effect */
+  transform-style: preserve-3d; /* Needed for flip effect */
+}
