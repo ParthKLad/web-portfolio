@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu'; // Import the Menu icon for the
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { ThemeContext } from '../context/ThemeContext';
-
+import  './Navbar.css';
 function Navbar({ refs }) {
   const { themeType, toggleTheme } = useContext(ThemeContext);
   const [activeNav, setActiveNav] = useState('Home');
@@ -68,9 +68,12 @@ function Navbar({ refs }) {
           </Box>
           {isMobile ? ( // Render hamburger menu icon for mobile
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <IconButton onClick={handleDrawerToggle} color="inherit">
-                <MenuIcon />
-              </IconButton>
+          <IconButton onClick={handleDrawerToggle} color="inherit" className={`hamburger ${drawerOpen ? 'open' : ''}`}>
+          <div className="hamburger-box">
+            <div className="hamburger-inner"></div>
+          </div>
+        </IconButton>
+        
               <IconButton onClick={toggleTheme} color="inherit">
                 {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
@@ -112,16 +115,31 @@ function Navbar({ refs }) {
       </AppBar>
       
       {isMobile && (
-        <Drawer anchor='right' open={drawerOpen} onClose={handleDrawerToggle}>
-          <List>
-            {navItems.map((item, index) => (
-              <ListItem button key={index} onClick={() => handleNavItemClicked(item.name, item.ref)}>
-                <ListItemText primary={item.name} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-      )}
+  <div
+    className={`${drawerOpen ? 'drawerSlideIn' : 'drawerSlideOut'} ${themeType === 'dark' ? 'drawerDark' : 'drawerLight'}`}
+    style={{
+      position: 'fixed',
+      top: 0,
+      right: 0,
+      width: '250px',
+      height: '100%',
+      overflowX: 'hidden',
+      zIndex: 1300, // Ensure this is above other content but below modal overlay
+      backdropFilter: drawerOpen ? 'blur(8px)' : 'none', // Apply blur effect when drawer is open
+      backgroundColor: drawerOpen ? 'rgba(0, 0, 0, 0.5)' : 'transparent', // Fallback background color with transparency
+    }}
+  >
+    <List>
+      {navItems.map((item, index) => (
+        <ListItem button key={index} onClick={() => handleNavItemClicked(item.name, item.ref)}>
+          <ListItemText primary={item.name} />
+        </ListItem>
+      ))}
+    </List>
+  </div>
+)}
+
+
       
       <Box sx={{ pt: 8 }}>
         {/* Page Content */}
