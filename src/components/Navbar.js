@@ -24,10 +24,11 @@ function Navbar({ refs }) {
         setActiveNav('');
       }
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [refs]);
+  }, [refs, activeNav]); // Include activeNav in the dependency array
+  
 
   const navItems = [
     { name: 'Home', ref: refs.homeRef },
