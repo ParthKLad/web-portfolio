@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography, TextField, Button, Grid, Link, styled, Card, CardContent, Avatar, Paper } from '@mui/material'; // Import Link from @mui/material
 import { LinkedIn, GitHub, Person, Email } from '@mui/icons-material';
-import VerificationCodeInput from 'react-verification-code-input';
 
 const contactInfo = {
   name: 'Parth Lad',
@@ -12,7 +11,7 @@ const contactInfo = {
   ],
 };
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const StyledLink = styled(Link)(() => ({
   mx: 1,
   transition: 'transform .2s',
   display: 'flex',
@@ -30,10 +29,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 function Contact() {
-  const verifiedCallback = (code) => {
-    console.log('Verification code: ' + code);
-  };
-
   return (
     <Box sx={{ py: 5, textAlign: 'left' }}>
       <Typography variant="h3" gutterBottom>Contact me</Typography>
@@ -69,11 +64,6 @@ function Contact() {
               <TextField name="email" label="Email" variant="outlined" fullWidth required sx={{ mb: 2 }} />
               <TextField name="subject" label="Subject" variant="outlined" fullWidth required sx={{ mb: 2 }} />
               <TextField name="message" label="Message" variant="outlined" multiline rows={4} fullWidth required sx={{ mb: 2 }} />
-              <VerificationCodeInput
-                fieldWidth={40}
-                fieldHeight={45}
-                onComplete={verifiedCallback}
-              />
               <StyledButton type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>Send</StyledButton>
             </form>
           </Paper>
