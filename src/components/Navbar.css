@@ -75,3 +75,32 @@
   z-index: 1299; /* Just below the drawer */
   cursor: pointer;
 }
+
+.title {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.title.openEffect {
+  opacity: 0.5; /* Adjust opacity to make the effect noticeable */
+}
+
+/* Navbar.css */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hamburger.open .hamburger-box .hamburger-inner {
+  animation: pulse 1s infinite;
+}
+
+
+

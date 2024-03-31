@@ -8,6 +8,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { ThemeContext } from '../context/ThemeContext';
 import  './Navbar.css';
+
 function Navbar({ refs }) {
   const { themeType, toggleTheme } = useContext(ThemeContext);
   const [activeNav, setActiveNav] = useState('Home');
@@ -68,16 +69,14 @@ function Navbar({ refs }) {
           </Box>
           {isMobile ? ( // Render hamburger menu icon for mobile
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton onClick={handleDrawerToggle} color="inherit" className={`hamburger ${drawerOpen ? 'open' : ''}`}>
-          <div className="hamburger-box">
-            <div className="hamburger-inner"></div>
-          </div>
-        </IconButton>
-        
-              <IconButton onClick={toggleTheme} color="inherit">
-                {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-            </Box>
+            <IconButton onClick={toggleTheme} color="inherit">
+              {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+            <Box sx={{ flexGrow: 1 }} /> {/* This will push the hamburger to the right */}
+            <IconButton onClick={handleDrawerToggle} color="inherit" className={`hamburger ${drawerOpen ? 'open' : ''}`}>
+              <MenuIcon />
+            </IconButton>
+          </Box>
           ) : (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               {navItems.map((item, index) => (
@@ -115,32 +114,52 @@ function Navbar({ refs }) {
       </AppBar>
       
       {isMobile && (
-  <div
-    className={`${drawerOpen ? 'drawerSlideIn' : 'drawerSlideOut'} ${themeType === 'dark' ? 'drawerDark' : 'drawerLight'}`}
-    style={{
-      position: 'fixed',
-      top: 0,
-      right: 0,
-      width: '250px',
-      height: '100%',
-      overflowX: 'hidden',
-      zIndex: 1300, // Ensure this is above other content but below modal overlay
-      backdropFilter: drawerOpen ? 'blur(8px)' : 'none', // Apply blur effect when drawer is open
-      backgroundColor: drawerOpen ? 'rgba(0, 0, 0, 0.5)' : 'transparent', // Fallback background color with transparency
-    }}
-  >
-    <List>
-      {navItems.map((item, index) => (
-        <ListItem button key={index} onClick={() => handleNavItemClicked(item.name, item.ref)}>
-          <ListItemText primary={item.name} />
-        </ListItem>
-      ))}
-    </List>
-  </div>
-)}
-
-
-      
+        <>
+          {drawerOpen && (
+            <div
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 1299, // Overlay should be just under the drawer
+                backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay for both themes
+                cursor: 'pointer', // Indicates clickable area
+              }}
+              onClick={handleDrawerToggle} // Closes the drawer when overlay is clicked
+            ></div>
+          )}
+          <div
+            className={`${drawerOpen ? 'drawerSlideIn' : 'drawerSlideOut'} ${themeType === 'dark' ? 'drawerDark' : 'drawerLight'}`}
+            style={{
+              position: 'fixed',
+              top: 0,
+              right: 0,
+              width: '250px',
+              height: '100%',
+              overflowX: 'hidden',
+              zIndex: 1300, // Ensure the drawer is above the overlay
+              backdropFilter: drawerOpen ? 'blur(8px)' : 'none',
+              backgroundColor: drawerOpen ? (themeType === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.9)') : 'transparent',
+              color: themeType === 'dark' ? '#FFF' : '#000',
+            }}
+          >
+            <List>
+              {navItems.map((item, index) => (
+                <ListItem 
+                  button 
+                  key={index} 
+                  onClick={() => handleNavItemClicked(item.name, item.ref)}
+                  style={{ color: themeType === 'dark' ? '#FFF' : '#000' }}
+                >
+                  <ListItemText primary={item.name} />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        </>
+      )}
       <Box sx={{ pt: 8 }}>
         {/* Page Content */}
       </Box>
