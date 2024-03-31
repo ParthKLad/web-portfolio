@@ -50,7 +50,7 @@ function Home({ handleNavItemClicked, navItems }) {
         Hire Me
       </Button>
     </Box>
-  );D
+  );
 }
 
 export default Home;
