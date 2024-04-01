@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, Box, Grid, Paper, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
-import { keyframes } from '@emotion/react';
 import { styled } from '@mui/system';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -60,12 +59,6 @@ const CategoryTitle = styled(Typography)({
   },
 });
 
-const gradient = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
 function Skills() {
   const theme = useTheme();
 
@@ -85,11 +78,6 @@ function Skills() {
     'Tools': '🛠️',
     'Cloud': '☁️',
     'Operating System': '💽',
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: { opacity: 1, scale: 1, transition: { delay: 0.2, duration: 0.5 } },
   };
 
   const paperStyle = {
