@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Card, CardMedia, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Grow } from '@mui/material';
-import MovieReviewWebsite from '../images/MovieReviewWebsite.png';
-import FullStackDevelopment from '../images/FullStackDevelopment.png';
+import {
+  Box, Typography, Grid, Card, CardMedia, CardContent,
+  Dialog, DialogTitle, DialogContent, DialogContentText,
+  DialogActions, Button, Grow, useTheme
+} from '@mui/material';
+import { styled } from '@mui/system'; // Corrected import for 'styled'
+import MovieReviewWebsite from '../images/p.jpg';
+import FullStackDevelopment from '../images/r.jpg';
 import './Projects.css';
 //import pulse from '../images/pulse.png';
 
@@ -20,6 +25,14 @@ const projects = [
     shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
+  {
+    title: 'Coming soon...',
+    image: MovieReviewWebsite,
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  },
+
   {
     title: 'Coming soon...',
     image: FullStackDevelopment,
@@ -55,11 +68,27 @@ const projects = [
   // Add more projects here...
 
 ];
+// Styled components
+// Styled components
+const CustomCard = styled(Card)(({ theme }) => ({
+  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+  '&:hover': {
+    transform: 'scale(1.05)',
+    boxShadow: theme.shadows[10],
+  },
+}));
 
-// Projects component
+const CustomCardMedia = styled(CardMedia)({
+  transition: 'transform 0.3s ease-in-out',
+  '&:hover': {
+    transform: 'scale(1.1)',
+  },
+});
+
 function Projects() {
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState();
+  const theme = useTheme();
 
   const handleClickOpen = (project) => {
     setSelectedProject(project);
@@ -77,16 +106,15 @@ function Projects() {
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1000 + index * 200 } : {})}>
-              <Card className="project-card" onClick={() => handleClickOpen(project)}>
-                <CardMedia
+              <CustomCard onClick={() => handleClickOpen(project)}>
+                <CustomCardMedia
                   component="img"
                   height="200"
                   image={project.image}
                   alt={project.title}
                   title={project.title}
-                  className="project-image"
                 />
-                <CardContent className="project-content">
+                <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {project.title}
                   </Typography>
@@ -94,7 +122,7 @@ function Projects() {
                     {project.shortDesc}
                   </Typography>
                 </CardContent>
-              </Card>
+              </CustomCard>
             </Grow>
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle>{selectedProject?.title}</DialogTitle>

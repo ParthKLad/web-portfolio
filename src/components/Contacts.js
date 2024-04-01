@@ -1,76 +1,190 @@
-import React from 'react';
-import { Box, Typography, TextField, Button, Grid, Link, styled, Card, CardContent, Avatar, Paper } from '@mui/material'; // Import Link from @mui/material
-import { LinkedIn, GitHub, Person, Email } from '@mui/icons-material';
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, TextField, Button, styled, Paper, IconButton, useTheme, ThemeProvider, createTheme,Grow } from '@mui/material';
+import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 
-const contactInfo = {
-  name: 'Parth Lad',
-  email: 'parth.lad@protonmail.com',
-  socials: [
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/parthlad01', icon: <LinkedIn /> },
-    { name: 'GitHub', url: 'https://github.com/parthlad9', icon: <GitHub /> },
-  ],
-};
 
-const StyledLink = styled(Link)(() => ({
-  mx: 1,
-  transition: 'transform .2s',
+
+// Create a theme instance
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#e91e63',
+    },
+    text: {
+      primary: '#212121',
+      secondary: '#757575',
+    },
+    background: {
+      paper: '#fff',
+      default: '#fafafa',
+    },
+  },
+});
+
+const StyledPaper = styled(Paper)({
+  display: 'flex',
+  flexDirection: 'row',
+  borderRadius: '8px',
+  overflow: 'hidden',
+  boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
+  position: 'relative',
+  width: '80%', // Adjusted to be less wide
+  height: '500px', // Set a specific height to make it taller
+  left: '10%', // Move it to the right relative to its current position
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backdropFilter: 'blur(10px)',
+    zIndex: -1,
+  },
+});
+
+
+// Modify StyledSection for left alignment of text
+const StyledSection = styled(Box)(({ theme, alignTop }) => ({
+  flex: 1,
+  padding: alignTop ? '16px 32px 32px' : '32px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: alignTop ? 'flex-start' : 'center',
+  alignItems: 'flex-start', // Change this to left align the text
+  zIndex: 1,
+  background: `linear-gradient(to right, ${theme.palette.background.paper}, ${theme.palette.background.default})`,
+  color: theme.palette.text.primary,
+}));
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  '& label.Mui-focused': {
+    color: theme.palette.primary.main,
+  },
+  '& .MuiInput-underline:before': {
+    borderBottomColor: theme.palette.text.secondary,
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: theme.palette.primary.main,
+  },
+  '& label': {
+    color: theme.palette.text.secondary,
+  },
+  '& input': {
+    color: theme.palette.text.primary,
+  },
+  marginBottom: '16px',
+}));
+
+const CustomButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(theme.palette.primary.main),
+  background: theme.palette.primary.main,
+  '&:hover': {
+    background: theme.palette.primary.dark,
+  },
+}));
+
+const SocialIconsRow = styled(Box)({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  paddingTop: '8px',
+});
+
+const ContactInfoItem = styled(Box)({
   display: 'flex',
   alignItems: 'center',
-  '&:hover': {
-    transform: 'scale(1.2)',
-  },
-}));
+  gap: '8px', // Space between the icon and text
+  marginBottom: '8px', // Space between the contact items
+});
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  transition: 'background-color .2s',
-  '&:hover': {
-    backgroundColor: theme.palette.primary.dark,
-  },
-}));
+const ContactForm = () => {
+  const theme = useTheme();
+  const [checked, setChecked] = useState(false);
 
-function Contact() {
+  useEffect(() => {
+    setChecked(true);
+  }, []);
+
   return (
-    <Box sx={{ py: 5, textAlign: 'left' }}>
-      <Typography variant="h3" gutterBottom>Contact me</Typography>
-      <Grid container spacing={2} justifyContent="flex-start">
-        <Grid item xs={12} sm={6}>
-          <Card>
-            <CardContent>
-              <Typography variant="h4" gutterBottom>Get in Touch</Typography>
-              <Typography variant="body1">
+    <ThemeProvider theme={theme}>
+      <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
+        <Box>
+          <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
+            Contact
+          </Typography>
+          <StyledPaper style={{ justifyContent: 'space-between' }}>
+            <StyledSection alignTop style={{ width: '60%' }}>
+              <ContactInfoItem>
+                <Typography variant="h5" gutterBottom>
+                  <br></br>
+                  <br></br>
+                  🤙 Contact Me
+                </Typography>
+              </ContactInfoItem>
+              <Typography variant="body1" gutterBottom> {/* 'h7' does not exist in MUI Typography variants */}
                 If you would like to contact me regarding any of the information provided above, you can reach me by filling out the form or sending an email to the address provided.
               </Typography>
-              <Box sx={{ mt: 2 }}>
-                <Typography variant="h5"><Person sx={{ mr: 1 }} /> {contactInfo.name}</Typography>
-                <Typography variant="body1"><Email sx={{ mr: 1 }} /> {contactInfo.email}</Typography>
-              </Box>
-              <Box sx={{ mt: 2, display: 'flex', flexDirection: 'row' }}>
-                {contactInfo.socials.map((social, index) => (
-                  <StyledLink key={index} href={social.url} target="_blank" rel="noopener">
-                    <Avatar>{React.cloneElement(social.icon)}</Avatar>
-                    <Typography variant="body1" sx={{ ml: 1 }}>{social.name}</Typography>
-                  </StyledLink>
-                ))}
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper elevation={3} sx={{ p: 2 }}>
-            <Typography variant="h4" gutterBottom>Message me</Typography>
-            <form method="post" action="/success" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="contact" />
-              <TextField name="name" label="Name" variant="outlined" fullWidth required sx={{ mb: 2 }} />
-              <TextField name="email" label="Email" variant="outlined" fullWidth required sx={{ mb: 2 }} />
-              <TextField name="subject" label="Subject" variant="outlined" fullWidth required sx={{ mb: 2 }} />
-              <TextField name="message" label="Message" variant="outlined" multiline rows={4} fullWidth required sx={{ mb: 2 }} />
-              <StyledButton type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>Send</StyledButton>
-            </form>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Box>
+              <br />
+              <ContactInfoItem>
+                <Typography variant="h5" gutterBottom>
+                  🙋‍♂️ Parth Lad
+                </Typography>
+              </ContactInfoItem>
+              <ContactInfoItem>
+                <Typography gutterBottom>
+                  ✉️ parth.lad@protonmail.com
+                </Typography>
+              </ContactInfoItem>
+              <SocialIconsRow>
+                <IconButton
+                  href="https://www.linkedin.com/in/parthlad01"
+                  target="_blank"
+                  rel="noopener"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    '&:hover': {
+                      color: '#0982B5',
+                    },
+                  }}
+                >
+                  <LinkedIn />
+                </IconButton>
+                <IconButton
+                  href="https://github.com/parthlad9"
+                  target="_blank"
+                  rel="noopener"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    '&:hover': {
+                      color: '#0982B5',
+                    },
+                  }}
+                >
+                  <GitHub />
+                </IconButton>
+              </SocialIconsRow>
+            </StyledSection>
+            <StyledSection style={{ width: '40%', textAlign: 'left' }}>
+              <Typography variant="h5" gutterBottom>
+                👋 Reach out for queries or just to say hi!
+              </Typography>
+              <CustomTextField fullWidth label="Your Email" variant="standard" />
+              <CustomTextField fullWidth label="Subject" variant="standard" />
+              <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} />
+              <CustomButton variant="contained" endIcon={<Send />}>
+                Send Message
+              </CustomButton>
+            </StyledSection>
+          </StyledPaper>
+        </Box>
+      </Grow>
+    </ThemeProvider>
   );
 }
 
-export default Contact;
+export default ContactForm;
