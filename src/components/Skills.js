@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Box, Grid, Paper, useTheme } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { styled } from '@mui/system';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -43,8 +43,13 @@ const skills = [
 AOS.init();
 
 const SkillIcon = styled(motion.img)({
+  width: '100%',
   maxWidth: '48px',
   maxHeight: '48px',
+  padding: '8px', // Adds spacing around icons
+  backgroundColor: '#fff', // Ensures icons are visible in dark mode
+  borderRadius: '8px', // Rounded corners for icons
+  boxShadow: '0px 10px 20px rgba(0,0,0,0.1)', // Soft shadow for depth
 });
 
 const CategoryTitle = styled(Typography)({
