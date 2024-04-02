@@ -6,7 +6,7 @@ This is a personal portfolio website showcasing my web development projects, ski
 
 - **[React](https://reactjs.org/)** - A JavaScript library for building user interfaces. Developed and maintained by Facebook.
 - **[@emotion/react](https://emotion.sh/docs/@emotion/react) 
-and [@emotion/styled] (https://emotion.sh/docs/@emotion/styled)** - Libraries for writing CSS styles with JavaScript. Developed and maintained by Emotion.
+and [@emotion/styled](https://emotion.sh/docs/@emotion/styled)** - Libraries for writing CSS styles with JavaScript. Developed and maintained by Emotion.
 - **[@mui/material](https://mui.com/)** - For using Material Design components. Developed and maintained by Material-UI.
 - **[AOS (Animate on Scroll)](https://michalsnik.github.io/aos/)** - A small library to animate elements on your page when you scroll. Developed and maintained by Michał Sajnóg.
 - **[Bootstrap](https://getbootstrap.com/)** - A popular CSS framework for developing responsive and mobile-first websites. Developed and maintained by the Bootstrap team.
