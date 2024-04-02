@@ -102,6 +102,7 @@ const ContactInfoItem = styled(Box)({
   marginBottom: '8px', // Space between the contact items
 });
 
+
 const ContactForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);

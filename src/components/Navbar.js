@@ -3,7 +3,6 @@ import {
   AppBar, Toolbar, Box, Typography, Button, useMediaQuery, useTheme, CssBaseline,
   List, ListItem, ListItemText, IconButton
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { ThemeContext } from '../context/ThemeContext';
@@ -67,11 +66,14 @@ function Navbar({ refs }) {
     <>
       <CssBaseline />
       <AppBar position="fixed" sx={{
-        background: 'transparent',
-        boxShadow: 'none',
-        color: themeType === 'dark' ? '#FFF' : '#000',
-        transition: 'all 0.3s ease',
-      }}>
+    backdropFilter: 'blur(10px)',
+    backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)'),
+    boxShadow: 'none',
+    color: 'inherit',
+    transition: 'background-color 0.3s ease',
+  }}>
+
+
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Logo and Title: Clicking redirects to the home section */}
           <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
@@ -89,8 +91,13 @@ function Navbar({ refs }) {
               <Box sx={{ flexGrow: 1 }} />
               {/* Hamburger menu button */}
               <IconButton onClick={handleDrawerToggle} color="inherit" className={`hamburger ${drawerOpen ? 'open' : ''}`}>
-                <MenuIcon />
-              </IconButton>
+              {/* These spans will create the hamburger lines */}
+              <span className="hamburger-inner"></span>
+              <span className="hamburger-inner"></span>
+              <span className="hamburger-inner"></span>
+            </IconButton>
+
+
             </Box>
           ) : (
             // Non-mobile navigation layout

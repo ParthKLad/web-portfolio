@@ -7,7 +7,7 @@ import {
 import { styled } from '@mui/system'; // Corrected import for 'styled'
 import MovieReviewWebsite from '../images/p.jpg';
 import FullStackDevelopment from '../images/r.jpg';
-import './Projects.css';
+
 //import pulse from '../images/pulse.png';
 
 const projects = [
