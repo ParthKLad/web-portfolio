@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, TextField, Button, styled, Paper, IconButton, useTheme, ThemeProvider, createTheme,Grow } from '@mui/material';
+import { Box, Typography, TextField, Button, styled, Paper, IconButton, useTheme, ThemeProvider, createTheme, Grow } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 
-
-
-// Create a theme instance
 const theme = createTheme({
   palette: {
     primary: {
@@ -24,41 +21,43 @@ const theme = createTheme({
   },
 });
 
-const StyledPaper = styled(Paper)({
+const StyledPaper = styled(Paper)(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'row', // Default to row for larger screens
   borderRadius: '8px',
   overflow: 'hidden',
   boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
   position: 'relative',
-  width: '80%', // Adjusted to be less wide
-  height: '500px', // Set a specific height to make it taller
-  left: '10%', // Move it to the right relative to its current position
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backdropFilter: 'blur(10px)',
-    zIndex: -1,
+  width: '80%', // Default width for larger screens
+  height: 'auto',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  '@media (max-width:600px)': {
+    flexDirection: 'column', // Switch to column layout for screens smaller than 600px
+    width: '100%', // Full width for smaller screens
   },
-});
+}));
 
-
-// Modify StyledSection for left alignment of text
-const StyledSection = styled(Box)(({ theme, alignTop }) => ({
-  flex: 1,
-  padding: alignTop ? '16px 32px 32px' : '32px',
+const StyledSection = styled(Box)(({ theme }) => ({
+  padding: '16px 32px 32px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: alignTop ? 'flex-start' : 'center',
-  alignItems: 'flex-start', // Change this to left align the text
+  justifyContent: 'center',
+  alignItems: 'flex-start',
   zIndex: 1,
-  background: `linear-gradient(to right, ${theme.palette.background.paper}, ${theme.palette.background.default})`,
-  color: theme.palette.text.primary,
+  '@media (max-width:600px)': {
+    width: '100%', // Full width for smaller screens
+    '&:first-child': {
+      marginBottom: '16px', // Add some space between the sections on mobile
+    },
+  },
+  // Adjust widths specifically for larger screens if needed
+  ':first-of-type': {
+    width: '60%', // Contact info section width on larger screens
+  },
+  ':last-child': {
+    width: '40%', // Form section width on larger screens
+  },
 }));
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
@@ -98,9 +97,10 @@ const SocialIconsRow = styled(Box)({
 const ContactInfoItem = styled(Box)({
   display: 'flex',
   alignItems: 'center',
-  gap: '8px', // Space between the icon and text
-  marginBottom: '8px', // Space between the contact items
+  gap: '8px',
+  marginBottom: '8px',
 });
+
 
 
 const ContactForm = () => {
@@ -118,19 +118,20 @@ const ContactForm = () => {
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
-          <StyledPaper style={{ justifyContent: 'space-between' }}>
-            <StyledSection alignTop style={{ width: '60%' }}>
+          <StyledPaper>
+            <StyledSection alignTop>
               <ContactInfoItem>
-                <Typography variant="h5" gutterBottom>
-                  <br></br>
-                  <br></br>
+                <Typography variant="h6" marginTop={-5} gutterBottom>
+                <br></br>
                   🤙 Contact Me
                 </Typography>
+                <br></br>
               </ContactInfoItem>
-              <Typography variant="body1" gutterBottom> {/* 'h7' does not exist in MUI Typography variants */}
-                If you would like to contact me regarding any of the information provided above, you can reach me by filling out the form or sending an email to the address provided.
-              </Typography>
-              <br />
+              <Typography variant="h6" gutterBottom style={{ width: '100%' }}>
+            📝 Reach out via the form or email for any queries or just to say hi!
+          </Typography>
+
+              <br></br>
               <ContactInfoItem>
                 <Typography variant="h5" gutterBottom>
                   🙋‍♂️ Parth Lad
@@ -144,6 +145,7 @@ const ContactForm = () => {
               <SocialIconsRow>
                 <IconButton
                   href="https://www.linkedin.com/in/parthlad01"
+
                   target="_blank"
                   rel="noopener"
                   sx={{
@@ -170,7 +172,7 @@ const ContactForm = () => {
                 </IconButton>
               </SocialIconsRow>
             </StyledSection>
-            <StyledSection style={{ width: '40%', textAlign: 'left' }}>
+            <StyledSection style={{ width: '100%', textAlign: 'left' }}>
               <Typography variant="h5" gutterBottom>
                 👋 Reach out for queries or just to say hi!
               </Typography>
@@ -178,7 +180,7 @@ const ContactForm = () => {
               <CustomTextField fullWidth label="Subject" variant="standard" />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} />
               <CustomButton variant="contained" endIcon={<Send />}>
-                Send Message
+                Send
               </CustomButton>
             </StyledSection>
           </StyledPaper>
