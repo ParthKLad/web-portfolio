@@ -45,7 +45,7 @@ function About() {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
               <Typography paragraph align="left">
                 I have a strong foundation in front-end technologies like HTML, CSS, and JavaScript. I have experience working with popular libraries and frameworks like React and Bootstrap, which have helped me build responsive and user-friendly websites.
-                I am passionate about learning new technologies and keeping up with the latest trends in web development. I am a quick learner and enjoy working on challenging 
+                I am passionate about learning new technologies and keeping up with the latest trends in web development. I am a quick learner and enjoy working on challenging problems 
               </Typography>
             </Collapse>
 
