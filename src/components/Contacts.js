@@ -101,8 +101,6 @@ const ContactInfoItem = styled(Box)({
   marginBottom: '8px',
 });
 
-
-
 const ContactForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
@@ -128,7 +126,7 @@ const ContactForm = () => {
                 <br></br>
               </ContactInfoItem>
               <Typography variant="h6" gutterBottom style={{ width: '100%' }}>
-            📝 Reach out via the form or email for any queries or just to say hi!
+            📝 Reach out via the form or email for any queries 
           </Typography>
               <br></br>
               <ContactInfoItem>
@@ -173,7 +171,7 @@ const ContactForm = () => {
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'left' }}>
               <Typography variant="h5" gutterBottom>
-                👋 Reach out for queries 
+                📧 Send a Message
               </Typography>
               <CustomTextField fullWidth label="Your Email" variant="standard" />
               <CustomTextField fullWidth label="Subject" variant="standard" />
