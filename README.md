@@ -11,7 +11,7 @@ This is a personal portfolio website showcasing my web development projects, ski
 - **Bootstrap** - A popular CSS framework for developing responsive and mobile-first websites. Developed and maintained by the Bootstrap team.
 - **Framer Motion** - A production-ready motion library for React. Developed and maintained by Framer.
 
-This project is a conversion of a previous website built with HTML, CSS, and JavaScript. The original site is now archived and can be accessed at this (Link)[https://web.archive.org/web/20240401000032/https://parthl.com/] . It has been fully converted and enhanced using React.
+This project is a conversion of a previous website built with HTML, CSS, and JavaScript. The original site is now archived and can be accessed at this [Link](https://web.archive.org/web/20240401000032/https://parthl.com/) . It has been fully converted and enhanced using React.
 
 ## 📝 License
 
