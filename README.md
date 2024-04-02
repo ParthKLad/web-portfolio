@@ -1,29 +1,27 @@
-# React Web Portfolio
+# Web Portfolio
 
-This project is a personal portfolio website built with React. It showcases my projects, skills, and experience in web development.
+This is a personal portfolio website showcasing my web development projects, skills, and experience. It's built with React.
 
-## UI Framework
+## 🛠️ Built With
 
-For the UI components and styling, this project utilizes `MUI` (formerly known as Material-UI). It provides a comprehensive suite of UI tools to create a responsive and aesthetically pleasing design.
+- **[React](https://reactjs.org/)** - A JavaScript library for building user interfaces. Developed and maintained by Facebook.
+- **[@emotion/react]( https://emotion.sh/docs/@emotion/react) and [ @emotion/styled ] ( https://emotion.sh/docs/@emotion/styled )** - Libraries for writing CSS styles with JavaScript. Developed and maintained by Emotion.
+- **[@mui/material](https://mui.com/)** - For using Material Design components. Developed and maintained by Material-UI.
+- **[AOS (Animate on Scroll)](https://michalsnik.github.io/aos/)** - A small library to animate elements on your page when you scroll. Developed and maintained by Michał Sajnóg.
+- **[Bootstrap](https://getbootstrap.com/)** - A popular CSS framework for developing responsive and mobile-first websites. Developed and maintained by the Bootstrap team.
+- **[Framer Motion](https://www.framer.com/api/motion/)** - A production-ready motion library for React. Developed and maintained by Framer.
 
-## How to Run Locally
 
-1. Clone the repository:
+This project is a conversion of a previous website built with HTML, CSS, and JavaScript. The original site is now archived and can be accessed Here [Parth Lad -Archived](https://web.archive.org/web/20240401000032/https://parthl.com/) . It has been fully converted and enhanced using React.
+
+## 👀 Live View
+You can view THE site live here : [Parthl.com](https://parthl.com/)
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
 
 
+---
 
-The application will run on `http://localhost:3000` by default. You can access it via your web browser.
-
-## Features
-
-- **Portfolio Projects**: Showcase of personal or professional projects.
-- **Skills**: Listing of technologies and tools you are proficient with.
-- **Contact Form**: A form for visitors to send messages directly through the website.
-
-## Contributing
-
-Contributions to this project are welcome! Please fork the repository and submit a pull request with your proposed changes.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+Made with ❤️ by Parth
