@@ -42,15 +42,15 @@ const skills = [
 
 AOS.init();
 
-const SkillIcon = styled(motion.img)({
+const SkillIcon = styled(motion.img)(({ theme }) => ({
   width: '100%',
   maxWidth: '48px',
   maxHeight: '48px',
-  padding: '8px', // Adds spacing around icons
-  backgroundColor: '#fff', // Ensures icons are visible in dark mode
-  borderRadius: '8px', // Rounded corners for icons
-  boxShadow: '0px 10px 20px rgba(0,0,0,0.1)', // Soft shadow for depth
-});
+  padding: '8px',
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#333',
+  borderRadius: '8px',
+  boxShadow: '0px 10px 20px rgba(0,0,0,0.1)',
+}));
 
 const CategoryTitle = styled(Typography)({
   position: 'relative',
@@ -64,15 +64,16 @@ const CategoryTitle = styled(Typography)({
   },
 });
 
-
-
-const skillBoxStyle = {
-  my: 1, // Reduced margin for a tighter layout
+const skillBoxStyle = (theme) => ({
+  my: 1,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  px: 1 // Padding adjustment for smaller tile size
-};
+  px: 1,
+  [theme.breakpoints.down('sm')]: {
+    width: '100%', // Increase width for small screens
+  },
+});
 
 function Skills() {
   const theme = useTheme();
@@ -126,18 +127,18 @@ function Skills() {
   return (
     <Box sx={{ py: 5, textAlign: 'center' }} id="skills">
       <Typography variant="h4" gutterBottom>My Skills</Typography>
-      <Grid container spacing={gridContainerSpacing} justifyContent="center" alignItems="stretch">
+      <Grid container spacing={3} justifyContent="center" alignItems="stretch">
         {Object.entries(categories).map(([category, skills]) => (
-          <Grid item xs={6} sm={2} md={4} key={category}> {/* Adjusted for smaller tiles */}
+          <Grid item xs={12} sm={6} md={4} key={category}>
             <Paper elevation={3} sx={paperStyle}>
               <CategoryTitle>{categoryEmojis[category]} {category}</CategoryTitle>
-              <Grid container spacing={0} justifyContent="center"> {/* Adjusted grid item sizes for smaller tiles */}
+              <Grid container spacing={2} justifyContent="center">
                 {skills.map((skill) => (
-                  <Grid item xs={4} sm={4} md={4} key={skill.name}>
-                    <Box sx={skillBoxStyle}>
-                      <SkillIcon src={skill.icon} alt={skill.name} whileHover={{ scale: 1.1, translateY: -10, boxShadow: "0px 10px 15px rgba(0,0,0,0.2)" }} transition={{ type: "spring", stiffness: 300 }} />
-                      <Typography variant="subtitle1">{skill.name}</Typography>
-                    </Box>
+                  <Grid item xs={6} sm={4} md={4} key={skill.name} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <SkillIcon src={skill.icon} alt={skill.name} whileHover={{ scale: 1.1 }} />
+                    <Typography variant={isXsScreen ? "body2" : "subtitle1"} style={{ textAlign: 'center', wordWrap: 'break-word' }}>
+                      {skill.name}
+                    </Typography>
                   </Grid>
                 ))}
               </Grid>
@@ -147,6 +148,6 @@ function Skills() {
       </Grid>
     </Box>
   );
-    }  
+}
 
 export default Skills;
