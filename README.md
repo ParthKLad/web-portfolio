@@ -15,7 +15,7 @@ This is a personal portfolio website showcasing my web development projects, ski
 This project is a conversion of a previous website built with HTML, CSS, and JavaScript. The original site is now archived and can be accessed Here [Parth Lad -Archived](https://web.archive.org/web/20240401000032/https://parthl.com/) . It has been fully converted and enhanced using React.
 
 ## 👀 Live View
-You can view THE site live here : [Parthl.com](https://parthl.com/)
+You can view The site live here : [Parthl.com](https://parthl.com/)
 
 ## 📝 License
 
