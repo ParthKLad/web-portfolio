@@ -77,15 +77,7 @@ const skillBoxStyle = (theme) => ({
 
 function Skills() {
   const theme = useTheme();
-
-  const categories = skills.reduce((groups, skill) => {
-    const category = skill.category;
-    if (!groups[category]) {
-      groups[category] = [];
-    }
-    groups[category].push(skill);
-    return groups;
-  }, {});
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const categoryEmojis = {
     'Frontend': '💻',
@@ -124,7 +116,7 @@ function Skills() {
   };
   
   const gridContainerSpacing = 3; // Adjust as needed for overall spacing
-  return (
+    return (
     <Box sx={{ py: 5, textAlign: 'center' }} id="skills">
       <Typography variant="h4" gutterBottom>My Skills</Typography>
       <Grid container spacing={3} justifyContent="center" alignItems="stretch">
