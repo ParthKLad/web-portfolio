@@ -91,7 +91,7 @@ function Skills() {
   };
   const paperStyle = {
     p: 1,
-    my: 1,
+    my: 4,
     height: 'auto', // This will allow the box to adjust its height based on its content
     width: '100%', // This will make the box take up 90% of the screen width on smaller screens
     margin: '0 auto', // This will center the tile

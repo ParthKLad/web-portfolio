@@ -130,7 +130,6 @@ const ContactForm = () => {
               <Typography variant="h6" gutterBottom style={{ width: '100%' }}>
             📝 Reach out via the form or email for any queries or just to say hi!
           </Typography>
-
               <br></br>
               <ContactInfoItem>
                 <Typography variant="h5" gutterBottom>
@@ -174,7 +173,7 @@ const ContactForm = () => {
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'left' }}>
               <Typography variant="h5" gutterBottom>
-                👋 Reach out for queries or just to say hi!
+                👋 Reach out for queries 
               </Typography>
               <CustomTextField fullWidth label="Your Email" variant="standard" />
               <CustomTextField fullWidth label="Subject" variant="standard" />
