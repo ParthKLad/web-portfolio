@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box, Typography, TextField, Button, styled, Paper, IconButton, useTheme, ThemeProvider, createTheme, Grow, useMediaQuery
+  Box,
+  Typography,
+  TextField,
+  Button,
+  styled,
+  Paper,
+  IconButton,
+  useTheme,
+  ThemeProvider,
+  createTheme,
+  Grow
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { useForm, ValidationError } from '@formspree/react'; // Importing the useForm and ValidationError from Formspree
 
 // Google reCAPTCHA site key
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
 
-// MUI custom theme
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: '#14CEDC',
     },
     secondary: {
       main: '#e91e63',
@@ -28,23 +37,20 @@ const theme = createTheme({
   },
 });
 
-// Dark theme configuration
-const darkTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#e91e63',
-    },
-    text: {
-      primary: '#ffffff', // Changed to white for visibility in dark mode
-      secondary: '#bbbbbb',
-    },
-    background: {
-      paper: '#252525', // Changed to black for dark mode
-      default: '#121212',
-    },
+const StyledPaper = styled(Paper)({
+  display: 'flex',
+  flexDirection: 'row',
+  borderRadius: '8px',
+  overflow: 'hidden',
+  boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
+  position: 'relative',
+  width: '80%',
+  height: 'auto',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  '@media (max-width:600px)': {
+    flexDirection: 'column',
+    width: '100%',
   },
 });
 
@@ -89,10 +95,10 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const CustomButton = styled(Button)({
-  color: theme.palette.getContrastText(theme.palette.primary.main),
-  background: theme.palette.primary.main,
+  color: theme.palette.getContrastText('#000'),
+  backgroundColor: '#14CEDC', // Background color changed to black
   '&:hover': {
-    background: theme.palette.primary.dark,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)', // Darker on hover
   },
 });
 
@@ -118,46 +124,23 @@ const ContactInfoItem = styled(Box)(({ theme }) => ({
   },
 }));
 
-const StyledPaper = styled(Paper)({
-  display: 'flex',
-  flexDirection: 'row',
-  borderRadius: '8px',
-  overflow: 'hidden',
-  boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
-  position: 'relative',
-  width: '80%',
-  height: 'auto',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  '@media (max-width:600px)': {
-    flexDirection: 'column',
-    width: '100%',
-  },
-});
-
-// Update your styled components as needed to use the theme from props
-
 const ContactForm = () => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = useTheme();
   const [checked, setChecked] = useState(false);
+  const [state, handleSubmit] = useForm("yourFormspreeID"); // Replace "yourFormspreeID" with your actual Formspree form ID
 
   useEffect(() => {
     setChecked(true);
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Form submission logic here
-  };
-
   return (
-    <ThemeProvider theme={prefersDarkMode ? darkTheme : theme}>
+    <ThemeProvider theme={theme}>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
-        <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%', marginBottom: '100px' }}>
+        <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%' }}>
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
-          <StyledPaper component="form" onSubmit={handleSubmit} method="POST" data-netlify="true" name="contact">
+          <StyledPaper component="form" onSubmit={handleSubmit} method="POST">
             <input type="hidden" name="form-name" value="contact" />
             <StyledSection>
               <ContactInfoItem>
@@ -182,11 +165,12 @@ const ContactForm = () => {
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'center' }}>
               <CustomTextField fullWidth label="Email" variant="standard" name="email" />
+              <ValidationError prefix="Email" field="email" errors={state.errors} />
               <CustomTextField fullWidth label="Subject" variant="standard" name="subject" />
+              <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
-              <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} />
-              <br /><br />
-              <CustomButton variant="contained" endIcon={<Send />} type="submit">
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
+              <CustomButton variant="contained" endIcon={<Send />} type="submit" disabled={state.submitting}>
                 Send
               </CustomButton>
             </StyledSection>
@@ -198,6 +182,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
-
-
