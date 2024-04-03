@@ -60,24 +60,25 @@ const StyledSection = styled(Box)({
   },
 });
 
-const CustomTextField = styled(TextField)({
+const CustomTextField = styled(TextField)(({ theme }) => ({
   '& label.Mui-focused': {
-    color: theme.palette.primary.main,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
   },
   '& .MuiInput-underline:before': {
-    borderBottomColor: theme.palette.text.secondary,
+    borderBottomColor: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary,
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: theme.palette.primary.main,
+    borderBottomColor: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
   },
   '& label': {
-    color: theme.palette.text.secondary,
+    color: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary,
   },
   '& input': {
-    color: theme.palette.text.primary,
+    color: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.primary,
   },
   marginBottom: '16px',
-});
+}));
+
 
 const CustomButton = styled(Button)({
   color: theme.palette.getContrastText(theme.palette.primary.main),
