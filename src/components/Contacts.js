@@ -147,7 +147,7 @@ const ContactForm = () => {
                   <strong>Name:</strong> Parth Lad
                 </Typography>
                 <Typography variant="h5" gutterBottom noWrap>
-                  <strong>Email:</strong> XYZ
+                  <strong>Email:</strong> parth.lad@protonmail.com
                 </Typography>
               </ContactInfoItem>
               <SocialIconsRow>
