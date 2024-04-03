@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 import { useForm, ValidationError } from '@formspree/react'; // Importing the useForm and ValidationError from Formspree
+import ReCAPTCHA from 'react-google-recaptcha';
 
 // Google reCAPTCHA site key
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
@@ -127,7 +128,7 @@ const ContactInfoItem = styled(Box)(({ theme }) => ({
 const ContactForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
-  const [state, handleSubmit] = useForm("yourFormspreeID"); // Replace "yourFormspreeID" with your actual Formspree form ID
+  const [state, handleSubmit] = useForm("xjvnadkq"); 
 
   useEffect(() => {
     setChecked(true);
@@ -170,6 +171,7 @@ const ContactForm = () => {
               <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
               <ValidationError prefix="Message" field="message" errors={state.errors} />
+              <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} />
               <CustomButton variant="contained" endIcon={<Send />} type="submit" disabled={state.submitting}>
                 Send
               </CustomButton>

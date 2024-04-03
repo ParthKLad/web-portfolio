@@ -43,6 +43,10 @@ const Footer = () => {
             <br></br>
             <br></br>
             <br></br>
+            <br></br>
+            <br></br>
+            
+
             <p>© {year} All rights reserved. Made with love ❤️ by {name}</p>
         </footer>
     );
