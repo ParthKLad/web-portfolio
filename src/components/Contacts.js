@@ -136,7 +136,7 @@ const ContactForm = () => {
   return (
     <ThemeProvider theme={theme}>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
-        <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%' }}>
+        <Box sx={{ maxWidth: '1450px', maxHeight: '522px', margin: 'auto', width: '100%' }}>
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
