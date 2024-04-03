@@ -141,34 +141,26 @@ const ContactForm = () => {
                 </Typography>
               </ContactInfoItem>
               <SocialIconsRow>
-                <IconButton
-                  href="https://www.linkedin.com/in/parthlad01"
-                  target="_blank"
-                  rel="noopener"
-                  sx={{
-                    color: theme.palette.primary.main,
-                    fontSize: '1.5rem',
-                    '&:hover': {
-                      color: '#0982B5',
-                    },
-                  }}
-                >
-                  <LinkedIn />
-                </IconButton>
-                <IconButton
-                  href="https://github.com/parthlad9"
-                  target="_blank"
-                  rel="noopener"
-                  sx={{
-                    color: theme.palette.primary.main,
-                    fontSize: '1.5rem',
-                    '&:hover': {
-                      color: '#0982B5',
-                    },
-                  }}
-                >
-                  <GitHub />
-                </IconButton>
+              <IconButton
+              href="https://www.linkedin.com/in/parthlad01"
+              target="_blank"
+              rel="noopener"
+              color="primary"
+              sx={{ fontSize: '2.5rem' }} // Use theme values or directly set sizes
+            >
+              <LinkedIn sx={{ fontSize: 'inherit' }} />
+            </IconButton>
+            <IconButton
+              href="https://github.com/parthlad9"
+              target="_blank"
+              rel="noopener"
+              color="primary"
+              sx={{ fontSize: '2.5rem' }} // Use theme values or directly set sizes
+            >
+              <GitHub sx={{ fontSize: 'inherit' }} />
+            </IconButton>
+
+
               </SocialIconsRow>
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'center' }}>
