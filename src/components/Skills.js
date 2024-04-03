@@ -45,26 +45,9 @@ const skills = [
 
 AOS.init();
 
-const SkillIcon = styled(motion.img)({
-  maxWidth: '48px',
-  maxHeight: '48px',
-});
-
-const CategoryTitle = styled(Typography)(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  marginBottom: '1rem',
-  '&:hover': {
-    scale: 1.05,
-    color: theme.palette.secondary.main, // Example to use theme
-    transition: 'scale 0.3s ease',
-  },
-}));
-
 function Skills() {
-  const theme = useTheme();
 
+  // Utility function to group skills by category
   const categories = skills.reduce((groups, skill) => {
     const category = skill.category;
     if (!groups[category]) {
@@ -91,18 +74,23 @@ function Skills() {
       <Grid container spacing={3} justifyContent="center">
         {Object.entries(categories).map(([category, skills]) => (
           <Grid item xs={12} sm={6} md={4} key={category}>
-            <Paper elevation={3} sx={{ p: 2, margin: 'auto', width: '100%' }}>
-              <CategoryTitle>{categoryEmojis[category]} {category}</CategoryTitle>
+            <Paper elevation={3} sx={{ p: 2, margin: 'auto', flexGrow: 1 }}>
+              <Typography gutterBottom textAlign="center" variant="h6" sx={{ mb: 2 }}>
+                {categoryEmojis[category]} {category}
+              </Typography>
               <Grid container spacing={2} justifyContent="center">
                 {skills.map((skill) => (
-                  <Grid item xs={4} key={skill.name}>
-                    <SkillIcon
+                  <Grid item xs={4} key={skill.name} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
+                    <motion.img
                       src={skill.icon}
                       alt={skill.name}
                       whileHover={{ scale: 1.1, translateY: -10, boxShadow: "0px 10px 15px rgba(0,0,0,0.2)" }}
                       transition={{ type: "spring", stiffness: 300 }}
+                      style={{ maxWidth: '48px', maxHeight: '48px', marginBottom: '8px' }}
                     />
-                    <Typography variant="subtitle1" textAlign="center">{skill.name}</Typography>
+                    <Typography variant="subtitle2" textAlign="center">
+                      {skill.name}
+                    </Typography>
                   </Grid>
                 ))}
               </Grid>
