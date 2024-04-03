@@ -13,8 +13,7 @@ import {
   Grow
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
-import { useForm, ValidationError } from '@formspree/react'; // Importing the useForm and ValidationError from Formspree
-import ReCAPTCHA from 'react-google-recaptcha';
+import { useForm, ValidationError } from '@formspree/react'; 
 
 // Google reCAPTCHA site key
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
@@ -171,7 +170,7 @@ const ContactForm = () => {
               <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
               <ValidationError prefix="Message" field="message" errors={state.errors} />
-              <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} />
+              <br></br>
               <CustomButton variant="contained" endIcon={<Send />} type="submit" disabled={state.submitting}>
                 Send
               </CustomButton>
