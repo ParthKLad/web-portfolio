@@ -140,10 +140,10 @@ const ContactForm = () => {
             <StyledSection alignTop>
               <br></br>
               <ContactInfoItem>
-                <Typography variant="h5" gutterBottom noWrap>
+                <Typography variant="h6" gutterBottom noWrap>
                   <strong>Name:</strong> Parth Lad
                 </Typography>
-                <Typography variant="h5" gutterBottom noWrap>
+                <Typography variant="h6" gutterBottom noWrap>
                   <strong>Email:</strong> parth.lad@protonmail.com
                 </Typography>
               </ContactInfoItem>
