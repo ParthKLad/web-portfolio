@@ -138,9 +138,6 @@ const ContactForm = () => {
           </Typography>
           <StyledPaper>
             <StyledSection alignTop>
-            <Typography variant="h4" gutterBottom noWrap>
-                Send a Message
-              </Typography>
               <br></br>
               <ContactInfoItem>
                 <Typography variant="h5" gutterBottom noWrap>
