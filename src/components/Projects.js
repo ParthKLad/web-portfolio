@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import {
-  Box, Typography, Grid, Card, CardMedia, CardContent,
-  Dialog, DialogTitle, DialogContent, DialogContentText,
-  DialogActions, Button, Grow, useTheme
-} from '@mui/material';
-import { styled } from '@mui/system'; // Corrected import for 'styled'
+import { Container, Grid, Paper, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import { motion } from 'framer-motion';
 import MovieReviewWebsite from '../images/p.jpg';
 import FullStackDevelopment from '../images/r.jpg';
-
 //import pulse from '../images/pulse.png';
 
 const projects = [
@@ -68,27 +63,9 @@ const projects = [
   // Add more projects here...
 
 ];
-// Styled components
-// Styled components
-const CustomCard = styled(Card)(({ theme }) => ({
-  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-  '&:hover': {
-    transform: 'scale(1.05)',
-    boxShadow: theme.shadows[10],
-  },
-}));
-
-const CustomCardMedia = styled(CardMedia)({
-  transition: 'transform 0.3s ease-in-out',
-  '&:hover': {
-    transform: 'scale(1.1)',
-  },
-});
-
 function Projects() {
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState();
-  const theme = useTheme();
 
   const handleClickOpen = (project) => {
     setSelectedProject(project);
@@ -100,30 +77,28 @@ function Projects() {
   };
 
   return (
-    <Box sx={{ py: 5, textAlign: 'center', maxWidth: 1200, margin: '0 auto' }}>
-      <Typography variant="h4" gutterBottom>My Projects</Typography>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom textAlign="center">
+        My Projects
+      </Typography>
       <Grid container spacing={3} justifyContent="center">
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1000 + index * 200 } : {})}>
-              <CustomCard onClick={() => handleClickOpen(project)}>
-                <CustomCardMedia
-                  component="img"
-                  height="200"
-                  image={project.image}
-                  alt={project.title}
-                  title={project.title}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {project.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {project.shortDesc}
-                  </Typography>
-                </CardContent>
-              </CustomCard>
-            </Grow>
+            <Paper elevation={3} sx={{ p: 2, margin: 'auto', flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleClickOpen(project)}>
+              <motion.img
+                src={project.image}
+                alt={project.title}
+                whileHover={{ scale: 1.1, translateY: -10, boxShadow: "0px 10px 15px rgba(0,0,0,0.2)" }}
+                transition={{ type: "spring", stiffness: 300 }}
+                style={{ width: '100%', height: '200px', marginBottom: '8px' }}
+              />
+              <Typography gutterBottom variant="h5" component="div">
+                {project.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {project.shortDesc}
+              </Typography>
+            </Paper>
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle>{selectedProject?.title}</DialogTitle>
               <DialogContent>
@@ -138,7 +113,7 @@ function Projects() {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 }
 

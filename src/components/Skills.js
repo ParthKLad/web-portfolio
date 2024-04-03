@@ -42,7 +42,6 @@ const skills = [
 ];
 
 
-
 AOS.init();
 
 function Skills() {
@@ -67,7 +66,7 @@ function Skills() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 5 }}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom textAlign="center">
         My Skills
       </Typography>
