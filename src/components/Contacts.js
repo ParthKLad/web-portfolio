@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {Box,Typography,TextField,Button,styled,Paper,IconButton,useTheme,ThemeProvider,createTheme, Grow
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
-import { useForm, ValidationError } from '@formspree/react';
 import ReCAPTCHA from 'react-google-recaptcha';
 // google recaptcha
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
@@ -166,6 +165,7 @@ const ContactForm = () => {
               <CustomTextField fullWidth label="Subject" variant="standard" name="subject" />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
               <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} />
+              <br></br>
               <CustomButton variant="contained" endIcon={<Send />} type="submit">
                 Send
               </CustomButton>

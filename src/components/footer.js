@@ -39,9 +39,13 @@ const Footer = () => {
             opacity: isVisible ? 1 : 0,
             transition: 'all 0.5s ease-out',
         }}>
+            <br></br>
+            <br></br>
+            <br></br>
             <p>© {year} All rights reserved. Made with love ❤️ by {name}</p>
         </footer>
     );
 };
 
 export default Footer;
+
