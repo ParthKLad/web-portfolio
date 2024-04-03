@@ -121,7 +121,7 @@ const ContactForm = () => {
   return (
     <ThemeProvider theme={theme}>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
-        <Box>
+      <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%' }}>
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
@@ -134,10 +134,10 @@ const ContactForm = () => {
                 </Typography>
                 <br></br>
                 <Typography variant="h6" gutterBottom noWrap>
-                  <strong>Name:</strong> Parth Lad
+                  <strong>🙋‍♂️</strong> Parth Lad
                 </Typography>
                 <Typography variant="h6" gutterBottom noWrap>
-                  <strong>Email:</strong> parth.lad@protonmail.com
+                  <strong>📧</strong> parth.lad@protonmail.com
                 </Typography>
               </ContactInfoItem>
               <SocialIconsRow>
