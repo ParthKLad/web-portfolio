@@ -144,10 +144,10 @@ const ContactForm = () => {
                   Get in touch 
                 </Typography>
                 <br></br>
-                <Typography variant="h6" gutterBottom noWrap>
+                <Typography variant="h8" gutterBottom noWrap>
                   <strong>Name:</strong> Parth Lad
                 </Typography>
-                <Typography variant="h" gutterBottom noWrap>
+                <Typography variant="h8" gutterBottom noWrap>
                   <strong>Email:</strong> parth.lad@protonmail.com
                 </Typography>
               </ContactInfoItem>
