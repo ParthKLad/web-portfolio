@@ -3,6 +3,10 @@ import {Box,Typography,TextField,Button,styled,Paper,IconButton,useTheme,ThemePr
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 
+// google recaptcha
+const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
+
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -21,6 +25,7 @@ const theme = createTheme({
     },
   },
 });
+
 
 const StyledPaper = styled(Paper)({
   display: 'flex',
@@ -119,21 +124,29 @@ const ContactForm = () => {
     setChecked(true);
   }, []);
 
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Implement your form submission logic here
+    // For Formspree, you would typically send a POST request to the Formspree endpoint
+    // This example just logs to console for demonstration
+    console.log("Form submitted");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
-      <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%' }}>
+        <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%' }}>
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
-          <StyledPaper>
-            <StyledSection alignTop>
-              <br></br>
+          <StyledPaper component="form" onSubmit={handleSubmit} data-netlify="true" method="POST" action="https://formspree.io/f/{your-id}">
+            <input type="hidden" name="form-name" value="contact" />
+            <StyledSection>
               <ContactInfoItem>
-              <Typography variant="h5" gutterBottom noWrap>
-                  Get in touch 
+                <Typography variant="h5" gutterBottom noWrap>
+                  Get in touch
                 </Typography>
-                <br></br>
                 <Typography variant="h6" gutterBottom noWrap>
                   <strong>🙋‍♂️</strong> Parth Lad
                 </Typography>
@@ -142,26 +155,12 @@ const ContactForm = () => {
                 </Typography>
               </ContactInfoItem>
               <SocialIconsRow>
-              <IconButton
-              href="https://www.linkedin.com/in/parthlad01"
-              target="_blank"
-              rel="noopener"
-              color="primary"
-              sx={{ fontSize: '2.5rem' }} // Use theme values or directly set sizes
-            >
-              <LinkedIn sx={{ fontSize: 'inherit' }} />
-            </IconButton>
-            <IconButton
-              href="https://github.com/parthlad9"
-              target="_blank"
-              rel="noopener"
-              color="primary"
-              sx={{ fontSize: '2.5rem' }} // Use theme values or directly set sizes
-            >
-              <GitHub sx={{ fontSize: 'inherit' }} />
-            </IconButton>
-
-
+                <IconButton href="https://www.linkedin.com/in/parthlad01" target="_blank" rel="noopener" color="primary">
+                  <LinkedIn />
+                </IconButton>
+                <IconButton href="https://github.com/parthlad9" target="_blank" rel="noopener" color="primary">
+                  <GitHub />
+                </IconButton>
               </SocialIconsRow>
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'center' }}>
