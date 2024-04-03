@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import {Box,Typography,TextField,Button,styled,Paper,IconButton,useTheme,ThemeProvider,createTheme, Grow
+import {
+  Box, Typography, TextField, Button, styled, Paper, IconButton, useTheme, ThemeProvider, createTheme, Grow, useMediaQuery
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 import ReCAPTCHA from 'react-google-recaptcha';
-// google recaptcha
+
+// Google reCAPTCHA site key
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
 
-
+// MUI custom theme
 const theme = createTheme({
   palette: {
     primary: {
@@ -26,21 +28,23 @@ const theme = createTheme({
   },
 });
 
-
-const StyledPaper = styled(Paper)({
-  display: 'flex',
-  flexDirection: 'row',
-  borderRadius: '8px',
-  overflow: 'hidden',
-  boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
-  position: 'relative',
-  width: '80%',
-  height: 'auto',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  '@media (max-width:600px)': {
-    flexDirection: 'column',
-    width: '100%',
+// Dark theme configuration
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#e91e63',
+    },
+    text: {
+      primary: '#ffffff', // Changed to white for visibility in dark mode
+      secondary: '#bbbbbb',
+    },
+    background: {
+      paper: '#252525', // Changed to black for dark mode
+      default: '#121212',
+    },
   },
 });
 
@@ -67,23 +71,22 @@ const StyledSection = styled(Box)({
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
   '& label.Mui-focused': {
-    color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
+    color: theme.palette.primary.main,
   },
   '& .MuiInput-underline:before': {
-    borderBottomColor: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary,
+    borderBottomColor: theme.palette.text.secondary,
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.main,
+    borderBottomColor: theme.palette.primary.main,
   },
   '& label': {
-    color: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary,
+    color: theme.palette.text.secondary,
   },
   '& input': {
-    color: theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.primary,
+    color: theme.palette.text.primary,
   },
   marginBottom: '16px',
 }));
-
 
 const CustomButton = styled(Button)({
   color: theme.palette.getContrastText(theme.palette.primary.main),
@@ -105,52 +108,57 @@ const SocialIconsRow = styled(Box)({
 const ContactInfoItem = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start', // Align to start for larger screens
+  alignItems: 'flex-start',
   gap: '8px',
   marginBottom: '16px',
   '@media (max-width:600px)': {
-    alignItems: 'flex-start', // Align to start for mobile screens
-    textAlign: 'left', // Ensure text is aligned left on narrow screens
-    width: '100%', // Full width to prevent constraining the content which can cause wrapping
+    alignItems: 'flex-start',
+    textAlign: 'left',
+    width: '100%',
   },
 }));
 
+const StyledPaper = styled(Paper)({
+  display: 'flex',
+  flexDirection: 'row',
+  borderRadius: '8px',
+  overflow: 'hidden',
+  boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
+  position: 'relative',
+  width: '80%',
+  height: 'auto',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  '@media (max-width:600px)': {
+    flexDirection: 'column',
+    width: '100%',
+  },
+});
+
+// Update your styled components as needed to use the theme from props
 
 const ContactForm = () => {
-  const theme = useTheme();
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [checked, setChecked] = useState(false);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission
-    const form = event.target;
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString(),
-      });
-      if (response.ok) {
-        // Handle successful form submission here
-      } else {
-        // Handle failed form submission here
-      }
-    } catch (err) {
-      // Handle error here
-    }
-  };
 
   useEffect(() => {
     setChecked(true);
   }, []);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Form submission logic here
+  };
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={prefersDarkMode ? darkTheme : theme}>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
-        <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%' }}>
+        <Box sx={{ maxWidth: '1445px', maxHeight: '651px', margin: 'auto', width: '100%', marginBottom: '100px' }}>
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
           <StyledPaper component="form" onSubmit={handleSubmit} method="POST" data-netlify="true" name="contact">
+            <input type="hidden" name="form-name" value="contact" />
             <StyledSection>
               <ContactInfoItem>
                 <Typography variant="h5" gutterBottom noWrap>
@@ -177,7 +185,7 @@ const ContactForm = () => {
               <CustomTextField fullWidth label="Subject" variant="standard" name="subject" />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
               <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} />
-              <br></br>
+              <br /><br />
               <CustomButton variant="contained" endIcon={<Send />} type="submit">
                 Send
               </CustomButton>
@@ -190,3 +198,6 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
+
+
