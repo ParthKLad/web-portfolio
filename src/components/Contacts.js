@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  styled,
-  Paper,
-  IconButton,
-  useTheme,
-  ThemeProvider,
-  createTheme,
-  Grow
+import {Box,Typography,TextField,Button,styled,Paper,IconButton,useTheme,ThemeProvider,createTheme, Grow
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 
@@ -144,10 +133,10 @@ const ContactForm = () => {
                   Get in touch 
                 </Typography>
                 <br></br>
-                <Typography variant="h8" gutterBottom noWrap>
+                <Typography variant="h6" gutterBottom noWrap>
                   <strong>Name:</strong> Parth Lad
                 </Typography>
-                <Typography variant="h8" gutterBottom noWrap>
+                <Typography variant="h6" gutterBottom noWrap>
                   <strong>Email:</strong> parth.lad@protonmail.com
                 </Typography>
               </ContactInfoItem>
@@ -183,7 +172,7 @@ const ContactForm = () => {
               </SocialIconsRow>
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'center' }}>
-              <CustomTextField fullWidth label="Your Email" variant="standard" />
+              <CustomTextField fullWidth label="Email" variant="standard" />
               <CustomTextField fullWidth label="Subject" variant="standard" />
               <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} />
               <CustomButton variant="contained" endIcon={<Send />}>
