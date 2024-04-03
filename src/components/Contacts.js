@@ -120,15 +120,28 @@ const ContactForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    const form = event.target;
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      });
+      if (response.ok) {
+        // Handle successful form submission here
+      } else {
+        // Handle failed form submission here
+      }
+    } catch (err) {
+      // Handle error here
+    }
+  };
+
   useEffect(() => {
     setChecked(true);
   }, []);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted');
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -137,8 +150,7 @@ const ContactForm = () => {
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
-          <StyledPaper component="form" onSubmit={handleSubmit} method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact" />
+          <StyledPaper component="form" onSubmit={handleSubmit} method="POST" data-netlify="true" name="contact">
             <StyledSection>
               <ContactInfoItem>
                 <Typography variant="h5" gutterBottom noWrap>
