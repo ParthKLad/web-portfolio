@@ -1,20 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  styled,
-  Paper,
-  IconButton,
-  useTheme,
-  ThemeProvider,
-  createTheme,
-  Grow
-} from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, TextField, Button, styled, Paper, IconButton, useTheme, ThemeProvider, createTheme, Grow } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
-import { useForm, ValidationError } from '@formspree/react'; 
-
+import ReCAPTCHA from "react-google-recaptcha";
 // Google reCAPTCHA site key
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
 
@@ -94,6 +81,14 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
   marginBottom: '16px',
 }));
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here, handle the form submission to Netlify or your server
+    console.log({ email, subject, message, recaptchaToken });
+    // Remember to include logic for handling the recaptchaToken with your submission
+  };
+
 const CustomButton = styled(Button)({
   color: theme.palette.getContrastText('#000'),
   backgroundColor: '#14CEDC', // Background color changed to black
@@ -125,57 +120,65 @@ const ContactInfoItem = styled(Box)(({ theme }) => ({
 }));
 
 const ContactForm = () => {
-  const theme = useTheme();
-  const [checked, setChecked] = useState(false);
-  const [state, handleSubmit] = useForm("xjvnadkq"); 
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [recaptchaToken, setRecaptchaToken] = useState(''); // Correctly define the useState hook for ReCAPTCHA token
 
-  useEffect(() => {
-    setChecked(true);
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here, handle the form submission to Netlify or your server
+    console.log({ email, subject, message, recaptchaToken });
+    // Remember to include logic for handling the recaptchaToken with your submission
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
-        <Box sx={{ maxWidth: '1450px', maxHeight: '522px', margin: 'auto', width: '100%' }}>
+      <Grow in={true} style={{ transformOrigin: '0 0 0' }} timeout={1000}>
+        <Box sx={{ maxWidth: '1450px', margin: 'auto', width: '100%' }}>
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
-          <StyledPaper component="form" onSubmit={handleSubmit} method="POST">
+          <Paper component="form" onSubmit={handleSubmit} method="POST" sx={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <input type="hidden" name="form-name" value="contact" />
-            <StyledSection>
-              <ContactInfoItem>
-                <Typography variant="h5" gutterBottom noWrap>
-                  Get in touch
-                </Typography>
-                <Typography variant="h6" gutterBottom noWrap>
-                  <strong>🙋‍♂️</strong> Parth Lad
-                </Typography>
-                <Typography variant="h6" gutterBottom noWrap>
-                  <strong>📧</strong> parth.lad@protonmail.com
-                </Typography>
-              </ContactInfoItem>
-              <SocialIconsRow>
-                <IconButton href="https://www.linkedin.com/in/parthlad01" target="_blank" rel="noopener" color="primary">
-                  <LinkedIn />
-                </IconButton>
-                <IconButton href="https://github.com/parthlad9" target="_blank" rel="noopener" color="primary">
-                  <GitHub />
-                </IconButton>
-              </SocialIconsRow>
-            </StyledSection>
-            <StyledSection style={{ width: '100%', textAlign: 'center' }}>
-              <CustomTextField fullWidth label="Email" variant="standard" name="email" />
-              <ValidationError prefix="Email" field="email" errors={state.errors} />
-              <CustomTextField fullWidth label="Subject" variant="standard" name="subject" />
-              <ValidationError prefix="Subject" field="subject" errors={state.errors} />
-              <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
-              <ValidationError prefix="Message" field="message" errors={state.errors} />
-              <br></br>
-              <CustomButton variant="contained" endIcon={<Send />} type="submit" disabled={state.submitting}>
-                Send
-              </CustomButton>
-            </StyledSection>
-          </StyledPaper>
+            <TextField 
+              fullWidth 
+              label="Email" 
+              variant="standard" 
+              name="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              sx={{ marginBottom: '20px' }}
+            />
+            <TextField 
+              fullWidth 
+              label="Subject" 
+              variant="standard" 
+              name="subject" 
+              value={subject} 
+              onChange={(e) => setSubject(e.target.value)}
+              sx={{ marginBottom: '20px' }}
+            />
+            <TextField 
+              fullWidth 
+              label="Message" 
+              variant="standard" 
+              multiline 
+              rows={4} 
+              name="message" 
+              value={message} 
+              onChange={(e) => setMessage(e.target.value)}
+              sx={{ marginBottom: '20px' }}
+            />
+            <ReCAPTCHA 
+              sitekey={RECAPTCHA_SITE_KEY} 
+              onChange={setRecaptchaToken} // Make sure this matches the useState setter name
+              sx={{ margin: '20px 0' }}
+            />
+            <Button variant="contained" endIcon={<Send />} type="submit" sx={{ backgroundColor: '#14CEDC', '&:hover': { backgroundColor: 'rgba(20, 206, 220, 0.8)' } }}>
+              Send
+            </Button>
+          </Paper>
         </Box>
       </Grow>
     </ThemeProvider>
