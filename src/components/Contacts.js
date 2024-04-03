@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Box,Typography,TextField,Button,styled,Paper,IconButton,useTheme,ThemeProvider,createTheme, Grow
 } from '@mui/material';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
+import { useForm, ValidationError } from '@formspree/react';
 
 // google recaptcha
 const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
@@ -119,20 +120,13 @@ const ContactInfoItem = styled(Box)(({ theme }) => ({
 const ContactForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
+  const [state, handleSubmit] = useForm("xjvnadkq"); 
 
   useEffect(() => {
     setChecked(true);
   }, []);
 
   
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implement your form submission logic here
-    // For Formspree, you would typically send a POST request to the Formspree endpoint
-    // This example just logs to console for demonstration
-    console.log("Form submitted");
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
@@ -140,7 +134,7 @@ const ContactForm = () => {
           <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
             Contact
           </Typography>
-          <StyledPaper component="form" onSubmit={handleSubmit} data-netlify="true" method="POST" action="https://formspree.io/f/{your-id}">
+          <StyledPaper component="form" onSubmit={handleSubmit} method="POST">
             <input type="hidden" name="form-name" value="contact" />
             <StyledSection>
               <ContactInfoItem>
@@ -164,10 +158,13 @@ const ContactForm = () => {
               </SocialIconsRow>
             </StyledSection>
             <StyledSection style={{ width: '100%', textAlign: 'center' }}>
-              <CustomTextField fullWidth label="Email" variant="standard" />
-              <CustomTextField fullWidth label="Subject" variant="standard" />
-              <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} />
-              <CustomButton variant="contained" endIcon={<Send />}>
+              <CustomTextField fullWidth label="Email" variant="standard" name="email" />
+              <ValidationError prefix="Email" field="email" errors={state.errors} />
+              <CustomTextField fullWidth label="Subject" variant="standard" name="subject" />
+              <ValidationError prefix="Subject" field="subject" errors={state.errors} />
+              <CustomTextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" />
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
+              <CustomButton variant="contained" endIcon={<Send />} type="submit" disabled={state.submitting}>
                 Send
               </CustomButton>
             </StyledSection>
