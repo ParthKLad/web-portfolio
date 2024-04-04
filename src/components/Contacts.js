@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, TextField, Button, Paper, IconButton, Grow, useTheme as useMuiTheme } from '@mui/material';
+import { Box, Typography, TextField, Button, Paper, IconButton, Grow } from '@mui/material';
 import { styled } from '@mui/system';
 import { Send, LinkedIn, GitHub } from '@mui/icons-material';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-// Assuming your ThemeContext is set up as described
-import { useTheme } from '../context/ThemeContext'; // Adjust the path to where your ThemeContext is defined
-
+// Import your ThemeContext for styling
+import { useTheme } from '../context/ThemeContext'; 
 
 const ContactForm = () => {
-  const { themeType } = useTheme(); // Use your ThemeContext
-  const muiTheme = useMuiTheme(); // MUI Theme for styles
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const { themeType } = useTheme(); 
+  const [formData, setFormData] = useState({
+    email: '',
+    subject: '',
+    message: '',
+  });
   const [recaptchaToken, setRecaptchaToken] = useState('');
   const [checked, setChecked] = useState(false);
 
@@ -21,14 +21,30 @@ const ContactForm = () => {
     setChecked(true);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ email, subject, message, recaptchaToken });
-    // Handle your form submission logic here
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  // Define styled components
-  const StyledPaper = styled(Paper)({
+  const handleRecaptcha = (token) => {
+    setRecaptchaToken(token);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!recaptchaToken) {
+      alert("Please verify you're not a robot.");
+      return;
+    }
+    console.log({ ...formData, recaptchaToken });
+    // Handle your form submission logic here, such as sending to an API
+  };
+
+  // Styled components
+  const StyledPaper = styled(Paper)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'row',
     borderRadius: '8px',
@@ -38,12 +54,12 @@ const ContactForm = () => {
     width: '80%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    backgroundColor: muiTheme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
     '@media (max-width:600px)': {
       flexDirection: 'column',
       width: '100%',
     },
-  });
+  }));
 
   const StyledSection = styled(Box)({
     padding: '16px 32px',
@@ -52,10 +68,8 @@ const ContactForm = () => {
     justifyContent: 'center',
     alignItems: 'flex-start',
     zIndex: 1,
-    width: '100%', // Adjust based on your layout needs
-    
+    width: '100%',
   });
-  
 
   const SocialIconsRow = styled(Box)({
     display: 'flex',
@@ -88,10 +102,10 @@ const ContactForm = () => {
                 Get in touch
               </Typography>
               <Typography variant="h6" gutterBottom noWrap>
-                <strong>🙋‍♂️</strong> Parth Lad
+                🙋‍♂️ Parth Lad
               </Typography>
               <Typography variant="h6" gutterBottom noWrap>
-                <strong>📧</strong> parth.lad@protonmail.com
+                📧 parth.lad@protonmail.com
               </Typography>
             </ContactInfoItem>
             <SocialIconsRow>
@@ -104,10 +118,15 @@ const ContactForm = () => {
             </SocialIconsRow>
           </StyledSection>
           <StyledSection>
-            <TextField fullWidth label="Email" variant="standard" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <TextField fullWidth label="Subject" variant="standard" name="subject" value={subject} onChange={(e) => setSubject(e.target.value)} />
-            <TextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
+            <TextField fullWidth label="Email" variant="standard" name="email" value={formData.email} onChange={handleChange} />
+            <TextField fullWidth label="Subject" variant="standard" name="subject" value={formData.subject} onChange={handleChange} />
+            <TextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" value={formData.message} onChange={handleChange} />
             <br></br>
+            <ReCAPTCHA
+              sitekey="6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy"
+              onChange={handleRecaptcha}
+              
+            />
             <br></br>
             <Button variant="contained" endIcon={<Send />} type="submit" sx={{ marginTop: '20px' }}>
               Send
