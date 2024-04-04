@@ -7,7 +7,6 @@ import ReCAPTCHA from 'react-google-recaptcha';
 // Assuming your ThemeContext is set up as described
 import { useTheme } from '../context/ThemeContext'; // Adjust the path to where your ThemeContext is defined
 
-const RECAPTCHA_SITE_KEY = '6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy';
 
 const ContactForm = () => {
   const { themeType } = useTheme(); // Use your ThemeContext
@@ -110,7 +109,6 @@ const ContactForm = () => {
             <TextField fullWidth label="Message" variant="standard" multiline rows={4} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
             <br></br>
             <br></br>
-            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} />
             <Button variant="contained" endIcon={<Send />} type="submit" sx={{ marginTop: '20px' }}>
               Send
             </Button>
