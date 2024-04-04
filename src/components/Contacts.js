@@ -41,7 +41,8 @@ const ContactForm = () => {
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
       {/* Your form fields here */}
-      <ReCAPTCHA sitekey="YOUR_SITE_KEY" onChange={handleRecaptcha} />
+      <ReCAPTCHA sitekey="6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy
+" onChange={handleRecaptcha} />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
         Send
       </Button>
