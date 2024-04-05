@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
     <!-- ... other head elements ... -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .netlify-form {
             display: none;
         }
     </style>
 </head>
-<!-- Inside your index.html -->
 <body>
-  <!-- Other content -->
-  <div id="root"></div> <!-- Your React app hooks into this div -->
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <textarea name="message"></textarea>
-  </form>
+    <!-- Other content -->
+    <div id="root"></div> <!-- Your React app hooks into this div -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" placeholder="Your Name" />
+        <input type="email" name="email" placeholder="Your Email" />
+        <textarea name="message" placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+    </form>
 </body>
-
 </html>
-
