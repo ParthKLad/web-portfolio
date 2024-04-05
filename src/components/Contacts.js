@@ -99,14 +99,10 @@ const ContactForm = () => {
                 onChange={(e) => setMessage(e.target.value)}
             />
             <Button
-            sx={{ 
-              marginTop: '20px',
-              backgroundColor: '#15CEDC', // Change this to your desired color
-              color: '#ffffff',
-              '&:hover': {
-                backgroundColor: '#153241', // Change this to your desired hover color
-              },
-            }}
+                variant="contained"
+                endIcon={<Send />}
+                type="submit"
+                sx={{ marginTop: '20px' }}
             >
                 Send
             </Button>
