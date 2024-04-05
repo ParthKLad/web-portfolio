@@ -4,7 +4,10 @@ import { Send } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
+import { motion } from 'framer-motion';
 
 const ContactForm = () => {
   const theme = useTheme();
@@ -15,7 +18,11 @@ const ContactForm = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const [open, setOpen] = useState(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  
   useEffect(() => {
     setChecked(true);
   }, []);
@@ -131,15 +138,29 @@ const ContactForm = () => {
           </Grid>
         </Box>
       </Grow>
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogContent>
-          <Box sx={{ maxWidth: '90%', height: '400px', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
-            Form submitted successfully!
-          </Box>
-        </DialogContent>
-      </Dialog>
-    </>
-  );
+      <Dialog open={open} onClose={handleClose}>
+      <IconButton sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }} onClick={handleClose}>
+        <CloseIcon />
+      </IconButton>
+      <DialogContent>
+        <Box sx={{ maxWidth: '90%', height: '400px', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ rotate: 360, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }}
+          >
+            📩
+          </motion.div>
+          Form submitted successfully!
+        </Box>
+      </DialogContent>
+    </Dialog>
+  </>
+);
   
 };
 
