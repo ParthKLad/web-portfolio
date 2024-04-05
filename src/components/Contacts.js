@@ -88,12 +88,14 @@ const ContactForm = () => {
           <TextField fullWidth label="Email" variant="outlined" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <TextField fullWidth label="Subject" variant="outlined" name="subject" value={subject} onChange={(e) => setSubject(e.target.value)} />
           <TextField fullWidth label="Message" variant="outlined" multiline rows={4} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
-
+          <br></br>
+            <br></br>
           <ReCAPTCHA
             sitekey="6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy
             " // Ensure you replace this with your actual site key
             onChange={setRecaptchaToken}
           />
+           <br></br>
 
           <Button variant="contained" endIcon={<Send />} type="submit" sx={{ mt: 2 }}>
             Send

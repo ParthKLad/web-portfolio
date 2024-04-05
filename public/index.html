@@ -3,20 +3,25 @@
 <head>
     ...
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        .netlify-form {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!-- Hidden static form for Netlify -->
-    <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
-
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message"></textarea>
-      <div class="g-recaptcha" data-sitekey="6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy
-      "></div>
-      <button type="submit">Send</button>
-    </form>
+    <noscript>
+        <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <textarea name="message"></textarea>
+            <div class="g-recaptcha" data-sitekey="6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy"></div>
+            <button type="submit">Send</button>
+        </form>
+    </noscript>
 </body>
 </html>
 
