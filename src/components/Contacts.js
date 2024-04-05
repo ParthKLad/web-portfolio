@@ -50,14 +50,24 @@ const ContactForm = () => {
   };
 
   return (
-    <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
-      <Box sx={{ maxWidth: matches ? '62%' : '90%', height :matches ? '400px' : '600', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff' }}>
+    <>
+      <Typography variant="h4" gutterBottom textAlign="center">
+        Contact
+      </Typography>
+      <br></br>
+      <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
+      <Box sx={{ maxWidth: matches ? '62%' : '90%', height :matches ? '400px' : '600', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff',borderRadius: '16px'  }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={5}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%', paddingLeft: matches ? '10%' : '5%' }}>
-              <Typography variant="h4" gutterBottom sx={{ marginTop: matches ? '-50%' : '0%' }}>
-                Get in touch
+            <br></br>
+            <br></br>
+            <br></br>
+              <Typography variant="h5" gutterBottom sx={{ marginTop: matches ? '-50%' : '0%' }}>
+               📝 Get in touch
               </Typography>
+              <br></br>
+              <br></br>
               <Typography variant="h6" gutterBottom>
                 👋: Parth Lad
               </Typography>
@@ -67,6 +77,8 @@ const ContactForm = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={7}>
+          <br></br>
+          <br></br>
             <Box sx={{ paddingLeft: '30px', paddingRight: '50px', paddingBottom: '50px' }}>
               <form onSubmit={handleSubmit} method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" value="contact" />
@@ -117,6 +129,7 @@ const ContactForm = () => {
         </Grid>
       </Box>
     </Grow>
+    </>
   );
 };
 
