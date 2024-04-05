@@ -144,7 +144,7 @@ const ContactForm = () => {
       </IconButton>
       <DialogContent>
         <Box sx={{  borderRadius: '16px', padding: '20px' }}>          
-        <img src={myGif} alt="Success animation" />
+        <img src={myGif} alt="Success animation" width="400" height="400" />
           Form submitted successfully!
         </Box>
       </DialogContent>
