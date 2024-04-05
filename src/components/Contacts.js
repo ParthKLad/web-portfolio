@@ -7,7 +7,6 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
-import myGif from '../images/paper.gif';
 import Confetti from 'react-confetti';
 
 const ContactForm = () => {
@@ -149,8 +148,7 @@ const ContactForm = () => {
       </IconButton>
       <DialogContent>
         <Box sx={{  borderRadius: '16px', padding: '20px' }}>          
-        <img src={myGif} alt="Success animation" width="400" height="400" />
-         🎉 Form submitted successfully!
+               🎉 Form submitted successfully!
         </Box>
       </DialogContent>
     </Dialog>
