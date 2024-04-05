@@ -16,8 +16,7 @@ const Footer = () => {
         fontSize: '12px',
         display: 'flex',
         flexDirection: 'column',
-        textAlign: 'center',
-        width: '100%', // Ensure the footer takes up the full width
+        textAlign: 'center'
     };
 
     return (
