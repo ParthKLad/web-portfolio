@@ -12,13 +12,14 @@
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!-- The following form is a fallback for when JavaScript is disabled -->
+    <!-- The form below is hidden and will only be visible when JavaScript is disabled. -->
     <noscript>
         <form name="contact" data-netlify="true" data-netlify-recaptcha="true">
             <input type="text" name="name" />
             <input type="email" name="email" />
             <textarea name="message"></textarea>
-            <div class="g-recaptcha" data-sitekey="6LeaCa0pAAAAAEHdxAyha8E_sdNkeeOXvXfhwDRy"></div> <!-- Replace with your actual site key -->
+            <!-- The ReCAPTCHA widget will only appear if JavaScript is disabled. -->
+            <div class="g-recaptcha" data-sitekey="Your-Site-Key-Here"></div>
             <button type="submit">Send</button>
         </form>
     </noscript>
