@@ -49,23 +49,25 @@ const ContactForm = () => {
 
   return (
     <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
-          <Box sx={{ maxWidth: matches ? '62%' : '90%', height :matches ? '400px' : '600' ,margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff' }}>
-      <Grid container spacing={2}>
-      <Grid item xs={12} md={5}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%',paddingLeft: matches ? '50%' : '10%' 
- }}>
-        <Typography variant="h4" gutterBottom sx={{ position: 'relative', right: matches ? '50%' : '0%', marginTop: matches ? '-50%' : '0%' }}>
-        Get in touch 
-      </Typography>
-      <br></br>
-      <br></br>
-      <Typography variant="h6" gutterBottom sx={{ position: 'relative', right: matches ? '50%' : '0%' }}>
-        👋: Parth Lad
-      </Typography>
-      <Typography variant="h6" gutterBottom sx={{ position: 'relative', right: matches ? '50%' : '0%' }}>
-        📧: Parth.lad@protonmail.com
-      </Typography>
-      </Box>
+      <Box sx={{ maxWidth: matches ? '63%' : '90%', height: matches ? '400px' : '600', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={5}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%', paddingLeft: matches ? '10%' : '5%' }}>
+              <br></br>
+              <Typography variant="h4" gutterBottom sx={{  position: 'relative', right: matches ? '10%' : '0%', marginTop: matches ? '-50%' : '0%', whiteSpace: 'nowrap' }}>
+              <br></br>
+                📜 Get in touch 
+              </Typography>
+              
+              <Typography variant="h6" gutterBottom sx={{ textAlign: 'left', position: 'relative', paddingBottom: '20px' }}>
+                <br></br>
+                <br></br>
+                👋: Parth Lad
+              </Typography>
+              <Typography variant="h6" gutterBottom sx={{ textAlign: 'left', position: 'relative', whiteSpace: 'nowrap' }}>
+                📧: Parth.lad@protonmail.com
+              </Typography>
+            </Box>
     </Grid>
     <Grid item xs={12} md={7}>
     <Box sx={{ paddingLeft: '30px', paddingRight: '50px', paddingBottom: '50px' }}>
@@ -99,10 +101,14 @@ const ContactForm = () => {
                 onChange={(e) => setMessage(e.target.value)}
             />
             <Button
-                variant="contained"
-                endIcon={<Send />}
-                type="submit"
-                sx={{ marginTop: '20px' }}
+            sx={{ 
+              marginTop: '20px',
+              backgroundColor: '#15CEDC', // Change this to your desired color
+              color: '#ffffff',
+              '&:hover': {
+                backgroundColor: '#0B83B3', // Change this to your desired hover color
+              },
+            }}
             >
                 Send
             </Button>
