@@ -18,26 +18,50 @@ const ContactForm = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const [open, setOpen] = useState(false);
   const [runConfetti, setRunConfetti] = useState(false);
+  // Error state
+  const [errors, setErrors] = useState({
+    email: '',
+    subject: '',
+    message: '',
+  });
 
-
-  const handleClose = () => {
-    setOpen(false);
-    setRunConfetti(false);
-  };
-
-  
   useEffect(() => {
     setChecked(true);
   }, []);
 
+  const validateForm = () => {
+    let formIsValid = true;
+    let tempErrors = {};
+
+    if (!email.trim()) {
+      tempErrors.email = 'Email is required';
+      formIsValid = false;
+    }
+    if (!subject.trim()) {
+      tempErrors.subject = 'Subject is required';
+      formIsValid = false;
+    }
+    if (!message.trim()) {
+      tempErrors.message = 'Message is required';
+      formIsValid = false;
+    }
+
+    setErrors(tempErrors);
+    return formIsValid;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return; // Stop here if form is not valid
+
+    // Form submission logic
     const formData = new FormData();
     formData.append('form-name', 'contact');
     formData.append('email', email);
     formData.append('subject', subject);
     formData.append('message', message);
-  
+
     try {
       const response = await fetch('/', {
         method: 'POST',
@@ -46,13 +70,15 @@ const ContactForm = () => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
-  
+
       if (response.ok) {
         console.log('Form submitted successfully!');
         setOpen(true);
+        setRunConfetti(true);
         setEmail('');
         setSubject('');
         setMessage('');
+        setErrors({}); // Clear errors after successful submission
       } else {
         console.error('Form submission failed!', response.status);
       }
@@ -60,18 +86,22 @@ const ContactForm = () => {
       console.error('An error occurred:', error);
     }
   };
-  
+
+  const handleClose = () => {
+    setOpen(false);
+    setRunConfetti(false);
+  };
+
   return (
     <>
       <Typography variant="h4" gutterBottom textAlign="center">
         Contact
       </Typography>
-      <br></br>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
-        <Box sx={{ maxWidth: matches ? '62%' : '90%', height: matches ? '400px' : '600', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
+        <Box sx={{ maxWidth: matches ? '62%' : '90%', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={5}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%', paddingLeft: matches ? '10%' : '5%' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%', paddingLeft: matches ? '10%' : '5%' }}>
                 <br></br>
                 <br></br>
                 <br></br>
@@ -89,51 +119,57 @@ const ContactForm = () => {
               </Box>
             </Grid>
             <Grid item xs={12} md={7}>
-              <br></br>
-              <br></br>
+            <br></br>
+            <br></br>
               <Box sx={{ paddingLeft: '30px', paddingRight: '50px', paddingBottom: '50px' }}>
                 <form onSubmit={handleSubmit} method="POST" data-netlify="true">
                   <input type="hidden" name="form-name" value="contact" />
                   <TextField
-                      fullWidth
-                      label="Email"
-                      variant="outlined"
-                      name="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                    fullWidth
+                    label="Email"
+                    variant="outlined"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    error={!!errors.email}
+                    helperText={errors.email}
                   />
                   <TextField
-                      fullWidth
-                      label="Subject"
-                      variant="outlined"
-                      name="subject"
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
+                    fullWidth
+                    label="Subject"
+                    variant="outlined"
+                    name="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    error={!!errors.subject}
+                    helperText={errors.subject}
                   />
                   <TextField
-                      fullWidth
-                      label="Message"
-                      variant="outlined"
-                      multiline
-                      rows={4}
-                      name="message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                    fullWidth
+                    label="Message"
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    name="message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    error={!!errors.message}
+                    helperText={errors.message}
                   />
                   <Button
-                      variant="contained"
-                      endIcon={<Send />}
-                      type="submit"
-                      sx={{ 
-                        marginTop: '20px',
-                        backgroundColor: '#15CEDC', // Change this to your desired color
-                        color: '#ffffff',
-                        '&:hover': {
-                          backgroundColor: '#0B83B3', // Change this to your desired hover color
-                        },
-                      }}
+                    variant="contained"
+                    endIcon={<Send />}
+                    type="submit"
+                    sx={{
+                      marginTop: '20px',
+                      backgroundColor: '#15CEDC',
+                      color: '#ffffff',
+                      '&:hover': {
+                        backgroundColor: '#0B83B3',
+                      },
+                    }}
                   >
-                      Send
+                    Send
                   </Button>
                 </form>
               </Box>
@@ -143,18 +179,17 @@ const ContactForm = () => {
       </Grow>
       {runConfetti && <Confetti />}
       <Dialog open={open} onClose={handleClose}>
-      <IconButton sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }} onClick={handleClose}>
-        <CloseIcon />
-      </IconButton>
-      <DialogContent>
-        <Box sx={{  borderRadius: '16px', padding: '20px' }}>          
-               🎉 Form submitted successfully!
-        </Box>
-      </DialogContent>
-    </Dialog>
-  </>
-);
-  
+        <IconButton sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.grey[500] }} onClick={handleClose}>
+          <CloseIcon />
+        </IconButton>
+        <DialogContent>
+          <Box sx={{ borderRadius: '16px', padding: '20px' }}>          
+            🎉 Form submitted successfully!
+          </Box>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 };
 
 export default ContactForm;
