@@ -18,6 +18,8 @@ const ContactForm = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const [open, setOpen] = useState(false);
   const [runConfetti, setRunConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
   // Error state
   const [errors, setErrors] = useState({
     email: '',
@@ -25,9 +27,33 @@ const ContactForm = () => {
     message: '',
   });
 
-  useEffect(() => {
-    setChecked(true);
-  }, []);
+ // Confetti effect
+ useEffect(() => {
+  if (runConfetti) {
+    const timer = setTimeout(() => {
+      setRunConfetti(false);
+    }, 5000); // Confetti runs for 5 seconds
+
+    return () => clearTimeout(timer);
+  }
+}, [runConfetti]);
+
+// Window size effect
+useEffect(() => {
+  const handleResize = () => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  };
+
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
+
+// Set checked state to true after the component mounts
+useEffect(() => {
+  setChecked(true); 
+
+}, []);
+
 
   const validateForm = () => {
     let formIsValid = true;
@@ -97,6 +123,7 @@ const ContactForm = () => {
       <Typography variant="h4" gutterBottom textAlign="center">
         Contact
       </Typography>
+      <br></br>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
         <Box sx={{ maxWidth: matches ? '62%' : '90%', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
           <Grid container spacing={2}>
@@ -177,7 +204,7 @@ const ContactForm = () => {
           </Grid>
         </Box>
       </Grow>
-      {runConfetti && <Confetti />}
+      {runConfetti && <Confetti width={windowSize.width} height={windowSize.height} />}
       <Dialog open={open} onClose={handleClose}>
         <IconButton sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.grey[500] }} onClick={handleClose}>
           <CloseIcon />
@@ -191,5 +218,4 @@ const ContactForm = () => {
     </>
   );
 };
-
 export default ContactForm;
