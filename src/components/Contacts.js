@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
 import myGif from '../images/paper.gif';
+import Confetti from 'react-confetti';
 
 const ContactForm = () => {
   const theme = useTheme();
@@ -17,9 +18,12 @@ const ContactForm = () => {
   const [message, setMessage] = useState('');
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const [open, setOpen] = useState(false);
+  const [runConfetti, setRunConfetti] = useState(false);
+
 
   const handleClose = () => {
     setOpen(false);
+    setRunConfetti(false);
   };
 
   
@@ -138,6 +142,7 @@ const ContactForm = () => {
           </Grid>
         </Box>
       </Grow>
+      {runConfetti && <Confetti />}
       <Dialog open={open} onClose={handleClose}>
       <IconButton sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }} onClick={handleClose}>
         <CloseIcon />
@@ -145,7 +150,7 @@ const ContactForm = () => {
       <DialogContent>
         <Box sx={{  borderRadius: '16px', padding: '20px' }}>          
         <img src={myGif} alt="Success animation" width="400" height="400" />
-          Form submitted successfully!
+         🎉 Form submitted successfully!
         </Box>
       </DialogContent>
     </Dialog>
