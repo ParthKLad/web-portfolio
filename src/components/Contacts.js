@@ -143,7 +143,7 @@ const ContactForm = () => {
         <CloseIcon />
       </IconButton>
       <DialogContent>
-        <Box sx={{ maxWidth: '90%', height: '400px', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
+        <Box sx={{ maxWidth: '60%', height: '200px', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
           <motion.div
             initial={{ scale: 0 }}
             animate={{ rotate: 360, scale: 1 }}
