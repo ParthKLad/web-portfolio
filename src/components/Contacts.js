@@ -7,7 +7,7 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
-import { motion } from 'framer-motion';
+import myGif from '../images/paper.gif';
 
 const ContactForm = () => {
   const theme = useTheme();
@@ -144,17 +144,7 @@ const ContactForm = () => {
       </IconButton>
       <DialogContent>
         <Box sx={{  borderRadius: '16px', padding: '20px' }}>          
-        <motion.div
-            initial={{ scale: 0 }}
-            animate={{ rotate: 360, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 20
-            }}
-          >
-            📩
-          </motion.div>
+        <img src={myGif} alt="Success animation" />
           Form submitted successfully!
         </Box>
       </DialogContent>
