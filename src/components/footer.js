@@ -14,7 +14,6 @@ const Footer = () => {
         color: theme.palette.text.primary,
         fontFamily: 'Arial, sans-serif',
         fontSize: '12px',
-        padding: '150px 0', // Increase the padding at the bottom
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'center',
