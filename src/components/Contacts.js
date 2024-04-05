@@ -118,6 +118,7 @@ useEffect(() => {
     setOpen(false);
     setRunConfetti(false);
   };
+  
 
   return (
     <>
@@ -207,15 +208,16 @@ useEffect(() => {
       </Grow>
       {runConfetti && <ConfettiExplosion />}
       <Dialog open={open} onClose={handleClose}>
-        <IconButton /* IconButton properties */>
-          <CloseIcon />
-        </IconButton>
-        <DialogContent>
-          <Box /* Box properties */>          
-            🎉 Form submitted successfully!
-          </Box>
-        </DialogContent>
-      </Dialog>
+      <IconButton onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.grey[500] }}>
+        <CloseIcon />
+      </IconButton>
+      <DialogContent>
+        <Box sx={{ borderRadius: '16px', padding: '20px' }}>          
+          🎉 Form submitted successfully!
+        </Box>
+      </DialogContent>
+    </Dialog>
+
     </>
   );
 };
