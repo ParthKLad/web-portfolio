@@ -32,21 +32,21 @@ const ContactForm = () => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
-  
+    
       if (response.ok) {
         console.log('Form submitted successfully!');
+        alert('Form submitted successfully!');
         setEmail('');
         setSubject('');
         setMessage('');
-        // Optionally, provide user feedback here
       } else {
         console.error('Form submission failed!', response.status);
-        // Optionally, provide user feedback here
+        alert('Form submission failed!');
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      // Optionally, provide user feedback here
-    }
+      alert('An error occurred: ' + error);
+    }    
   };
 
   return (
