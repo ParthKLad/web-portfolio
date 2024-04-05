@@ -15,6 +15,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append('form-name', 'contact');
     formData.append('email', email);
     formData.append('subject', subject);
     formData.append('message', message);
@@ -30,12 +31,11 @@ const ContactForm = () => {
   
       if (response.ok) {
         console.log('Form submitted successfully!');
-        // Optionally reset form fields here
         setEmail('');
         setSubject('');
         setMessage('');
       } else {
-        console.error('Form submission failed!');
+        console.error('Form submission failed!', response.status);
       }
     } catch (error) {
       console.error('An error occurred:', error);
