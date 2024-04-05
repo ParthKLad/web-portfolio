@@ -7,7 +7,8 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
-import Confetti from 'react-confetti';
+import ConfettiExplosion from 'react-confetti-explosion';
+
 
 const ContactForm = () => {
   const theme = useTheme();
@@ -204,13 +205,13 @@ useEffect(() => {
           </Grid>
         </Box>
       </Grow>
-      {runConfetti && <Confetti width={windowSize.width} height={windowSize.height} />}
+      {runConfetti && <ConfettiExplosion />}
       <Dialog open={open} onClose={handleClose}>
-        <IconButton sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.grey[500] }} onClick={handleClose}>
+        <IconButton /* IconButton properties */>
           <CloseIcon />
         </IconButton>
         <DialogContent>
-          <Box sx={{ borderRadius: '16px', padding: '20px' }}>          
+          <Box /* Box properties */>          
             🎉 Form submitted successfully!
           </Box>
         </DialogContent>
@@ -218,4 +219,5 @@ useEffect(() => {
     </>
   );
 };
+
 export default ContactForm;
