@@ -207,7 +207,7 @@ useEffect(() => {
         </Box>
       </Grow>
       {runConfetti && <ConfettiExplosion />}
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} onTouchEnd={handleClose}>
       <IconButton onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.grey[500] }}>
         <CloseIcon />
       </IconButton>
