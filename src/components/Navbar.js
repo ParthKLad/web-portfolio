@@ -6,6 +6,7 @@ import {
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { ThemeContext } from '../context/ThemeContext';
+import UpArrow from './UpArrow';
 import './Navbar.css';
 
 function Navbar({ refs }) {
@@ -62,17 +63,17 @@ function Navbar({ refs }) {
     }
   };
 
+ 
   return (
     <>
       <CssBaseline />
       <AppBar position="fixed" sx={{
-    backdropFilter: 'blur(10px)',
-    backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)'),
-    boxShadow: 'none',
-    color: 'inherit',
-    transition: 'background-color 0.3s ease',
-  }}>
-
+        backdropFilter: 'blur(10px)',
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)'),
+        boxShadow: 'none',
+        color: 'inherit',
+        transition: 'background-color 0.3s ease',
+      }}>
 
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Logo and Title: Clicking redirects to the home section */}
