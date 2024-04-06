@@ -13,7 +13,7 @@ const Footer = () => {
         alignItems: 'center',
         color: theme.palette.text.primary,
         fontFamily: 'Arial, sans-serif',
-        fontSize: '15px',
+        fontSize: '12.5px',
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'center'
