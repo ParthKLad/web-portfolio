@@ -8,20 +8,25 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-// Assuming these imports are correct
+//Sharewell images
 import Sharewell from '../images/Sharewell/sharewell_login.png';
 import Sharewell_dash from '../images/Sharewell/sharewell_dashboard.png';
 import Sharewell_tool from '../images/Sharewell/sharewell_tool.png';
 
+//Data platform
+import Data_Dash from '../images/Data_platform/Data_Dashboard.png';
+import Data_client from '../images/Data_platform/Data_Client.png';
+import Data_Event from '../images/Data_platform/Data_Events.png';
+
+
 const projects = [
   {
-    title: 'Coming Soon ',
+    title: 'Sharewell HDD : Flask ',
     images: [
         Sharewell,
         Sharewell_dash,
         Sharewell_tool   
     ],
-    // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
     shortDesc: "In a Project Management course, my team and I developed a Flask-based application for Sharewell to enhance their drilling tools’ efficiency. We analyzed Sharewell’s challenges, integrated advanced drilling data, and utilized a robust tech stack including SQL, JavaScript, Python, Flask, Express, and Node.js. We deployed our application on AWS EC2 and used AWS RDS for our SQL database. Our project management was facilitated by Jira and GitHub, and our solution significantly enhanced Sharewell’s operational decision-making and strategic planning.",
     fullDesc: [
       { title: "Introduction", description: "In a Project Management course, my team and I embarked on a mission to develop a custom Flask-based application for Sharewell. Our goal was to enhance the precision and efficiency of their drilling tools." },
@@ -31,13 +36,41 @@ const projects = [
       { title: "Deployment", description: "We deployed both the backend and frontend servers on AWS EC2 instances. For our SQL database, we used AWS RDS, ensuring a scalable and reliable database solution." },
       { title: "Project Management & Version Control", description: "We used Jira and GitHub for effective project management and version control. These tools ensured smooth collaboration among team members and efficient progress tracking." },
       { title: "Outcome", description: "Our solution provided a more detailed and accurate evaluation of long-term data trends. This significantly enhanced operational decision-making and strategic planning for Sharewell." }
-    ]
-  }
-]
-
-
-
-
+    ],
+  },
+  {
+      title: 'Community Health Workers Data Platform : Vue',
+      images: [
+        Data_Dash,
+        Data_client,
+        Data_Event
+      ],
+      shortDesc: "In an Application Development course, my team and I significantly enhanced an existing platform for Community Health Workers (CHWs) in Houston’s non-profit organizations. We utilized the Vue.js framework, Node.js for the backend, and MongoDB for NoSQL databases. The improved platform effectively addresses client needs, facilitates efficient event management, and ensures robust data security.",
+      fullDesc: [
+        { 
+          title: "Introduction", 
+          description: "A team of three, including myself, enhanced an existing data platform for Community Health Workers (CHWs) within non-profit organizations in the Houston area. The platform's primary objective is to address fundamental client needs, including provisions such as food aid and adult education assistance. The enhancements were made using Vue.js framework, Node.js for backend, and MongoDB for NoSQL databases." 
+        },
+        { 
+          title: "Core Features", 
+          description: "Our team added features to the platform that facilitate event management, allowing CHWs to create, organize, and oversee events that offer crucial services. These services can be meticulously associated with specific events, and the platform tracks their utilization by clients. CHWs also have access to lists of existing clients and events, enabling them to efficiently review and update pertinent information." 
+        },
+        { 
+          title: "User Roles and Permissions", 
+          description: "Our team ensured data security by enhancing the system's user roles and permissions, granting varying levels of access to authorized personnel." 
+        },
+        { 
+          title: "Multi-Organization Support", 
+          description: "Our team optimized the platform to accommodate multiple non-profit organizations, consolidating their data in a shared database. Each organization benefits from a dedicated instance, easily configured through environment variables, guaranteeing tailored functionality and data separation for each entity." 
+        },
+        { 
+          title: "File Upload and Data Optimization", 
+          description: "Our team added new features to the existing application to enhance the client information management process. These include a file upload feature for profile pictures, allowing for a more comprehensive client profile and personalization, and data optimization techniques. Different roles have specific permissions related to profile pictures, ensuring data security and access control." 
+        }
+      ]
+    }
+  
+  ]
 
 
 
@@ -90,19 +123,21 @@ function Projects() {
         My Projects
       </Typography>
       <Grid container spacing={3} justifyContent="center">
-        {projects.map((project, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); setOpen(true); }} sx={{ cursor: 'pointer' }}>
-            <CardActionArea>
-              <CardMedia component="img" height="200" image={project.images[0]} alt={project.title} />
-              <CardContent>
-                <Typography gutterBottom variant="h5">{project.title}</Typography>
-                <Typography variant="body2" color="text.secondary">{project.shortDesc}</Typography>
+      {projects.map((project, index) => (
+        <Grid item xs={12} sm={6} md={4} key={index}>
+          <Card onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); setOpen(true); }} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+            <CardActionArea sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+              <CardMedia component="img" sx={{ height: 200 }} image={project.images[0]} alt={project.title} />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Box sx={{ height: 270 }}> {/* Adjust this height as needed */}
+                  <Typography gutterBottom variant="h5">{project.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">{project.shortDesc}</Typography>
+                </Box>
               </CardContent>
             </CardActionArea>
           </Card>
-          </Grid>
-        ))}
+        </Grid>
+            ))}
       </Grid>
       {selectedProject && (
    <Dialog
