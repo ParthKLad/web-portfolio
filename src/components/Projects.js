@@ -40,6 +40,9 @@ const projects = [
 
 
 
+
+
+
 function Projects() {
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
