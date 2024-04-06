@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const UpArrow = () => {
+  const [showArrow, setShowArrow] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -10,22 +12,32 @@ const UpArrow = () => {
     });
   };
 
+  // Function to update the showArrow state based on scroll position
+  const handleScroll = () => {
+    const home = document.getElementById('home'); // Ensure you have a home section with an id="home"
+    const homeHeight = home ? home.offsetHeight : 0;
+    const shouldShow = window.scrollY > homeHeight;
+    setShowArrow(shouldShow);
+  };
+
   // Define a function to determine the right position based on screen width
   const getRightPosition = () => {
     return window.innerWidth < 768 ? '-10px' : '10px'; // Example breakpoint at 768px
   };
 
-  const [rightPosition, setRightPosition] = React.useState(getRightPosition());
+  const [rightPosition, setRightPosition] = useState(getRightPosition());
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      setRightPosition(getRightPosition());
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', () => setRightPosition(getRightPosition()));
+
+    // Check immediately if we're already past the home section on component mount
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', () => setRightPosition(getRightPosition()));
     };
-
-    window.addEventListener('resize', handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const bounceAnimation = `
@@ -42,6 +54,10 @@ const UpArrow = () => {
     }
   `;
 
+  if (!showArrow) {
+    return null;
+  }
+
   return (
     <>
       <style>{bounceAnimation}</style>
@@ -50,15 +66,15 @@ const UpArrow = () => {
         style={{
           position: 'fixed',
           bottom: '20px',
-          right: rightPosition, // Use the state variable
+          right: rightPosition,
           zIndex: 1000,
-          color: '#15CFDD', // Arrow color
-          backgroundColor: 'transparent', // Background color
+          color: '#15CFDD',
+          backgroundColor: 'transparent',
           border: 'none',
-          animation: 'bounce 2s infinite', // Applying bounce animation
+          animation: 'bounce 2s infinite',
         }}
       >
-        <KeyboardArrowUpIcon style={{ fontSize: '48px' }} /> {/* Making the arrow bigger */}
+        <KeyboardArrowUpIcon style={{ fontSize: '48px' }} />
       </IconButton>
     </>
   );

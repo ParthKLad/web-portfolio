@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+// App.js
+import React, { useRef, useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -6,9 +7,8 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contacts from './components/Contacts';
 import Footer from './components/footer';
-import { ThemeProvider } from './context/ThemeContext';
 import UpArrow from './components/UpArrow';
-
+import { ThemeProvider } from './context/ThemeContext';
 import './style.css';
 import './App.css';
 
@@ -18,20 +18,20 @@ function App() {
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactsRef = useRef(null);
+  
+  const [showUpArrow, setShowUpArrow] = useState(false); // State to control UpArrow visibility
 
-  const navItems = [
-    { name: 'Home', ref: homeRef },
-    { name: 'About', ref: aboutRef },
-    { name: 'Projects', ref: projectsRef },
-    { name: 'Skills', ref: skillsRef },
-    { name: 'Contact', ref: contactsRef },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      if (homeRef.current) {
+        const { bottom } = homeRef.current.getBoundingClientRect();
+        setShowUpArrow(window.scrollY > bottom); // Show UpArrow if we've scrolled past Home section
+      }
+    };
 
-  const handleNavItemClicked = (item) => {
-    if (item.ref && item.ref.current) {
-      item.ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <ThemeProvider>
@@ -47,20 +47,18 @@ function App() {
         />
         <div className="content">
           <main>
-            <div ref={homeRef}><Home handleNavItemClicked={handleNavItemClicked} navItems={navItems} /></div>
+            <div ref={homeRef}><Home /></div>
             <div ref={aboutRef}><About /></div>
             <div ref={skillsRef}><Skills /></div>
             <div ref={projectsRef}><Projects /></div>
             <div ref={contactsRef}><Contacts /></div>
           </main>
-          <Footer /> {/* Footer component */}
+          <Footer />
+          {showUpArrow && <UpArrow />} {/* Conditionally render the UpArrow component */}
         </div>
-        {/* Place the UpArrow component here */}
-        <UpArrow />
       </div>
     </ThemeProvider>
   );
 }
-
 
 export default App;
