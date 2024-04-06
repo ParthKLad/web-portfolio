@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Container, Grid, Paper, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton,  useTheme,useMediaQuery ,Card,
   CardMedia,Box, CardActionArea ,
   CardContent,} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -163,6 +165,9 @@ function Projects() {
           maxWidth="md"
           fullScreen={fullScreen}
         >
+          <IconButton onClick={() => setOpen(false)} sx={{ position: 'absolute', right: 8, top: 8, zIndex: 2, color: 'white' }}>
+          <CloseIcon />
+          </IconButton>
           <DialogContent sx={{ overflowY: 'hidden' }}>
             <IconButton onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedProject.images.length) % selectedProject.images.length)} sx={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
               <ArrowBackIosNewIcon />
@@ -178,16 +183,17 @@ function Projects() {
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {selectedProject.fullDesc}
-              </Typography>
-            </CardContent>
-            <IconButton onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProject.images.length)} sx={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
-              <ArrowForwardIosIcon />
-            </IconButton>
-          </DialogContent>
-        </Dialog>
-      )}
-    </Container>
-  );
-}
-
-export default Projects;
+                </Typography>
+              </CardContent>
+              <IconButton onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProject.images.length)} sx={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
+                <ArrowForwardIosIcon />
+              </IconButton>
+            </DialogContent>
+          </Dialog>
+        )}
+      </Container>
+    );
+  }
+  
+  export default Projects;
+  
