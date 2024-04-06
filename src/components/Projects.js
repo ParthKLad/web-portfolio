@@ -68,7 +68,126 @@ const projects = [
           description: "Our team added new features to the existing application to enhance the client information management process. These include a file upload feature for profile pictures, allowing for a more comprehensive client profile and personalization, and data optimization techniques. Different roles have specific permissions related to profile pictures, ensuring data security and access control." 
         }
       ]
-    }
+    },
+
+    {
+      title: 'Coming Soon..',
+      images: [
+
+      ],
+      shortDesc: "Coming Soon..",
+      fullDesc: [
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        }
+      ]
+    },
+
+    {
+      title: 'Coming Soon..',
+      images: [
+
+      ],
+      shortDesc: "Coming Soon..",
+      fullDesc: [
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        }
+      ]
+    },
+    {
+      title: 'Coming Soon..',
+      images: [
+
+      ],
+      shortDesc: "Coming Soon..",
+      fullDesc: [
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        }
+      ]
+    },
+    {
+      title: 'Coming Soon..',
+      images: [
+
+      ],
+      shortDesc: "Coming Soon..",
+      fullDesc: [
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        },
+        { 
+          title: "Coming Soon..", 
+          description: "Coming Soon..." 
+        }
+      ]
+    },
+
   
   ]
 
