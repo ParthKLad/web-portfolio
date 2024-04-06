@@ -1,74 +1,112 @@
-import React, { useState } from 'react';
-import { Container, Grid, Paper, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
-import { motion } from 'framer-motion';
-import MovieReviewWebsite from '../images/p.jpg';
-import FullStackDevelopment from '../images/r.jpg';
-//import pulse from '../images/pulse.png';
+import React, { useState, useEffect } from 'react';
+import { Container, Grid, Paper, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton,  useTheme,useMediaQuery ,Card,
+  CardMedia,Box, CardActionArea ,
+  CardContent,} from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+// Assuming these imports are correct
+import Sharewell from '../images/Sharewell/sharewell_login.png';
+import Sharewell_dash from '../images/Sharewell/sharewell_dashboard.png';
+import Sharewell_tool from '../images/Sharewell/sharewell_tool.png';
 
 const projects = [
   {
-    title: 'Coming soon...',
-    image: MovieReviewWebsite,
+    title: 'Sharewell HDD',
+    images: [
+        Sharewell,
+        Sharewell_dash,
+        Sharewell_tool   
+    ],
    // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
-    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  },
-  {
-    title: 'Coming soon...',
-    image: MovieReviewWebsite,
-   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
-    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  },
-  {
-    title: 'Coming soon...',
-    image: MovieReviewWebsite,
-   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
-    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+   shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper aliquam felis, non volutpat felis.",
+  
+  fullDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a...Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a."
   },
 
   {
-    title: 'Coming soon...',
-    image: FullStackDevelopment,
-    //link: '',
-    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit turpis. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Ut tristique et egestas quis ipsum. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Id venenatis a condimentum vitae sapien pellentesque. Ut tristique et egestas quis ipsum suspendisse. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Vitae aliquet nec ullamcorper sit. Eu nisl nunc mi ipsum faucibus vitae aliquet. Pellentesque id nibh tortor id aliquet lectus. Lectus nulla at volutpat diam. Nulla aliquet enim tortor at auctor urna nunc id cursus. Urna porttitor rhoncus dolor purus non enim praesent.',
-  },
-  {
-    title: 'Coming soon...',
-    image: FullStackDevelopment,
-    //link: '',
-    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit turpis. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Ut tristique et egestas quis ipsum. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Id venenatis a condimentum vitae sapien pellentesque. Ut tristique et egestas quis ipsum suspendisse. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Vitae aliquet nec ullamcorper sit. Eu nisl nunc mi ipsum faucibus vitae aliquet. Pellentesque id nibh tortor id aliquet lectus. Lectus nulla at volutpat diam. Nulla aliquet enim tortor at auctor urna nunc id cursus. Urna porttitor rhoncus dolor purus non enim praesent.',
-  },
-  {
-    title: 'Coming soon...',
-    image: FullStackDevelopment,
-    //link: '',
-    shortDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    fullDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit turpis. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Ut tristique et egestas quis ipsum. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Id venenatis a condimentum vitae sapien pellentesque. Ut tristique et egestas quis ipsum suspendisse. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Vitae aliquet nec ullamcorper sit. Eu nisl nunc mi ipsum faucibus vitae aliquet. Pellentesque id nibh tortor id aliquet lectus. Lectus nulla at volutpat diam. Nulla aliquet enim tortor at auctor urna nunc id cursus. Urna porttitor rhoncus dolor purus non enim praesent.',
-  },
+    title: 'Sharewell HDD',
+    images: [
+        Sharewell,
+        Sharewell_dash,
+        Sharewell_tool   
+    ],
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+   shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper aliquam felis, non volutpat felis.",
   
+  fullDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a...Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a."
+  },
+
+  {
+    title: 'Sharewell HDD',
+    images: [
+        Sharewell,
+        Sharewell_dash,
+        Sharewell_tool   
+    ],
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+   shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper aliquam felis, non volutpat felis.",
   
-/*
-{
-   // title: 'Discord Bot',
-    //image: pulse,
-   // link: '',
-   // shortDesc: 'Discord Bot is a versatile bot that provides various features and commands for managing your Discord server.',
-   // fullDesc: 'The Discord Bot is a versatile bot that provides various features and commands for managing your Discord server. The bot is built using the disnake library, which allows it to interact with the Discord API and respond to user commands. Some of the features of the bot include the ability to play music, create custom commands and assign role, and moderate chat messages. Overall, the Discord Bot is a useful tool for server owners and administrators looking to enhance their Discord server with additional features and functionality.',
-},
-*/
-  // Add more projects here...
+  fullDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a...Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a."
+  },
+
+  {
+    title: 'Sharewell HDD',
+    images: [
+        Sharewell,
+        Sharewell_dash,
+        Sharewell_tool   
+    ],
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+   shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper aliquam felis, non volutpat felis.",
+  
+  fullDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a...Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a."
+  },
+
+  {
+    title: 'Sharewell HDD',
+    images: [
+        Sharewell,
+        Sharewell_dash,
+        Sharewell_tool   
+    ],
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+   shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper aliquam felis, non volutpat felis.",
+  
+  fullDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a...Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a."
+  },
+
+  {
+    title: 'Sharewell HDD',
+    images: [
+        Sharewell,
+        Sharewell_dash,
+        Sharewell_tool   
+    ],
+   // link: 'https://parthlad9.github.io/Beastly-Ranked-Movies/',
+   shortDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper aliquam felis, non volutpat felis.",
+  
+  fullDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a...Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum malesuada pellentesque. Vivamus pretium felis eu ipsum fringilla condimentum. Integer tincidunt, nunc eget rhoncus semper, eros justo molestie arcu, a."
+  },
+
+
+  
 
 ];
+
 function Projects() {
   const [open, setOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState();
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+
+  console.log(projects);
 
   const handleClickOpen = (project) => {
     setSelectedProject(project);
+    setCurrentImageIndex(0);
     setOpen(true);
   };
 
@@ -76,43 +114,78 @@ function Projects() {
     setOpen(false);
   };
 
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProject.images.length);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedProject.images.length) % selectedProject.images.length);
+  };
+
+
+  
+  // Automatic slideshow effect
+  useEffect(() => {
+    if (open) {
+      const interval = setInterval(() => {
+        handleNextImage();
+      }, 3000); // Change image every 3 seconds
+      return () => clearInterval(interval);
+    }
+  }, [open, currentImageIndex, selectedProject]);
+
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom textAlign="center">
+      <Typography variant="h4" textAlign="center" gutterBottom>
         My Projects
       </Typography>
       <Grid container spacing={3} justifyContent="center">
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Paper elevation={3} sx={{ p: 2, margin: 'auto', flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleClickOpen(project)}>
-              <motion.img
-                src={project.image}
-                alt={project.title}
-                whileHover={{ scale: 1.1, translateY: -10, boxShadow: "0px 10px 15px rgba(0,0,0,0.2)" }}
-                transition={{ type: "spring", stiffness: 300 }}
-                style={{ width: '100%', height: '200px', marginBottom: '8px' }}
-              />
-              <Typography gutterBottom variant="h5" component="div">
-                {project.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {project.shortDesc}
-              </Typography>
-            </Paper>
-            <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>{selectedProject?.title}</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  {selectedProject?.fullDesc}
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Close</Button>
-              </DialogActions>
-            </Dialog>
+            <Card onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); setOpen(true); }} sx={{ cursor: 'pointer' }}>
+              <CardActionArea>
+                <CardMedia component="img" height="140" image={project.images[0]} alt={project.title} />
+                <CardContent>
+                  <Typography gutterBottom variant="h5">{project.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">{project.shortDesc}</Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
           </Grid>
         ))}
       </Grid>
+      {selectedProject && (
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          fullWidth
+          maxWidth="md"
+          fullScreen={fullScreen}
+        >
+          <DialogContent sx={{ overflowY: 'hidden' }}>
+            <IconButton onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedProject.images.length) % selectedProject.images.length)} sx={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
+              <ArrowBackIosNewIcon />
+            </IconButton>
+            <CardMedia
+              component="img"
+              image={selectedProject.images[currentImageIndex]}
+              alt={`Image ${currentImageIndex + 1}`}
+            />
+            <CardContent sx={{ paddingTop: theme.spacing(2) }}>
+              <Typography gutterBottom variant="h5" component="div">
+                {selectedProject.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {selectedProject.fullDesc}
+              </Typography>
+            </CardContent>
+            <IconButton onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProject.images.length)} sx={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </DialogContent>
+        </Dialog>
+      )}
     </Container>
   );
 }
