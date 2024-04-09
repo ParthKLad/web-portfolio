@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
 import './Home.css';
 
-const phrases = ["Developer", "IT Specialist", "Cloud Specialist"];
+const phrases = ["Developer", "IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
