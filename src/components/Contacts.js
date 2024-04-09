@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, TextField, Button, Grow, Grid } from '@mui/material';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { Send } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -127,26 +129,69 @@ useEffect(() => {
       </Typography>
       <br></br>
       <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
-        <Box sx={{ maxWidth: matches ? '62%' : '90%', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={5}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%', paddingLeft: matches ? '10%' : '5%' }}>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Typography variant="h5" gutterBottom sx={{ marginTop: matches ? '-50%' : '0%' }}>
-                  📝 Get in touch
-                </Typography>
-                <br></br>
-                <br></br>
-                <Typography variant="h6" gutterBottom>
-                  👋: Parth Lad
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  📧: Parth.lad@protonmail.com
-                </Typography>
-              </Box>
-            </Grid>
+      <Box sx={{ maxWidth: matches ? '62%' : '90%', margin: 'auto', backgroundColor: theme.palette.mode === 'dark' ? '#252424' : '#fff', borderRadius: '16px' }}>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={5}>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          height: '100%',
+          paddingLeft: matches ? '10%' : '5%',
+          paddingTop: '20px'
+        }}>
+          <Typography variant="h5" gutterBottom sx={{
+            mt: { xs: 1, sm: 2, md: -15 },
+            mb: 5, // Adding bottom margin for spacing after "Get in touch"
+          }}>
+            📝 Get in touch
+          </Typography>
+          <Typography variant="h6" gutterBottom sx={{
+            mb: 5, // Adding bottom margin for spacing after the name
+          }}>
+            👋: Parth Lad
+          </Typography>
+          <Typography variant="h6" gutterBottom sx={{
+            mb: 5, // Adding bottom margin for spacing after the email
+          }}>
+            📧: Parth.lad@protonmail.com
+          </Typography>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'start',
+            gap: 2,
+            padding: '10px',
+            flexWrap: 'wrap',
+            marginLeft: '-7px'
+          }}>
+            <IconButton onClick={() => window.open('https://www.linkedin.com/in/parthlad01/')} sx={{
+          backgroundColor: theme.palette.mode === 'dark' ? 'darkModeBackgroundColor' : '#0966C2', // Adjust for dark mode
+          fontSize: '1.8rem',
+          '@media (max-width:600px)': { fontSize: '1.5rem' },
+          '&:hover': {
+            backgroundColor: theme.palette.mode === 'dark' ? 'darkModeHoverBackgroundColor' : 'darkpurple', // Adjust hover color for dark mode
+          },
+          padding: '2px',
+          color: theme.palette.mode === 'dark' ? 'darkModeIconColor' : 'lightModeIconColor', // Adjust icon color if needed
+        }}>
+          <LinkedInIcon sx={{ fontSize: 'inherit' }} />
+        </IconButton>
+            <IconButton onClick={() => window.open('https://github.com/parthlad9')} sx={{
+              backgroundColor: 'purple',
+              color: 'white',
+              fontSize: '1.8rem',
+              '@media (max-width:600px)': { fontSize: '1.5rem' },
+              '&:hover': { backgroundColor: 'darkpurple' },
+              padding: '2px'
+            }}>
+              <GitHubIcon sx={{ fontSize: 'inherit' }} />
+            </IconButton>
+          </Box>
+        </Box>
+      </Grid>
             <Grid item xs={12} md={7}>
             <br></br>
             <br></br>
