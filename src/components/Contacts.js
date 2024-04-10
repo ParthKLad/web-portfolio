@@ -173,7 +173,7 @@ useEffect(() => {
           <Typography variant="h6" gutterBottom sx={{
             mb: 5, // Adding bottom margin for spacing after the name
           }}>
-            👋: Parth Lad
+            👨‍💻: Parth Lad
           </Typography>
           <Typography variant="h6" gutterBottom sx={{
             mb: 5, // Adding bottom margin for spacing after the email
