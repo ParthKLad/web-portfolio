@@ -141,12 +141,35 @@ useEffect(() => {
           paddingLeft: matches ? '10%' : '5%',
           paddingTop: '20px'
         }}>
-          <Typography variant="h5" gutterBottom sx={{
-            mt: { xs: 1, sm: 2, md: -15 },
-            mb: 5, // Adding bottom margin for spacing after "Get in touch"
-          }}>
-            📝 Get in touch
-          </Typography>
+        <Box
+        sx={{
+          mt: { xs: 1, sm: 2, md: -15 },
+          mb: 5, // Existing bottom margin
+          display: 'inline-block', // Necessary for positioning the pseudo-element
+          position: 'relative', // Establish a positioning context for pseudo-elements
+          '::after': { // Pseudo-element for the underline
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: 6,
+            right: 1,
+            height: '3px', // Make the underline a bit thicker for visibility
+            backgroundImage: 'linear-gradient(90deg, #15CEDC, #0B83B3, #15CEDC)', // Create a gradient for the underline
+            backgroundSize: '200% 100%', // Extend the background size for the animation effect
+            animation: 'shift 3s infinite linear', // Apply the animation
+          },
+          '@keyframes shift': { // Define the keyframes for the animation
+            '0%': {
+              backgroundPosition: '200% 0',
+            },
+            '100%': {
+              backgroundPosition: '-200% 0',
+            },
+          },
+        }}
+      >
+        <Typography variant="h5" component="span">📝 Get in touch</Typography>
+      </Box>
           <Typography variant="h6" gutterBottom sx={{
             mb: 5, // Adding bottom margin for spacing after the name
           }}>
