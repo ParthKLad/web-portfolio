@@ -168,32 +168,36 @@ useEffect(() => {
             marginLeft: '-7px'
           }}>
             <IconButton onClick={() => window.open('https://www.linkedin.com/in/parthlad01/')} sx={{
-          backgroundColor: theme.palette.mode === 'dark' ? 'darkModeBackgroundColor' : '#0966C2', // Adjust for dark mode
-          fontSize: '1.8rem',
-          '@media (max-width:600px)': { fontSize: '1.5rem' },
+          backgroundColor: '#0077B5', // LinkedIn blue for all modes
+          color: 'white', // White icon color for contrast
+          padding: '2px', // Reduce the padding to shrink the circle size
+          fontSize: '1.5rem', // Increase the icon size to make it slightly larger
+          '@media (max-width:600px)': { fontSize: '1.5rem' }, // Adjust for mobile sizes
           '&:hover': {
-            backgroundColor: theme.palette.mode === 'dark' ? 'darkModeHoverBackgroundColor' : 'darkpurple', // Adjust hover color for dark mode
+            backgroundColor: '#005582', // A slightly darker shade of LinkedIn blue for hover
           },
-          padding: '2px',
-          color: theme.palette.mode === 'dark' ? 'darkModeIconColor' : 'lightModeIconColor', // Adjust icon color if needed
         }}>
           <LinkedInIcon sx={{ fontSize: 'inherit' }} />
         </IconButton>
-            <IconButton onClick={() => window.open('https://github.com/parthlad9')} sx={{
-              backgroundColor: 'purple',
-              color: 'white',
-              fontSize: '1.8rem',
-              '@media (max-width:600px)': { fontSize: '1.5rem' },
-              '&:hover': { backgroundColor: 'darkpurple' },
-              padding: '2px'
-            }}>
-              <GitHubIcon sx={{ fontSize: 'inherit' }} />
-            </IconButton>
+        <IconButton onClick={() => window.open('https://github.com/parthlad9')} sx={{
+          backgroundColor: '#763EC6', // Custom purple
+          color: 'white', // Set GitHub icon color to white for visibility
+          padding: '2px', // Reduce the padding to shrink the circle size
+          fontSize: '1.5rem', // Make it smaller
+          '@media (max-width:600px)': { fontSize: '1.5rem' }, // Smaller for mobile
+          '&:hover': {
+            backgroundColor: theme.palette.mode === 'dark' ? '#6228A4' : '#5d28a4', // Adjust hover color for visibility, slightly darker purple
+          },
+          padding: '2px'
+        }}>
+          <GitHubIcon sx={{ fontSize: 'inherit', color: 'inherit' }} /> {/* Ensure the icon color matches the specified `color` in `sx` */}
+        </IconButton>
+
+
           </Box>
         </Box>
       </Grid>
             <Grid item xs={12} md={7}>
-            <br></br>
             <br></br>
               <Box sx={{ paddingLeft: '30px', paddingRight: '50px', paddingBottom: '50px' }}>
                 <form onSubmit={handleSubmit} method="POST" data-netlify="true">
@@ -207,6 +211,8 @@ useEffect(() => {
                     onChange={(e) => setEmail(e.target.value)}
                     error={!!errors.email}
                     helperText={errors.email}
+                    sx={{ marginBottom: '16px' }} // Add bottom margin to each TextField
+
                   />
                   <TextField
                     fullWidth
@@ -217,6 +223,7 @@ useEffect(() => {
                     onChange={(e) => setSubject(e.target.value)}
                     error={!!errors.subject}
                     helperText={errors.subject}
+                     sx={{ marginBottom: '16px' }} // Add bottom margin to each TextField
                   />
                   <TextField
                     fullWidth
