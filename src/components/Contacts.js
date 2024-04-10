@@ -211,8 +211,19 @@ useEffect(() => {
                     onChange={(e) => setEmail(e.target.value)}
                     error={!!errors.email}
                     helperText={errors.email}
-                    sx={{ marginBottom: '16px' }} // Add bottom margin to each TextField
-
+                    sx={{ 
+                      marginBottom: '16px', // Existing style
+                      '& .MuiOutlinedInput-root': { // Target the root of the OutlinedInput component
+                        '&.Mui-focused fieldset': { // Target the fieldset when the component is focused
+                          borderColor: '#15CEDC', // Set the border color on focus
+                        },
+                      },
+                      '& .MuiInputLabel-outlined': { // Target the label of the OutlinedInput component
+                        '&.Mui-focused': { // Target when the label is focused
+                          color: '#15CEDC', // Set the label color on focus
+                        }
+                      }
+                    }}
                   />
                   <TextField
                     fullWidth
@@ -223,7 +234,19 @@ useEffect(() => {
                     onChange={(e) => setSubject(e.target.value)}
                     error={!!errors.subject}
                     helperText={errors.subject}
-                     sx={{ marginBottom: '16px' }} // Add bottom margin to each TextField
+                    sx={{ 
+                      marginBottom: '16px', // Existing style
+                      '& .MuiOutlinedInput-root': { // Target the root of the OutlinedInput component
+                        '&.Mui-focused fieldset': { // Target the fieldset when the component is focused
+                          borderColor: '#15CEDC', // Set the border color on focus
+                        },
+                      },
+                      '& .MuiInputLabel-outlined': { // Target the label of the OutlinedInput component
+                        '&.Mui-focused': { // Target when the label is focused
+                          color: '#15CEDC', // Set the label color on focus
+                        }
+                      }
+                    }}
                   />
                   <TextField
                     fullWidth
@@ -236,7 +259,20 @@ useEffect(() => {
                     onChange={(e) => setMessage(e.target.value)}
                     error={!!errors.message}
                     helperText={errors.message}
-                  />
+                    sx={{ 
+                      marginBottom: '16px', // Existing style
+                      '& .MuiOutlinedInput-root': { // Target the root of the OutlinedInput component
+                        '&.Mui-focused fieldset': { // Target the fieldset when the component is focused
+                          borderColor: '#15CEDC', // Set the border color on focus
+                        },
+                      },
+                      '& .MuiInputLabel-outlined': { // Target the label of the OutlinedInput component
+                        '&.Mui-focused': { // Target when the label is focused
+                          color: '#15CEDC', // Set the label color on focus
+                        }
+                      }
+                    }}
+                                    />
                   <Button
                     variant="contained"
                     endIcon={<Send />}
