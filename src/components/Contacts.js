@@ -15,6 +15,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 const ContactForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
+  const [name, setName] = useState(''); // Add state for name
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
@@ -25,6 +26,7 @@ const ContactForm = () => {
 
   // Error state
   const [errors, setErrors] = useState({
+    name: '', //
     email: '',
     subject: '',
     message: '',
@@ -58,10 +60,15 @@ useEffect(() => {
 }, []);
 
 
+  // Validation updated to include name
   const validateForm = () => {
     let formIsValid = true;
     let tempErrors = {};
 
+    if (!name.trim()) {
+      tempErrors.name = 'Name is required';
+      formIsValid = false;
+    }
     if (!email.trim()) {
       tempErrors.email = 'Email is required';
       formIsValid = false;
@@ -87,6 +94,7 @@ useEffect(() => {
     // Form submission logic
     const formData = new FormData();
     formData.append('form-name', 'contact');
+    formData.append('name', name);
     formData.append('email', email);
     formData.append('subject', subject);
     formData.append('message', message);
@@ -104,6 +112,7 @@ useEffect(() => {
         console.log('Form submitted successfully!');
         setOpen(true);
         setRunConfetti(true);
+        setName('');
         setEmail('');
         setSubject('');
         setMessage('');
@@ -225,6 +234,29 @@ useEffect(() => {
               <Box sx={{ paddingLeft: '30px', paddingRight: '50px', paddingBottom: '50px' }}>
                 <form onSubmit={handleSubmit} method="POST" data-netlify="true">
                   <input type="hidden" name="form-name" value="contact" />
+                  <TextField
+                    fullWidth
+                    label="Name" // New field for name
+                    variant="outlined"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    error={!!errors.name}
+                    helperText={errors.name}
+                    sx={{ 
+                      marginBottom: '16px', // Existing style
+                      '& .MuiOutlinedInput-root': { // Target the root of the OutlinedInput component
+                        '&.Mui-focused fieldset': { // Target the fieldset when the component is focused
+                          borderColor: '#15CEDC', // Set the border color on focus
+                        },
+                      },
+                      '& .MuiInputLabel-outlined': { // Target the label of the OutlinedInput component
+                        '&.Mui-focused': { // Target when the label is focused
+                          color: '#15CEDC', // Set the label color on focus
+                        }
+                      }
+                    }}
+                  />
                   <TextField
                     fullWidth
                     label="Email"
