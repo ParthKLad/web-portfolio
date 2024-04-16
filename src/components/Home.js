@@ -1,15 +1,16 @@
-// Home.js
-import React, { useState, useEffect } from 'react';
-import { Typography, Box, Button, Grow } from '@mui/material';
+import React, { useState, useEffect, useContext } from 'react';
+import { Typography, Box, Button } from '@mui/material';
+import { ThemeContext } from '../context/ThemeContext';
 import './Home.css';
 
-const phrases = ["Developer", "IT Specialist"];
+const phrases = [" a Developer", " an IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
+  const { themeType } = useContext(ThemeContext);
 
   useEffect(() => {
     if (subIndex === phrases[index].length + 1 && !reverse) {
@@ -32,30 +33,43 @@ function Home({ handleNavItemClicked, navItems }) {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
 
-  
   return (
-    <Box textAlign="left" p={5} className="console-text">
+    <Box 
+      textAlign="left" 
+      p={5} 
+      className="console-text"
+      sx={{
+        backgroundColor: themeType === 'dark' ? 'rgb(36, 36, 36)' : 'rgb(255, 255, 255)',
+        color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(36, 36, 36)'
+      }}
+    >
       <div className="window-controls">
         <span className="close"></span>
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
-      <Typography variant="h4" gutterBottom>>Hello, my name is Parth Lad</Typography>
-      <Typography variant="h4" gutterBottom>>I am a {phrase}</Typography>
+      <Typography variant="h4" gutterBottom>
+        Hello, my name is Parth Lad
+      </Typography>
+      <Typography variant="h4" gutterBottom>
+        I am {phrase}<span className="blinking-cursor"></span>
+      </Typography>
+
       <Button 
         variant="contained" 
         sx={{
           mt: 2,
           backgroundColor: 'rgb(20,206,220)',
+          color: 'rgb(0,0,0)', // Ensure text is visible on white background
           '&:hover': {
-            backgroundColor: 'rgb(36,36,36)'
+            backgroundColor: 'rgb(20,206,220)', // Slightly darker white on hover for a subtle effect
+            color: 'rgb(0,0,0)' // Ensure text color stays visible
           }
         }} 
         onClick={() => handleNavItemClicked(navItems.find(item => item.name === 'Contact'))}
       >
         Hire Me
       </Button>
-
     </Box>
   );
 }
