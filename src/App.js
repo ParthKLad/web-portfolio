@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contacts from './components/Contacts';
-import Footer from './components/footer'; // Correct casing based on your earlier message
+import Footer from './components/footer';
 import UpArrow from './components/UpArrow';
+import Welcome from './components/Welcome';
 import { ThemeProvider } from './context/ThemeContext';
 import useIntersectionObserver from './hooks/useIntersectionObserver';
 import './style.css';
@@ -20,6 +21,15 @@ function App() {
   const contactsRef = useRef(null);
   const footerRef = useRef(null);
 
+  const [showWelcome, setShowWelcome] = useState(true); // State to control the visibility of the Welcome component
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWelcome(false); // Hide the Welcome screen after a set time
+    }, 5000); // 5000 ms = 5 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const navItems = [
     { name: 'Home', ref: homeRef },
@@ -28,7 +38,6 @@ function App() {
     { name: 'Projects', ref: projectsRef },
     { name: 'Contact', ref: contactsRef },
   ];
-  
 
   const homeVisible = useIntersectionObserver(homeRef, { threshold: 0.1 });
   const aboutVisible = useIntersectionObserver(aboutRef, { threshold: 0.1 });
@@ -44,25 +53,29 @@ function App() {
       console.error('Navigation item or ref is undefined');
     }
   };
-  
-
 
   return (
     <ThemeProvider>
       <div className="App">
-        <Navbar refs={{ homeRef, aboutRef, skillsRef, projectsRef, contactsRef, footerRef }} />
-        <div className="content">
-          <main>
-          <Home handleNavItemClicked={handleNavItemClicked} navItems={navItems} />
-          <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}></div>
-            <div ref={aboutRef} className={`section ${aboutVisible ? 'section-visible' : 'section-hidden'}`}><About /></div>
-            <div ref={skillsRef} className={`section ${skillsVisible ? 'section-visible' : 'section-hidden'}`}><Skills /></div>
-            <div ref={projectsRef} className={`section ${projectsVisible ? 'section-visible' : 'section-hidden'}`}><Projects /></div>
-            <div ref={contactsRef} className={`section ${contactsVisible ? 'section-visible' : 'section-hidden'}`}><Contacts /></div>
-            <div ref={footerRef} className={`section ${footerVisible ? 'section-visible' : 'section-hidden'}`}><Footer /></div>
-          </main>
-          <UpArrow />
-        </div>
+        {showWelcome ? (
+          <Welcome />
+        ) : (
+          <>
+            <Navbar refs={{ homeRef, aboutRef, skillsRef, projectsRef, contactsRef, footerRef }} />
+            <div className="content">
+              <main>
+                <Home handleNavItemClicked={handleNavItemClicked} navItems={navItems} />
+                <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}></div>
+                <div ref={aboutRef} className={`section ${aboutVisible ? 'section-visible' : 'section-hidden'}`}><About /></div>
+                <div ref={skillsRef} className={`section ${skillsVisible ? 'section-visible' : 'section-hidden'}`}><Skills /></div>
+                <div ref={projectsRef} className={`section ${projectsVisible ? 'section-visible' : 'section-hidden'}`}><Projects /></div>
+                <div ref={contactsRef} className={`section ${contactsVisible ? 'section-visible' : 'section-hidden'}`}><Contacts /></div>
+                <div ref={footerRef} className={`section ${footerVisible ? 'section-visible' : 'section-hidden'}`}><Footer /></div>
+              </main>
+              <UpArrow />
+            </div>
+          </>
+        )}
       </div>
     </ThemeProvider>
   );
