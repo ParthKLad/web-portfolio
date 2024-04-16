@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 
 const Welcome = () => {
   const [text, setText] = useState('');
+  const [opacity, setOpacity] = useState(0); // Initial opacity set to 0 to start hidden
   const messages = [
     '> Hello World ...',
     '> Initializing...',
@@ -16,9 +17,13 @@ const Welcome = () => {
   const [blink, setBlink] = useState(true);
   
   useEffect(() => {
-    if (index >= messages.length) return;
+    if (index >= messages.length) {
+      setTimeout(() => {
+        setOpacity(0); // Fade out after all messages are displayed
+      }, 2000); // Delay fade out to allow reading the last message
+      return;
+    }
 
-    // Speed up the typing by reducing the timeout and adjusting the timing overall to fit within 2 seconds
     const timeout = setTimeout(() => {
       setText(text + messages[index][subIndex]);
       setSubIndex(subIndex + 1);
@@ -37,12 +42,15 @@ const Welcome = () => {
     setTimeout(() => {
       setBlink(false); // Stop blinking cursor after 2 seconds
     }, 2000);
+
+    setTimeout(() => {
+      setOpacity(1); // Start fading in almost immediately after component mounts
+    }, 100);
+
   }, []);
 
-  const cursorStyle = {
-    opacity: 1,
-    animation: blink ? 'blink-animation 1s steps(5, start) infinite' : 'none',
-    display: 'inline'
+  const handleScreenClick = () => {
+    setOpacity(0); // Hide the screen on click
   };
 
   return (
@@ -62,16 +70,12 @@ const Welcome = () => {
       zIndex: 1200,
       overflow: 'hidden',
       flexDirection: 'column',
-      padding: '20px'
-    }}>
-      <div style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'start',
-        padding: '8px 0'
-      }}>
-      </div>
-      <Typography component="pre" variant="body1" style={{
+      padding: '20px',
+      transition: 'opacity 1s ease-in-out',
+      opacity: opacity,
+      cursor: 'pointer'
+    }} onClick={handleScreenClick}>
+      <Typography component="pre" variant="body1" sx={{
         color: 'lime',
         fontFamily: 'monospace',
         textAlign: 'left',
@@ -81,7 +85,11 @@ const Welcome = () => {
         width: '80%',
         maxWidth: '700px'
       }}>
-        {text}<span style={cursorStyle}>_</span>
+        {text}<span style={{
+          opacity: 1,
+          animation: blink ? 'blink-animation 1s steps(5, start) infinite' : 'none',
+          display: 'inline'
+        }}>_</span>
       </Typography>
     </Box>
   );
