@@ -20,12 +20,29 @@ function App() {
   const contactsRef = useRef(null);
   const footerRef = useRef(null);
 
+
+  const navItems = [
+    { name: 'Contact', ref: contactsRef },
+
+  ];
+
+
   const homeVisible = useIntersectionObserver(homeRef, { threshold: 0.1 });
   const aboutVisible = useIntersectionObserver(aboutRef, { threshold: 0.1 });
   const skillsVisible = useIntersectionObserver(skillsRef, { threshold: 0.1 });
   const projectsVisible = useIntersectionObserver(projectsRef, { threshold: 0.1 });
   const contactsVisible = useIntersectionObserver(contactsRef, { threshold: 0.1 });
   const footerVisible = useIntersectionObserver(footerRef, { threshold: 0.1 });
+
+  const handleNavItemClicked = (item) => {
+    if (item.ref && item.ref.current) {
+      item.ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      console.error('Navigation item or ref is undefined');
+    }
+  };
+  
+
 
   return (
     <ThemeProvider>
@@ -40,7 +57,7 @@ function App() {
             <div ref={contactsRef} className={`section ${contactsVisible ? 'section-visible' : 'section-hidden'}`}><Contacts /></div>
             <div ref={footerRef} className={`section ${footerVisible ? 'section-visible' : 'section-hidden'}`}><Footer /></div>
           </main>
-          <UpArrow /> {/* Assuming UpArrow visibility is controlled internally or always visible */}
+          <UpArrow />
         </div>
       </div>
     </ThemeProvider>

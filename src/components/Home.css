@@ -1,40 +1,66 @@
-/* Home Section */
-.home {
-  display: flex;
-  flex-direction: column; /* Aligns children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: center; /* Center children horizontally */
-  height: 100vh;
-  color: #fff;
-  min-height: 500px;
-  background-size: cover;
-  background-attachment: fixed;
-  font-family: 'Ubuntu', sans-serif;
-  text-align: center; /* Ensures text is centered within each flex child */
+/* Home.css */
+
+.console-text {
+  background-color: rgba(0, 0, 0, 0.2); /* Light transparent black background */
+  color: rgb(236, 243, 236); /* Light greenish text color */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font for console-like appearance */
+  padding: 0px; /* Sufficient padding */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: relative; /* Absolute positioning to place it over a relative container */
+  top: 30%; /* Start from middle vertically */
+  left: 50%; /* Start from middle horizontally */
+  transform: translate(-50%, -0%); /* Perfect center alignment */
+  width: 80%; /* Relative width */
+  max-width: 1100px; /* Maximum width */
+  box-sizing: border-box; /* Includes padding and border in width */
+  
+  
 }
 
-.typing {
-  color: rgb(20, 207, 220); /* Styling for typing effect if needed */
-  font-weight: 500;
+/* For tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .console-text {
+    width: 85%; /* Slightly wider on smaller desktops */
+  }
 }
 
-/* Button Styling - Update class or inline styles as needed */
-.home button {
-  background: rgb(20, 207, 220);
-  color: #fff;
-  font-size: 25px;
-  padding: 12px 36px;
-  margin-top: 20px;
-  font-weight: 400;
-  border-radius: 6px;
-  border: 2px solid rgb(20, 207, 220);
-  transition: all 0.3s ease;
+/* For mobile phones */
+@media (max-width: 767px) {
+  .console-text {
+    width: 95%; /* Nearly full-width on mobile devices */
+    padding: 10px; /* Less padding on smaller screens */
+    content: '|'; /* Simulating a cursor */
+  }
 }
 
-.home button:hover {
-  color: rgb(20, 207, 220);
-  background: none;
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.window-controls {
+  position: absolute; /* Position the controls absolutely relative to the console-text box */
+  top: 10px; /* Position from the top of the console-text box */
+  left: 10px; /* Position from the left of the console-text box */
 }
 
+.window-controls span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+}
 
+.close {
+  background-color: #fc605b;
+}
+
+.minimize {
+  background-color: #fecb2f;
+}
+
+.maximize {
+  background-color: #2aca3e;
+}
 

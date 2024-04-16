@@ -1,8 +1,9 @@
+// Home.js
 import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
 import './Home.css';
 
-const phrases = ["Developer", "IT Specialist"];
+const phrases = ["I am a Developer", "I am an IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
@@ -31,17 +32,16 @@ function Home({ handleNavItemClicked, navItems }) {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
 
+  
   return (
-    <Box textAlign="center" p={5}>
-      <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1000 } : {})}>
-        <Typography variant="h4" gutterBottom>Hello, my name is</Typography>
-      </Grow>
-      <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 1500 } : {})}>
-        <Typography variant="h3" gutterBottom>Parth Lad</Typography>
-      </Grow>
-      <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...(true ? { timeout: 2000 } : {})}>
-        <Typography variant="h5">And I'm a <span className="typing">{phrase}</span></Typography>
-      </Grow>
+    <Box textAlign="left" p={5} className="console-text">
+      <div className="window-controls">
+        <span className="close"></span>
+        <span className="minimize"></span>
+        <span className="maximize"></span>
+      </div>
+      <Typography variant="h4" gutterBottom>>Hello, my name is Parth Lad</Typography>
+      <Typography variant="h4" gutterBottom>>{phrase}</Typography>
       <Button 
         variant="contained" 
         sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }} 
