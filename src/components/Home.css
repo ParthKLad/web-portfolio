@@ -1,7 +1,7 @@
 /* Home.css */
 
 .console-text {
-  background-color: rgba(0, 0, 0, 0.2); /* Light transparent black background */
+  background-color: rgb(36,36,36); /* Light transparent black background */
   color: rgb(236, 243, 236); /* Light greenish text color */
   font-family: 'Courier New', Courier, monospace; /* Monospace font for console-like appearance */
   padding: 0px; /* Sufficient padding */
@@ -12,7 +12,7 @@
   left: 50%; /* Start from middle horizontally */
   transform: translate(-50%, -0%); /* Perfect center alignment */
   width: 80%; /* Relative width */
-  max-width: 1100px; /* Maximum width */
+  max-width: 1145px; /* Maximum width */
   box-sizing: border-box; /* Includes padding and border in width */
   
   

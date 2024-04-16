@@ -22,10 +22,13 @@ function App() {
 
 
   const navItems = [
+    { name: 'Home', ref: homeRef },
+    { name: 'About', ref: aboutRef },
+    { name: 'Skills', ref: skillsRef },
+    { name: 'Projects', ref: projectsRef },
     { name: 'Contact', ref: contactsRef },
-
   ];
-
+  
 
   const homeVisible = useIntersectionObserver(homeRef, { threshold: 0.1 });
   const aboutVisible = useIntersectionObserver(aboutRef, { threshold: 0.1 });
@@ -50,7 +53,8 @@ function App() {
         <Navbar refs={{ homeRef, aboutRef, skillsRef, projectsRef, contactsRef, footerRef }} />
         <div className="content">
           <main>
-            <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}><Home /></div>
+          <Home handleNavItemClicked={handleNavItemClicked} navItems={navItems} />
+          <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}></div>
             <div ref={aboutRef} className={`section ${aboutVisible ? 'section-visible' : 'section-hidden'}`}><About /></div>
             <div ref={skillsRef} className={`section ${skillsVisible ? 'section-visible' : 'section-hidden'}`}><Skills /></div>
             <div ref={projectsRef} className={`section ${projectsVisible ? 'section-visible' : 'section-hidden'}`}><Projects /></div>

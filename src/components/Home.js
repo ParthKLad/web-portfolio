@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button, Grow } from '@mui/material';
 import './Home.css';
 
-const phrases = ["I am a Developer", "I am an IT Specialist"];
+const phrases = ["Developer", "IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
@@ -41,14 +41,21 @@ function Home({ handleNavItemClicked, navItems }) {
         <span className="maximize"></span>
       </div>
       <Typography variant="h4" gutterBottom>>Hello, my name is Parth Lad</Typography>
-      <Typography variant="h4" gutterBottom>>{phrase}</Typography>
+      <Typography variant="h4" gutterBottom>>I am a {phrase}</Typography>
       <Button 
         variant="contained" 
-        sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }} 
+        sx={{
+          mt: 2,
+          backgroundColor: 'rgb(20,206,220)',
+          '&:hover': {
+            backgroundColor: 'rgb(36,36,36)'
+          }
+        }} 
         onClick={() => handleNavItemClicked(navItems.find(item => item.name === 'Contact'))}
       >
         Hire Me
       </Button>
+
     </Box>
   );
 }
