@@ -21,6 +21,7 @@ const Footer = () => {
 
     return (
         <footer style={footerStyle}>
+            <br></br>
             <p>© {year} All rights reserved. Made with love ❤️ by {name}</p>
         </footer>
     );

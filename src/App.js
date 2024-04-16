@@ -1,14 +1,14 @@
-// App.js
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contacts from './components/Contacts';
-import Footer from './components/footer';
+import Footer from './components/footer'; // Correct casing based on your earlier message
 import UpArrow from './components/UpArrow';
 import { ThemeProvider } from './context/ThemeContext';
+import useIntersectionObserver from './hooks/useIntersectionObserver';
 import './style.css';
 import './App.css';
 
@@ -18,43 +18,29 @@ function App() {
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactsRef = useRef(null);
-  
-  const [showUpArrow, setShowUpArrow] = useState(false); // State to control UpArrow visibility
+  const footerRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (homeRef.current) {
-        const { bottom } = homeRef.current.getBoundingClientRect();
-        setShowUpArrow(window.scrollY > bottom); // Show UpArrow if we've scrolled past Home section
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const homeVisible = useIntersectionObserver(homeRef, { threshold: 0.1 });
+  const aboutVisible = useIntersectionObserver(aboutRef, { threshold: 0.1 });
+  const skillsVisible = useIntersectionObserver(skillsRef, { threshold: 0.1 });
+  const projectsVisible = useIntersectionObserver(projectsRef, { threshold: 0.1 });
+  const contactsVisible = useIntersectionObserver(contactsRef, { threshold: 0.1 });
+  const footerVisible = useIntersectionObserver(footerRef, { threshold: 0.1 });
 
   return (
     <ThemeProvider>
       <div className="App">
-        <Navbar
-          refs={{
-            homeRef,
-            aboutRef,
-            skillsRef,
-            projectsRef,
-            contactsRef,
-          }}
-        />
+        <Navbar refs={{ homeRef, aboutRef, skillsRef, projectsRef, contactsRef, footerRef }} />
         <div className="content">
           <main>
-            <div ref={homeRef}><Home /></div>
-            <div ref={aboutRef}><About /></div>
-            <div ref={skillsRef}><Skills /></div>
-            <div ref={projectsRef}><Projects /></div>
-            <div ref={contactsRef}><Contacts /></div>
+            <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}><Home /></div>
+            <div ref={aboutRef} className={`section ${aboutVisible ? 'section-visible' : 'section-hidden'}`}><About /></div>
+            <div ref={skillsRef} className={`section ${skillsVisible ? 'section-visible' : 'section-hidden'}`}><Skills /></div>
+            <div ref={projectsRef} className={`section ${projectsVisible ? 'section-visible' : 'section-hidden'}`}><Projects /></div>
+            <div ref={contactsRef} className={`section ${contactsVisible ? 'section-visible' : 'section-hidden'}`}><Contacts /></div>
+            <div ref={footerRef} className={`section ${footerVisible ? 'section-visible' : 'section-hidden'}`}><Footer /></div>
           </main>
-          <Footer />
-          {showUpArrow && <UpArrow />} {/* Conditionally render the UpArrow component */}
+          <UpArrow /> {/* Assuming UpArrow visibility is controlled internally or always visible */}
         </div>
       </div>
     </ThemeProvider>
