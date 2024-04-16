@@ -33,14 +33,14 @@ function Home({ handleNavItemClicked, navItems }) {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
 
-  return (
+   return (
     <Box 
       textAlign="left" 
       p={5} 
       className="console-text"
       sx={{
         backgroundColor: themeType === 'dark' ? 'rgb(36, 36, 36)' : 'rgb(255, 255, 255)',
-        color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(0, 0, 0)'
+        color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(36, 36, 36)'
       }}
     >
       <div className="window-controls">
@@ -48,9 +48,9 @@ function Home({ handleNavItemClicked, navItems }) {
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
-      <Typography variant="h4" gutterBottom>Hello, my name is Parth Lad</Typography>
+      <Typography variant="h4" gutterBottom>>Hello, my name is Parth Lad</Typography>
       <Typography variant="h4" gutterBottom>
-        I am {phrase}<span className="blinking-cursor"></span>
+        >I am {phrase}<span className="blinking-cursor"></span>
       </Typography>
       <Button 
         variant="contained" 
