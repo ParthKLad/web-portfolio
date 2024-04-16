@@ -40,7 +40,7 @@ function Home({ handleNavItemClicked, navItems }) {
       className="console-text"
       sx={{
         backgroundColor: themeType === 'dark' ? 'rgb(36, 36, 36)' : 'rgb(255, 255, 255)',
-        color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(36, 36, 36)'
+        color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(0, 0, 0)'
       }}
     >
       <div className="window-controls">
@@ -48,22 +48,19 @@ function Home({ handleNavItemClicked, navItems }) {
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
-      <Typography variant="h4" gutterBottom>
-        Hello, my name is Parth Lad
-      </Typography>
+      <Typography variant="h4" gutterBottom>Hello, my name is Parth Lad</Typography>
       <Typography variant="h4" gutterBottom>
         I am {phrase}<span className="blinking-cursor"></span>
       </Typography>
-
       <Button 
         variant="contained" 
         sx={{
           mt: 2,
           backgroundColor: 'rgb(20,206,220)',
-          color: 'rgb(0,0,0)', // Ensure text is visible on white background
+          color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(255, 255, 255)', // Invert the text color based on the theme
           '&:hover': {
-            backgroundColor: 'rgb(20,206,220)', // Slightly darker white on hover for a subtle effect
-            color: 'rgb(0,0,0)' // Ensure text color stays visible
+            backgroundColor: 'rgb(15,196,210)', // A slightly darker shade for the hover state
+            color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(255, 255, 255)'
           }
         }} 
         onClick={() => handleNavItemClicked(navItems.find(item => item.name === 'Contact'))}
