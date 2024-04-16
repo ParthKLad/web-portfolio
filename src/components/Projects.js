@@ -19,6 +19,13 @@ import Data_client from '../images/Data_platform/Data_Client.png';
 import Data_Event from '../images/Data_platform/Data_Events.png';
 
 
+//Pulse 
+import Pulse_Welcome from '../images/Pulse/Pulse_welcome.jpg';
+import embed from '../images/Pulse/embed.png';
+import info_server from '../images/Pulse/info_server.jpg';
+import role from '../images/Pulse/role.png'
+import Pulse from '../images/Pulse/Pulse.png'
+
 const projects = [
   {
     title: 'Sharewell HDD : Flask ',
@@ -69,42 +76,45 @@ const projects = [
         }
       ]
     },
-
     {
-      title: 'Coming Soon..',
-      images: [
-
+      "title": "Discord Bot: Pulse",
+      "images": [
+        Pulse,
+        role,
+        embed,
+        info_server,
+        Pulse_Welcome
       ],
-      shortDesc: "Coming Soon..",
-      fullDesc: [
-        { 
-          title: "Coming Soon..", 
-          description: "Coming Soon..." 
-        },
-        { 
-          title: "Coming Soon..", 
-          description: "Coming Soon..." 
-        },
-        { 
-          title: "Coming Soon..", 
-          description: "Coming Soon..." 
-        },
-        { 
-          title: "Coming Soon..", 
-          description: "Coming Soon..." 
-        },
-        { 
-          title: "Coming Soon..", 
-          description: "Coming Soon..." 
-        }
-      ]
-    },
-  
+      "shortDesc": "Pulse, a dynamic Discord bot, streamlines server management, enhances user engagement with interactive features, and brings fun to your community. It offers comprehensive role management, detailed logging, personalized color themes, and custom communication tools. Hosted on a Linux-based VPS, Pulse ensures reliable, around-the-clock operation for an uninterrupted Discord experience.",
+        "fullDesc": [
+          {
+            "title": "Server Administration",
+            "description": "Pulse Bot offers an unparalleled suite of tools for server administration. From managing roles and permissions to overseeing user behavior with kick and ban commands, Pulse provides everything you need for meticulous server management."
+          },
+          {
+            "title": "Color Change",
+            "description": "Delight in the ability to personalize your server presence with Pulse's color change command. Users can pick their favorite hues for a custom experience, while admins can assign colors to roles for quick identification and flair."
+          },
+          {
+            "title": "Logging",
+            "description": "Maintain a clear record of server activity with Pulse's thorough logging. Transparency and oversight are effortless, as Pulse captures detailed information about server events for review and moderation."
+          },
+          {
+            "title": "Custom Embeds & Role Reactions",
+            "description": "Pulse enhances server interaction by allowing the creation of custom embedded messages and role reactions, enabling a more engaging and organized way to communicate important updates or fun server activities."
+          },
+          {
+            "title": "Recent Commits Display",
+            "description": "Stay informed on the latest enhancements with Pulse’s recent commits feature. Useful for developers and users alike, this function allows everyone to track updates, bug fixes, and new features as they are rolled out, ensuring the community is always in the loop with the bot's evolution."
+          },
+          {
+            "title": "And More!",
+            "description": "Pulse Bot is in constant development, adding new features to enrich the functionality and entertainment of your server. Upcoming updates include game patches and free game notifications from stores like Steam, Epic, and GOG, leveraging their respective APIs to keep your gaming community ahead of the curve."
+          }
+        ]
+      }
+    
   ]
-
-
-
-
 
 function Projects() {
   const [open, setOpen] = useState(false);
