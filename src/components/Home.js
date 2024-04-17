@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Typography, Box, Button } from '@mui/material';
-import { ThemeContext } from '../context/ThemeContext';
+// Home.js
+import React, { useState, useEffect } from 'react';
+import { Typography, Box, Button, Grow } from '@mui/material';
 import './Home.css';
 
-const phrases = [" a Developer", " an IT Specialist"];
+const phrases = ["I am a Developer", "I am an IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-  const { themeType } = useContext(ThemeContext);
 
   useEffect(() => {
     if (subIndex === phrases[index].length + 1 && !reverse) {
@@ -25,7 +24,6 @@ function Home({ handleNavItemClicked, navItems }) {
       return;
     }
 
-    
     const timeout = setTimeout(() => {
       setPhrase((prev) => phrases[index].substring(0, reverse ? prev.length - 1 : prev.length + 1));
       setSubIndex((prev) => prev + (reverse ? -1 : 1));
@@ -34,36 +32,19 @@ function Home({ handleNavItemClicked, navItems }) {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
 
-   return (
-    <Box 
-      textAlign="left" 
-      p={5} 
-      className="console-text"
-      sx={{
-        backgroundColor: themeType === 'dark' ? 'rgb(36, 36, 36)' : 'rgb(255, 255, 255)',
-        color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(36, 36, 36)'
-      }}
-    >
+  
+  return (
+    <Box textAlign="left" p={5} className="console-text">
       <div className="window-controls">
         <span className="close"></span>
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
       <Typography variant="h4" gutterBottom>>Hello, my name is Parth Lad</Typography>
-      <Typography variant="h4" gutterBottom>
-        >I am {phrase}<span className="blinking-cursor"></span>
-      </Typography>
+      <Typography variant="h4" gutterBottom>>{phrase}</Typography>
       <Button 
         variant="contained" 
-        sx={{
-          mt: 2,
-          backgroundColor: 'rgb(20,206,220)',
-          color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(255, 255, 255)', // Invert the text color based on the theme
-          '&:hover': {
-            backgroundColor: 'rgb(15,196,210)', // A slightly darker shade for the hover state
-            color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(255, 255, 255)'
-          }
-        }} 
+        sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }} 
         onClick={() => handleNavItemClicked(navItems.find(item => item.name === 'Contact'))}
       >
         Hire Me
