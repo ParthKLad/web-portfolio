@@ -46,6 +46,8 @@ function App() {
   const contactsVisible = useIntersectionObserver(contactsRef, { threshold: 0.1 });
   const footerVisible = useIntersectionObserver(footerRef, { threshold: 0.1 });
 
+  
+
   const handleNavItemClicked = (item) => {
     if (item.ref && item.ref.current) {
       item.ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -64,8 +66,7 @@ function App() {
             <Navbar refs={{ homeRef, aboutRef, skillsRef, projectsRef, contactsRef, footerRef }} />
             <div className="content">
               <main>
-                <Home handleNavItemClicked={handleNavItemClicked} navItems={navItems} />
-                <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}></div>
+                <div ref={homeRef} className={`section ${homeVisible ? 'section-visible' : 'section-hidden'}`}><Home/></div>
                 <div ref={aboutRef} className={`section ${aboutVisible ? 'section-visible' : 'section-hidden'}`}><About /></div>
                 <div ref={skillsRef} className={`section ${skillsVisible ? 'section-visible' : 'section-hidden'}`}><Skills /></div>
                 <div ref={projectsRef} className={`section ${projectsVisible ? 'section-visible' : 'section-hidden'}`}><Projects /></div>

@@ -25,6 +25,7 @@ function Home({ handleNavItemClicked, navItems }) {
       return;
     }
 
+    
     const timeout = setTimeout(() => {
       setPhrase((prev) => phrases[index].substring(0, reverse ? prev.length - 1 : prev.length + 1));
       setSubIndex((prev) => prev + (reverse ? -1 : 1));

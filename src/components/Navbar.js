@@ -23,20 +23,22 @@ function Navbar({ refs }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  // Effect hook to handle scroll events for activating navigation links
   useEffect(() => {
     const handleScroll = () => {
-      const homePosition = refs.homeRef.current ? refs.homeRef.current.getBoundingClientRect() : null;
-      if (homePosition && homePosition.top >= -10) {
-        setActiveNav('Home');
-      } else {
-        setActiveNav('');
+      const sectionRefs = [refs.homeRef, refs.aboutRef, refs.projectsRef, refs.skillsRef, refs.contactsRef];
+      const currentSection = sectionRefs.find((ref) => {
+        const rect = ref.current.getBoundingClientRect();
+        return rect.top <= 0 && rect.bottom >= 0;
+      });
+      if (currentSection) {
+        setActiveNav(currentSection.current.id); // Ensure your refs have an id attribute corresponding to their names
       }
     };
   
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [refs, activeNav]);
+  }, [refs]); // Removing activeNav from dependency array as it's not directly used in the effect
+  
 
   // Navigation items for the app
   const navItems = [
