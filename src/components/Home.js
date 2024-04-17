@@ -47,8 +47,8 @@ function Home({ handleNavItemClicked, navItems }) {
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
-      <Typography variant="h4" gutterBottom>Hello, my name is Parth Lad</Typography>
-      <Typography variant="h4" gutterBottom>I am {phrase}</Typography>
+      <Typography variant="h4" gutterBottom>$Hello, my name is Parth Lad</Typography>
+      <Typography variant="h4" gutterBottom>$I am {phrase}</Typography>
       <Button 
         variant="contained" 
         sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' }}} 
