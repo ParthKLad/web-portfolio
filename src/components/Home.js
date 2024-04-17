@@ -1,15 +1,16 @@
-// Home.js
 import React, { useState, useEffect } from 'react';
-import { Typography, Box, Button, Grow } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import './Home.css';
+import { useTheme } from '../context/ThemeContext'; // Adjust the path as necessary
 
-const phrases = ["I am a Developer", "I am an IT Specialist"];
+const phrases = ["a Developer", " an IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState('');
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
+  const { themeType } = useTheme(); // Use theme context
 
   useEffect(() => {
     if (subIndex === phrases[index].length + 1 && !reverse) {
@@ -32,19 +33,25 @@ function Home({ handleNavItemClicked, navItems }) {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
 
+    // Adjust styles based on the theme
+    const boxStyle = {
+      backgroundColor: themeType === 'dark' ? 'rgb(36, 36, 36)' : 'rgb(255, 255, 255)',
+      color: themeType === 'dark' ? 'rgb(236, 243, 236)' : 'rgb(36, 36, 36)'
+    };
   
+
   return (
-    <Box textAlign="left" p={5} className="console-text">
+    <Box textAlign="left" p={5} className="console-text" sx={boxStyle}>
       <div className="window-controls">
         <span className="close"></span>
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
-      <Typography variant="h4" gutterBottom>>Hello, my name is Parth Lad</Typography>
-      <Typography variant="h4" gutterBottom>>{phrase}</Typography>
+      <Typography variant="h4" gutterBottom>Hello, my name is Parth Lad</Typography>
+      <Typography variant="h4" gutterBottom>I am {phrase}</Typography>
       <Button 
         variant="contained" 
-        sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' } }} 
+        sx={{ mt: 2, backgroundColor: 'rgb(20,206,220)', '&:hover': { backgroundColor: 'rgb(17,185,197)' }}} 
         onClick={() => handleNavItemClicked(navItems.find(item => item.name === 'Contact'))}
       >
         Hire Me

@@ -1,35 +1,38 @@
+/* Home.css */
+
 .console-text {
   background-color: rgb(36,36,36); /* Light transparent black background */
   color: rgb(236, 243, 236); /* Light greenish text color */
   font-family: 'Courier New', Courier, monospace; /* Monospace font for console-like appearance */
-  padding: 10px; /* Uniform padding */
+  padding: 0px; /* Sufficient padding */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   position: relative; /* Absolute positioning to place it over a relative container */
   top: 30%; /* Start from middle vertically */
   left: 50%; /* Start from middle horizontally */
   transform: translate(-50%, -0%); /* Perfect center alignment */
-  width: 95%; /* Consistent width across devices */
+  width: 80%; /* Relative width */
   max-width: 1145px; /* Maximum width */
   box-sizing: border-box; /* Includes padding and border in width */
+  
+  
 }
 
+/* For tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
   .console-text {
-    width: 100%; /* Adjusted for small desktops */
+    width: 85%; /* Slightly wider on smaller desktops */
   }
 }
 
+/* For mobile phones */
 @media (max-width: 767px) {
   .console-text {
-    width: 89%; /* Full width on mobile devices */
-    max-width: 1200px; /* Same max width as About section */
-    padding: 10px; /* Adjust padding as needed */
+    width: 95%; /* Nearly full-width on mobile devices */
+    padding: 10px; /* Less padding on smaller screens */
     content: '|'; /* Simulating a cursor */
   }
 }
-
-
 
 @keyframes blink {
   50% { opacity: 0; }
