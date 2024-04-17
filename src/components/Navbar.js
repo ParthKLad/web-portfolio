@@ -54,17 +54,25 @@ function Navbar({ refs }) {
     setDrawerOpen(!drawerOpen);
   };
 
-  // Function to handle clicking on a navigation item
   const handleNavItemClicked = (name, ref) => {
     setActiveNav(name);
+  
+    const headerOffset = 60; // Height of the fixed header or element
+    const elementPosition = ref.current.offsetTop;
+    const offsetPosition = elementPosition - headerOffset;
+  
     if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
+  
     if (isMobile) {
       handleDrawerToggle();
     }
   };
-
+  
  
   return (
     <>
