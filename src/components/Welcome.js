@@ -10,7 +10,7 @@ const Welcome = () => {
     '> Initializing...',
     '> Loading modules...',
     '> Access Granted.',
-    '> Welcome to Parth Lad Portfolio...'
+    '> Welcome to Parthl.com...'
   ];
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
