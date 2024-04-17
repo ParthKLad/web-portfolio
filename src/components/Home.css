@@ -28,7 +28,7 @@
 /* For mobile phones */
 @media (max-width: 767px) {
   .console-text {
-    width: 95%; /* Nearly full-width on mobile devices */
+    width: 89%; /* Nearly full-width on mobile devices */
     padding: 10px; /* Less padding on smaller screens */
     content: '|'; /* Simulating a cursor */
   }
