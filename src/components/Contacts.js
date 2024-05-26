@@ -166,12 +166,13 @@ const ContactForm = () => {
                     position: "relative", // Establish a positioning context for pseudo-elements
                     "::after": {
                       // Pseudo-element for the underline
+
                       content: '""',
                       position: "absolute",
-                      bottom: 0,
+                      bottom: -10,
                       left: 6,
                       right: 1,
-                      height: "3px", // Make the underline a bit thicker for visibility
+                      height: "3px", // Make the underline a bit thicker for
                       backgroundImage:
                         "linear-gradient(90deg, #15CEDC, #0B83B3, #15CEDC)", // Create a gradient for the underline
                       backgroundSize: "200% 100%", // Extend the background size for the animation effect
@@ -209,7 +210,13 @@ const ContactForm = () => {
                   }}
                 >
                   📧:{" "}
-                  <a href="mailto:'Parth.lad@protonmail.com">
+                  <a
+                    href="mailto:'Parth.lad@protonmail.com"
+                    style={{
+                      color: theme.palette.mode === "dark" ? "#fff" : "#000", // Change color based on theme
+                      textDecoration: "none", // Remove underline
+                    }}
+                  >
                     {" "}
                     Parth.lad@protonmail.com
                   </a>
@@ -234,7 +241,7 @@ const ContactForm = () => {
                       backgroundColor: "#0077B5", // LinkedIn blue for all modes
                       color: "white", // White icon color for contrast
                       padding: "2px", // Reduce the padding to shrink the circle size
-                      fontSize: "1.5rem", // Increase the icon size to make it slightly larger
+                      fontSize: "2.5rem", // Increase the icon size to make it slightly larger
                       "@media (max-width:600px)": { fontSize: "1.5rem" }, // Adjust for mobile sizes
                       "&:hover": {
                         backgroundColor: "#005582", // A slightly darker shade of LinkedIn blue for hover
@@ -249,7 +256,7 @@ const ContactForm = () => {
                       backgroundColor: "#763EC6", // Custom purple
                       color: "white", // Set GitHub icon color to white for visibility
                       padding: "2px", // Reduce the padding to shrink the circle size
-                      fontSize: "1.5rem", // Make it smaller
+                      fontSize: "2.5rem", // Make it smaller
                       "@media (max-width:600px)": { fontSize: "1.5rem" }, // Smaller for mobile
                       "&:hover": {
                         backgroundColor:
