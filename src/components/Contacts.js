@@ -211,7 +211,7 @@ const ContactForm = () => {
                 >
                   📧:{" "}
                   <a
-                    href="mailto:'Parth.lad@protonmail.com"
+                    href="mailto:Parth.lad@protonmail.com"
                     style={{
                       color: theme.palette.mode === "dark" ? "#fff" : "#2C2F33", // Change color based on theme
                       textDecoration: "none", // Remove underline
