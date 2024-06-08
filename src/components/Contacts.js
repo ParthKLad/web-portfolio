@@ -251,7 +251,7 @@ const ContactForm = () => {
                     <LinkedInIcon sx={{ fontSize: "inherit" }} />
                   </IconButton>
                   <IconButton
-                    onClick={() => window.open("https://github.com/parthlad9")}
+                    onClick={() => window.open("https://github.com/ladparthk")}
                     sx={{
                       backgroundColor: "#763EC6", // Custom purple
                       color: "white", // Set GitHub icon color to white for visibility
