@@ -211,14 +211,14 @@ const ContactForm = () => {
                 >
                   📧:{" "}
                   <a
-                    href="mailto:Parth.lad@protonmail.com"
+                    href="mailto:ladparthk@outlook.com"
                     style={{
                       color: theme.palette.mode === "dark" ? "#fff" : "#2C2F33", // Change color based on theme
                       textDecoration: "none", // Remove underline
                     }}
                   >
                     {" "}
-                    Parth.lad@protonmail.com
+                    LadParthK@outlook.com
                   </a>
                 </Typography>
                 <Box
@@ -235,7 +235,7 @@ const ContactForm = () => {
                 >
                   <IconButton
                     onClick={() =>
-                      window.open("https://www.linkedin.com/in/parthlad01/")
+                      window.open("https://www.linkedin.com/in/ladparthk/")
                     }
                     sx={{
                       backgroundColor: "#0077B5", // LinkedIn blue for all modes
