@@ -20,23 +20,13 @@ function About() {
   };
 
   return (
-    <Box
-      sx={{
-        maxWidth: 1200,
-        mx: "auto",
-        px: 2,
-        py: 3,
-        textAlign: "center",
-        width: "100%",
-        boxSizing: "border-box",
-      }}
-    >
-      <Paper elevation={3} sx={{ p: 3, mx: 2, my: 2 }}>
+    <Box sx={{ maxWidth: 1200, mx: "auto", p: 3, textAlign: "center" }}>
+      <Paper elevation={3} sx={{ p: 3, my: 2 }}>
         <Typography variant="h4" gutterBottom align="center">
           About Me
         </Typography>
         <Grid container spacing={3} justifyContent="center">
-          <Grid item xs={12} sm={10} md={8}>
+          <Grid item xs={12}>
             <Grow in={true} style={{ transformOrigin: "0 0 0" }} timeout={1000}>
               <Typography
                 paragraph
@@ -58,9 +48,9 @@ function About() {
               endIcon={<ExpandMoreIcon />}
               sx={{
                 mb: 2,
-                color: "#14CEDC",
+                color: "#14CEDC", // Set text color to #14CEDC
                 "&:hover": {
-                  color: "#11B9C5",
+                  color: "#11B9C5", // Darker shade on hover
                 },
               }}
             >
@@ -74,8 +64,8 @@ function About() {
                   fontFamily: "Roboto, sans-serif",
                   fontWeight: "400",
                   lineHeight: "1.6",
-                  mt: 2,
-                  mb: 2,
+                  marginTop: "1em",
+                  marginBottom: "1em",
                   textIndent: "2em",
                 }}
               >
@@ -96,9 +86,12 @@ function About() {
                 continuous learning, I keep abreast of the latest trends in web
                 development. My quick learning aptitude and eagerness to tackle
                 complex challenges drive my efforts to deliver innovative and
-                efficient
+                efficient solutions. With a broad skill set and a strong
+                dedication, I am well-equipped to develop projects that meet and
+                surpass contemporary development standards.
               </Typography>
             </Collapse>
+            <br />
             <Button
               variant="contained"
               startIcon={<DownloadIcon />}
