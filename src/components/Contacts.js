@@ -200,7 +200,7 @@ const ContactForm = () => {
                     mb: 5, // Adding bottom margin for spacing after the name
                   }}
                 >
-                  👨‍💻: Parth Lad
+                  👨‍💻: Parth K Lad
                 </Typography>
                 <Typography
                   variant="h6"
