@@ -1,46 +1,16 @@
-/* Home.css */
-
 .console-text {
-  background-color: rgb(36,36,36); /* Light transparent black background */
+  background-color: rgb(36, 36, 36); /* Light transparent black background */
   color: rgb(236, 243, 236); /* Light greenish text color */
-  font-family: 'Courier New', Courier, monospace; /* Monospace font for console-like appearance */
-  padding: 0px; /* Sufficient padding */
+  font-family: "Courier New", Courier, monospace; /* Monospace font for console-like appearance */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  position: relative; /* Absolute positioning to place it over a relative container */
-  top: 30%; /* Start from middle vertically */
-  left: 50%; /* Start from middle horizontally */
-  transform: translate(-50%, -0%); /* Perfect center alignment */
-  width: 80%; /* Relative width */
-  max-width: 1145px; /* Maximum width */
   box-sizing: border-box; /* Includes padding and border in width */
-  
-  
 }
 
-/* For tablets and small desktops */
-@media (min-width: 768px) and (max-width: 991px) {
-  .console-text {
-    width: 85%; /* Slightly wider on smaller desktops */
-  }
-}
-
-/* For mobile phones */
-@media (max-width: 767px) {
-  .console-text {
-    width: 89%; /* Nearly full-width on mobile devices */
-    padding: 10px; /* Less padding on smaller screens */
-    content: '|'; /* Simulating a cursor */
-  }
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
 .window-controls {
-  position: absolute; /* Position the controls absolutely relative to the console-text box */
-  top: 10px; /* Position from the top of the console-text box */
-  left: 10px; /* Position from the left of the console-text box */
+  position: absolute; /* Position the controls absolutely relative to the parent container */
+  top: 10px; /* Position from the top of the container */
+  left: 10px; /* Position from the left of the container */
 }
 
 .window-controls span {
@@ -63,8 +33,10 @@
 .maximize {
   background-color: #2aca3e;
 }
+
 @keyframes blink {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -74,8 +46,8 @@
 
 .blinking-cursor {
   display: inline-block;
-  width: 2px; 
-  background-color: currentColor; 
+  width: 2px;
+  background-color: currentColor;
   animation: blink 1s step-start infinite;
-  vertical-align: middle;  
+  vertical-align: middle;
 }
