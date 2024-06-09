@@ -34,9 +34,9 @@ function Home({ handleNavItemClicked, navItems }) {
 
     return () => clearTimeout(timer);
   }, [subIndex, index, reverse]);
-
   // Responsive Box styles
   const boxStyle = {
+    width: "100%", // Ensure full width usage
     maxWidth: 1200, // Max width similar to About section
     mx: "auto", // Center horizontally
     p: theme.spacing(5), // Responsive padding
@@ -44,6 +44,7 @@ function Home({ handleNavItemClicked, navItems }) {
       themeType === "dark" ? "rgb(36, 36, 36)" : "rgb(255, 255, 255)",
     color: themeType === "dark" ? "rgb(236, 243, 236)" : "rgb(36, 36, 36)",
     textAlign: "left",
+    fontSize: "1rem", // Responsive font size
   };
 
   return (
@@ -53,10 +54,10 @@ function Home({ handleNavItemClicked, navItems }) {
         <span className="minimize"></span>
         <span className="maximize"></span>
       </div>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom component="div">
         $Hello, my name is Parth Lad
       </Typography>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom component="div">
         $I am {phrase}
       </Typography>
       <Button
