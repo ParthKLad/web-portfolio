@@ -1,16 +1,10 @@
 // context/ThemeContext.js
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
+
 
 export const ThemeContext = createContext();
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
 
 export const ThemeProvider = ({ children }) => {
   const [themeType, setThemeType] = useState('dark');
@@ -36,3 +30,9 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
+
+export const useThemeContext = () => { 
+  return useContext(ThemeContext);
+};  
+
