@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   Typography,
-  Box,
-  Button,
   Container,
+  Button,
+  IconButton,
   useTheme,
   useMediaQuery,
+  Box,
 } from "@mui/material";
 import "./Home.css";
 import { useThemeContext } from "../context/ThemeContext";
@@ -48,45 +49,45 @@ function Home({ handleNavItemClicked, navItems }) {
       sx={{
         py: 4,
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        position: "relative", // Set position for absolute positioning of nav buttons
       }}
     >
-      <Box
-        sx={{
-          width: "100%",
-          maxWidth: 1200,
-          p: theme.spacing(isMobile ? 2 : 5),
-          backgroundColor:
-            themeType === "dark" ? "rgb(36, 36, 36)" : "rgb(255, 255, 255)",
-          color:
-            themeType === "dark" ? "rgb(236, 243, 236)" : "rgb(36, 36, 36)",
-          textAlign: "left",
-          boxShadow: theme.shadows[3],
-        }}
-      >
-        <Typography variant="h4" gutterBottom component="div">
-          $Hello, my name is Parth Lad
-        </Typography>
-        <Typography variant="h4" gutterBottom component="div">
-          $I am {phrase}
-        </Typography>
-        <Button
-          variant="contained"
-          sx={{
-            mt: 2,
-            backgroundColor: "rgb(20,206,220)",
-            "&:hover": { backgroundColor: "rgb(17,185,197)" },
-          }}
-          onClick={() =>
-            handleNavItemClicked(
-              navItems.find((item) => item.name === "Contact")
-            )
-          }
-        >
-          Seeking New Opportunities
-        </Button>
+      <Box sx={{
+        position: "absolute",
+        top: 4,
+        left: 4,
+        display: 'flex',
+        gap: '4px',
+      }}>
+        <IconButton size="small" sx={{ width: 12, height: 12, backgroundColor: "red", '&:hover': { backgroundColor: "#ff5f57" } }} />
+        <IconButton size="small" sx={{ width: 12, height: 12, backgroundColor: "yellow", '&:hover': { backgroundColor: "#ffbd2e" } }} />
+        <IconButton size="small" sx={{ width: 12, height: 12, backgroundColor: "green", '&:hover': { backgroundColor: "#27c93f" } }} />
       </Box>
+      <Typography variant={isMobile ? "h5" : "h4"} gutterBottom component="div" sx={{ textAlign: "center", width: "100%" }}>
+        $Hello, my name is Parth Lad
+      </Typography>
+      <Typography variant="h4" gutterBottom component="div" sx={{ textAlign: "center", width: "100%" }}>
+        $I am {phrase}
+      </Typography>
+      <Button
+        variant="contained"
+        sx={{
+          mt: 2,
+          backgroundColor: "rgb(20,206,220)",
+          "&:hover": { backgroundColor: "rgb(17,185,197)" },
+          borderRadius: 8,
+        }}
+        onClick={() =>
+          handleNavItemClicked(
+            navItems.find((item) => item.name === "Contact")
+          )
+        }
+      >
+        Seeking New Opportunities
+      </Button>
     </Container>
   );
 }
