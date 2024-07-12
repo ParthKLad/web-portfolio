@@ -4,7 +4,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 export { ThemeContext, ThemeProvider, useThemeContext };
 
 
-export const ThemeContext = createContext();
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
