@@ -1,13 +1,13 @@
 // context/ThemeContext.js
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext();
 
-export const useThemeContext = () => {
+export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useThemeContext must be used within a ThemeProvider');
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
 };
@@ -22,10 +22,9 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     setThemeType((prevThemeType) => (prevThemeType === 'dark' ? 'light' : 'dark'));
   };
-
   const theme = createTheme({
     palette: {
-      mode: themeType,
+      mode: themeType, // Correct property for theme mode in MUI v5
     },
   });
 
@@ -37,4 +36,3 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
