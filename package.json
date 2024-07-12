@@ -24,12 +24,16 @@
     "install": "^0.13.0",
     "npm": "^10.5.1",
     "nth-check": "^2.0.1",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.7.0",
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
     "react-scripts": "^5.0.1",
+    "styled-components": "^6.1.11",
     "web-vitals": "^3.5.2"
   },
   "browserslist": {

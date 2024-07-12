@@ -50,7 +50,6 @@ function Home({ handleNavItemClicked, navItems }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
       }}
     >
       <Box
@@ -63,7 +62,6 @@ function Home({ handleNavItemClicked, navItems }) {
           color:
             themeType === "dark" ? "rgb(236, 243, 236)" : "rgb(36, 36, 36)",
           textAlign: "left",
-          borderRadius: theme.shape.borderRadius,
           boxShadow: theme.shadows[3],
         }}
       >

@@ -147,6 +147,7 @@ const ContactForm = () => {
         >
           <Grid container spacing={2}>
             <Grid item xs={12} md={5}>
+              
               <Box
                 sx={{
                   display: "flex",
@@ -176,6 +177,7 @@ const ContactForm = () => {
                       backgroundImage:
                         "linear-gradient(90deg, #15CEDC, #0B83B3, #15CEDC)", // Create a gradient for the underline
                       backgroundSize: "200% 100%", // Extend the background size for the animation effect
+                      borderRadius: theme.shape.borderRadius, // This line sets the border radius
                       animation: "shift 3s infinite linear", // Apply the animation
                     },
                     "@keyframes shift": {
@@ -280,6 +282,7 @@ const ContactForm = () => {
                   paddingLeft: "30px",
                   paddingRight: "50px",
                   paddingBottom: "50px",
+                  borderRadius: theme.shape.borderRadius,
                 }}
               >
                 <form onSubmit={handleSubmit} method="POST" data-netlify="true">
