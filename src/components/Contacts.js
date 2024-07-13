@@ -266,20 +266,22 @@ const ContactForm = () => {
         </Box>
       </Grow>
       {runConfetti && <ConfettiExplosion />}
-      <Dialog open={open} onClose={handleClose}>
-        <DialogContent sx={{ p: 2 }}>
-          🎉 Form submitted successfully!
-          <IconButton
-            onClick={handleClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
+      <Dialog open={open} onClose={handleClose} onTouchEnd={handleClose}>
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent>
+          <Box sx={{ borderRadius: "16px", padding: "20px" }}>
+            🎉 Form submitted successfully!
+          </Box>
         </DialogContent>
       </Dialog>
     </>
