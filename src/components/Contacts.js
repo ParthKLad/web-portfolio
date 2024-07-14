@@ -139,7 +139,7 @@ const ContactForm = () => {
       <Grow in={checked} style={{ transformOrigin: "0 0 0" }}>
         <Box
           sx={{
-            maxWidth: matches ? "62%" : "90%",
+            maxWidth: 1150,
             margin: "auto",
             backgroundColor: theme.palette.mode === "dark" ? "#252424" : "#fff",
             borderRadius: "16px",
