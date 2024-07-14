@@ -200,7 +200,7 @@ const ContactForm = () => {
 
             </Grid>
             <Grid item xs={12} md={7}>
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} method="POST" data-netlify="true">
                 <TextField
                   fullWidth
                   label="Name"
