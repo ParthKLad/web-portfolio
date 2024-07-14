@@ -101,6 +101,7 @@ function About() {
                 mt: 2,
                 backgroundColor: "rgb(20, 206, 220)",
                 "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                borderRadius: 8,
               }}
             >
               Download Resume

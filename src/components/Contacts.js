@@ -402,11 +402,12 @@ const ContactForm = () => {
                     endIcon={<Send />}
                     type="submit"
                     sx={{
+                      borderRadius: 8,
                       marginTop: "20px",
-                      backgroundColor: "#15CEDC",
-                      color: "#ffffff",
-                      "&:hover": {
-                        backgroundColor: "#0B83B3",
+                      backgroundColor: "rgb(20, 206, 220)",
+                      "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                      "&:disabled": {
+                        backgroundColor: "rgba(20, 206, 220, 0.5)",
                       },
                     }}
                   >
