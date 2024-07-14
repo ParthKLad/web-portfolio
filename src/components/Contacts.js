@@ -52,9 +52,11 @@ const ContactForm = () => {
     return formIsValid && Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
+
+    console.log("Form Data:", { name, email, subject, message }); // Log form data for debugging
 
     const formData = new FormData();
     formData.append("name", name);
