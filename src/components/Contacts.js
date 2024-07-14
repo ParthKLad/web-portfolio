@@ -52,11 +52,9 @@ const ContactForm = () => {
     return formIsValid && Object.keys(tempErrors).length === 0;
   };
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
-    console.log("Form Data:", { name, email, subject, message }); // Log form data for debugging
 
     const formData = new FormData();
     formData.append("name", name);
@@ -268,22 +266,20 @@ const ContactForm = () => {
         </Box>
       </Grow>
       {runConfetti && <ConfettiExplosion />}
-      <Dialog open={open} onClose={handleClose} onTouchEnd={handleClose}>
-        <IconButton
-          onClick={handleClose}
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent>
-          <Box sx={{ borderRadius: "16px", padding: "20px" }}>
-            🎉 Form submitted successfully!
-          </Box>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogContent sx={{ p: 2 }}>
+          🎉 Form submitted successfully!
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogContent>
       </Dialog>
     </>
