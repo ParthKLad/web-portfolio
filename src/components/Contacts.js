@@ -220,7 +220,7 @@ const ContactForm = () => {
                     }}
                   >
                     {" "}
-                    LadParthK@outlook.com
+                    ParthKLad@outlook.com
                   </a>
                 </Typography>
                 <Box
