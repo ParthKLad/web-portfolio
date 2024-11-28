@@ -213,14 +213,14 @@ const ContactForm = () => {
                 >
                   📧:{" "}
                   <a
-                    href="mailto:ladparthk@outlook.com"
+                    href="mailto:parth.k.lad@outlook.com"
                     style={{
                       color: theme.palette.mode === "dark" ? "#fff" : "#2C2F33", // Change color based on theme
                       textDecoration: "none", // Remove underline
                     }}
                   >
                     {" "}
-                    ParthKLad@outlook.com
+                    Parth.K.Lad@outlook.com
                   </a>
                 </Typography>
                 <Box
