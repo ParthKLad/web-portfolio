@@ -82,7 +82,6 @@ const projects = [
         role,
         embed,
         info_server,
-        Pulse_Welcome
       ],
       "shortDesc": "Pulse, a dynamic Discord bot, streamlines server management, enhances user engagement with interactive features, and brings fun to your community. It offers comprehensive role management, detailed logging, personalized color themes, and custom communication tools. Hosted on a Linux-based VPS, Pulse ensures reliable, around-the-clock operation for an uninterrupted Discord experience.",
         "fullDesc": [
