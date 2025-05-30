@@ -20,7 +20,6 @@ import Data_Event from '../images/Data_platform/Data_Events.png';
 
 
 //Pulse 
-import Pulse_Welcome from '../images/Pulse/Pulse_welcome.jpg';
 import embed from '../images/Pulse/embed.png';
 import info_server from '../images/Pulse/info_server.jpg';
 import role from '../images/Pulse/role.png'
