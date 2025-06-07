@@ -16,7 +16,7 @@ and [@emotion/styled](https://emotion.sh/docs/@emotion/styled)** - Libraries for
 This project is a conversion of a previous website built with HTML, CSS, and JavaScript. The original site is now archived and can be accessed Here [Parth Lad -Archived](https://web.archive.org/web/20240401000032/https://parthl.com/) It has been fully converted and enhanced using React.
 
 ## 👀 Live View
-You can view The site live here : [Parthl.com](https://parthlad.net/)
+You can view The site live here : [Parthlad.net](https://parthlad.net/)
 
 ## 📝 License
 
