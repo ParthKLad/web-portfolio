@@ -25,7 +25,7 @@ function Navbar({ refs }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sectionRefs = [refs.homeRef, refs.aboutRef, refs.projectsRef, refs.skillsRef, refs.contactsRef];
+      const sectionRefs = [refs.homeRef, refs.aboutRef, refs.skillsRef, refs.timelineRef, refs.projectsRef, refs.contactsRef];
       const currentSection = sectionRefs.find((ref) => {
         const rect = ref.current.getBoundingClientRect();
         return rect.top <= 0 && rect.bottom >= 0;
@@ -44,8 +44,9 @@ function Navbar({ refs }) {
   const navItems = [
     { name: 'Home', ref: refs.homeRef },
     { name: 'About', ref: refs.aboutRef },
-    { name: 'Projects', ref: refs.projectsRef },
     { name: 'Skills', ref: refs.skillsRef },
+    { name: 'Timeline', ref: refs.timelineRef },
+    { name: 'Projects', ref: refs.projectsRef },
     { name: 'Contact', ref: refs.contactsRef },
   ];
 

@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
+import Timeline from './components/Timeline';
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
@@ -17,6 +18,7 @@ function App() {
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
+  const timelineRef = useRef(null);
   const contactsRef = useRef(null);
   const footerRef = useRef(null);
 
@@ -24,6 +26,7 @@ function App() {
     { name: "Home", ref: homeRef },
     { name: "About", ref: aboutRef },
     { name: "Skills", ref: skillsRef },
+    { name: "Timeline", ref: timelineRef },
     { name: "Projects", ref: projectsRef },
     { name: "Contact", ref: contactsRef },
   ];
@@ -34,6 +37,7 @@ function App() {
   const projectsVisible = useIntersectionObserver(projectsRef, {
     threshold: 0.1,
   });
+  const timelineVisible = useIntersectionObserver(timelineRef, { threshold: 0.1 });
   const contactsVisible = useIntersectionObserver(contactsRef, {
     threshold: 0.1,
   });
@@ -49,7 +53,6 @@ function App() {
   return (
     <ThemeProvider>
       <div className="App">
-        (
         <>
           <Navbar
             refs={{
@@ -57,6 +60,7 @@ function App() {
               aboutRef,
               skillsRef,
               projectsRef,
+              timelineRef,
               contactsRef,
               footerRef,
             }}
@@ -91,6 +95,14 @@ function App() {
                 <Skills />
               </div>
               <div
+                ref={timelineRef}
+                className={`section ${
+                  timelineVisible ? "section-visible" : "section-hidden"
+                }`}
+              >
+                <Timeline />
+              </div>
+              <div
                 ref={projectsRef}
                 className={`section ${
                   projectsVisible ? "section-visible" : "section-hidden"
@@ -118,7 +130,6 @@ function App() {
             <UpArrow homeRef={homeRef} /> {/* Updated here */}
           </div>
         </>
-        )
       </div>
     </ThemeProvider>
   );
