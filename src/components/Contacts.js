@@ -285,7 +285,7 @@ const ContactForm = () => {
                   borderRadius: theme.shape.borderRadius,
                 }}
               >
-                <form onSubmit={handleSubmit} method="POST" data-netlify="true">
+                <form name="contact" onSubmit={handleSubmit} method="POST" data-netlify="true">
                   <input type="hidden" name="form-name" value="contact" />
                   <TextField
                     fullWidth
