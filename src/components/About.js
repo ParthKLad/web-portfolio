@@ -105,8 +105,13 @@ function About() {
                 onClick={handleResumeClick}
                 sx={{
                   backgroundColor: "rgb(20, 206, 220)",
-                  "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                  "&:hover": { 
+                    backgroundColor: "rgb(17,185,197)",
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                  },
                   borderRadius: 8,
+                  transition: 'all 0.3s ease'
                 }}
               >
                 Download Resume
@@ -126,8 +131,13 @@ function About() {
                     download="Parth_Lad_Resume_Software.pdf"
                     sx={{
                       backgroundColor: "rgb(20, 206, 220)",
-                      "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                      "&:hover": { 
+                        backgroundColor: "rgb(17,185,197)",
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                      },
                       borderRadius: 8,
+                      transition: 'all 0.3s ease'
                     }}
                   >
                     Software Resume
@@ -139,8 +149,13 @@ function About() {
                     download="Parth_Lad_Resume_IT.pdf"
                     sx={{
                       backgroundColor: "rgb(20, 206, 220)",
-                      "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                      "&:hover": { 
+                        backgroundColor: "rgb(17,185,197)",
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                      },
                       borderRadius: 8,
+                      transition: 'all 0.3s ease'
                     }}
                   >
                     IT Resume

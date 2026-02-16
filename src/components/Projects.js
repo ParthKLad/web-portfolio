@@ -163,7 +163,19 @@ function Projects() {
       <Grid container spacing={3} justifyContent="center">
       {projects.map((project, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
-          <Card onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); setOpen(true); }} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+          <Card 
+            onClick={() => handleClickOpen(project)} 
+            sx={{ 
+              cursor: 'pointer', 
+              display: 'flex', 
+              flexDirection: 'column',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              '&:hover': {
+                transform: 'translateY(-8px)',
+                boxShadow: '0 12px 24px rgba(20, 206, 220, 0.3)'
+              }
+            }}
+          >
             <CardActionArea sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
               <CardMedia component="img" sx={{ height: 200 }} image={project.images[0]} alt={project.title} />
               <CardContent sx={{ flexGrow: 1 }}>

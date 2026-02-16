@@ -11,6 +11,43 @@ import {
 import "./Home.css";
 import { useThemeContext } from "../context/ThemeContext";
 
+// Add browser tab animation styles
+const browserTabAnimationStyles = `
+  @keyframes popIn {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .browser-tab-red {
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s both;
+  }
+
+  .browser-tab-yellow {
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
+  }
+
+  .browser-tab-green {
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+  }
+`;
+
+// Inject styles
+if (!document.querySelector('style[data-browser-tab]')) {
+  const styleSheet = document.createElement("style");
+  styleSheet.setAttribute('data-browser-tab', 'true');
+  styleSheet.textContent = browserTabAnimationStyles;
+  document.head.appendChild(styleSheet);
+}
+
 const phrases = ["a Developer", "an IT Specialist"];
 
 function Home({ handleNavItemClicked, navItems }) {
@@ -62,9 +99,9 @@ function Home({ handleNavItemClicked, navItems }) {
         display: 'flex',
         gap: '4px',
       }}>
-        <IconButton size="small" sx={{ width: 12, height: 12, backgroundColor: "red", '&:hover': { backgroundColor: "#ff5f57" } }} />
-        <IconButton size="small" sx={{ width: 12, height: 12, backgroundColor: "yellow", '&:hover': { backgroundColor: "#ffbd2e" } }} />
-        <IconButton size="small" sx={{ width: 12, height: 12, backgroundColor: "green", '&:hover': { backgroundColor: "#27c93f" } }} />
+        <IconButton size="small" className="browser-tab-red" sx={{ width: 12, height: 12, backgroundColor: "red", '&:hover': { backgroundColor: "#ff5f57" }, borderRadius: '50%', padding: 0 }} />
+        <IconButton size="small" className="browser-tab-yellow" sx={{ width: 12, height: 12, backgroundColor: "yellow", '&:hover': { backgroundColor: "#ffbd2e" }, borderRadius: '50%', padding: 0 }} />
+        <IconButton size="small" className="browser-tab-green" sx={{ width: 12, height: 12, backgroundColor: "green", '&:hover': { backgroundColor: "#27c93f" }, borderRadius: '50%', padding: 0 }} />
       </Box>
       <Typography variant={isMobile ? "h5" : "h4"} gutterBottom component="div" sx={{ textAlign: "center", width: "100%" }}>
         $Hello, my name is Parth Lad
@@ -77,8 +114,13 @@ function Home({ handleNavItemClicked, navItems }) {
         sx={{
           mt: 2,
           backgroundColor: "rgb(20,206,220)",
-          "&:hover": { backgroundColor: "rgb(17,185,197)" },
+          "&:hover": { 
+            backgroundColor: "rgb(17,185,197)",
+            transform: 'translateY(-4px)',
+            boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+          },
           borderRadius: 8,
+          transition: 'all 0.3s ease'
         }}
         onClick={() =>
           handleNavItemClicked(

@@ -83,9 +83,15 @@ function Skills() {
                     <motion.img
                       src={skill.icon}
                       alt={skill.name}
-                      whileHover={{ scale: 1.1, translateY: -10, boxShadow: "0px 10px 15px rgba(0,0,0,0.2)" }}
+                      whileHover={{ translateY: -4 }}
                       transition={{ type: "spring", stiffness: 300 }}
-                      style={{ maxWidth: '48px', maxHeight: '48px', marginBottom: '8px' }}
+                      style={{ maxWidth: '48px', maxHeight: '48px', marginBottom: '8px', cursor: 'pointer', transition: 'all 0.3s ease' }}
+                      onHoverStart={(event) => {
+                        event.currentTarget.style.boxShadow = '0 8px 16px rgba(20, 206, 220, 0.15)';
+                      }}
+                      onHoverEnd={(event) => {
+                        event.currentTarget.style.boxShadow = 'none';
+                      }}
                     />
                     <Typography variant="subtitle2" textAlign="center">
                       {skill.name}

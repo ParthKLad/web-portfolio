@@ -405,10 +405,15 @@ const ContactForm = () => {
                       borderRadius: 8,
                       marginTop: "20px",
                       backgroundColor: "rgb(20, 206, 220)",
-                      "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                      "&:hover": { 
+                        backgroundColor: "rgb(17,185,197)",
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                      },
                       "&:disabled": {
                         backgroundColor: "rgba(20, 206, 220, 0.5)",
                       },
+                      transition: 'all 0.3s ease'
                     }}
                   >
                     Send
