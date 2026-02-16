@@ -7,16 +7,22 @@ import {
   Button,
   Collapse,
   Grow,
+  Stack,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import DownloadIcon from "@mui/icons-material/Download"; // For the download button
-import "./About.css"; // Ensure styles complement the modern look
+import DownloadIcon from "@mui/icons-material/Download";
+import "./About.css";
 
 function About() {
   const [expanded, setExpanded] = React.useState(false);
+  const [showResumeOptions, setShowResumeOptions] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleResumeClick = () => {
+    setShowResumeOptions(!showResumeOptions);
   };
 
   return (
@@ -48,9 +54,9 @@ function About() {
               endIcon={<ExpandMoreIcon />}
               sx={{
                 mb: 2,
-                color: "#14CEDC", // Set text color to #14CEDC
+                color: "#14CEDC",
                 "&:hover": {
-                  color: "#11B9C5", // Darker shade on hover
+                  color: "#11B9C5",
                 },
               }}
             >
@@ -92,20 +98,56 @@ function About() {
               </Typography>
             </Collapse>
             <br />
-            <Button
-              variant="contained"
-              startIcon={<DownloadIcon />}
-              href="https://ladresume.s3.amazonaws.com/Lad_Resume.pdf"
-              target="_blank"
-              sx={{
-                mt: 2,
-                backgroundColor: "rgb(20, 206, 220)",
-                "&:hover": { backgroundColor: "rgb(17,185,197)" },
-                borderRadius: 8,
-              }}
-            >
-              Download Resume
-            </Button>
+            <Box sx={{ mt: 2 }}>
+              <Button
+                variant="contained"
+                startIcon={<DownloadIcon />}
+                onClick={handleResumeClick}
+                sx={{
+                  backgroundColor: "rgb(20, 206, 220)",
+                  "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                  borderRadius: 8,
+                }}
+              >
+                Download Resume
+              </Button>
+              
+              <Collapse in={showResumeOptions} timeout="auto" unmountOnExit>
+                <Stack 
+                  direction={{ xs: 'column', sm: 'row' }} 
+                  spacing={2} 
+                  sx={{ mt: 2 }}
+                  justifyContent="center"
+                >
+                  <Button
+                    variant="contained"
+                    startIcon={<DownloadIcon />}
+                    href="/resume/Lad_Resume.pdf"
+                    download="Parth_Lad_Resume_Software.pdf"
+                    sx={{
+                      backgroundColor: "rgb(20, 206, 220)",
+                      "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                      borderRadius: 8,
+                    }}
+                  >
+                    Software Resume
+                  </Button>
+                  <Button
+                    variant="contained"
+                    startIcon={<DownloadIcon />}
+                    href="/resume/Lad_Resume_IT.pdf"
+                    download="Parth_Lad_Resume_IT.pdf"
+                    sx={{
+                      backgroundColor: "rgb(20, 206, 220)",
+                      "&:hover": { backgroundColor: "rgb(17,185,197)" },
+                      borderRadius: 8,
+                    }}
+                  >
+                    IT Resume
+                  </Button>
+                </Stack>
+              </Collapse>
+            </Box>
           </Grid>
         </Grid>
       </Paper>
