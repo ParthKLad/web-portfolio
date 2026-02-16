@@ -91,8 +91,8 @@ const ContactForm = () => {
 
     if (!validateForm()) return; // Stop here if form is not valid
 
-    // Form submission logic
-    const formData = new FormData();
+    // Form submission logic - encode as URL-encoded string for Netlify
+    const formData = new URLSearchParams();
     formData.append("form-name", "contact");
     formData.append("name", name);
     formData.append("email", email);
@@ -102,7 +102,7 @@ const ContactForm = () => {
     try {
       const response = await fetch("/", {
         method: "POST",
-        body: new URLSearchParams(formData).toString(),
+        body: formData.toString(),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
