@@ -49,7 +49,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="App">
-        (
+  
         <>
           <Navbar
             refs={{
@@ -118,7 +118,6 @@ function App() {
             <UpArrow homeRef={homeRef} /> {/* Updated here */}
           </div>
         </>
-        )
       </div>
     </ThemeProvider>
   );
