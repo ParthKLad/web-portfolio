@@ -36,13 +36,13 @@ const projects = [
     ],
     shortDesc: "Built a Flask app for drilling data because apparently, holes in the ground need software too. Turned complex drilling metrics into pretty dashboards that even non-engineers could understand. Deployed on AWS because 'it works on my machine' wasn't good enough. 🛢️",
     fullDesc: [
-      { title: "Introduction", description: "In a Project Management course, my team and I embarked on a mission to develop a custom Flask-based application for Sharewell. Our goal was to enhance the precision and efficiency of their drilling tools." },
-      { title: "Problem Analysis", description: "We conducted a thorough analysis of Sharewell's operational challenges. This helped us understand the issues at hand and guided our solution development process." },
-      { title: "Solution Development", description: "We integrated advanced downhole drilling data into our application. This allowed us to address the identified challenges effectively." },
-      { title: "Technology Stack", description: "Our project utilized a robust set of technologies including SQL, JavaScript, Python, Flask, Express, and Node.js. This comprehensive tech stack enabled us to perform in-depth data analysis and develop a high-performance application." },
-      { title: "Deployment", description: "We deployed both the backend and frontend servers on AWS EC2 instances. For our SQL database, we used AWS RDS, ensuring a scalable and reliable database solution." },
-      { title: "Project Management & Version Control", description: "We used Jira and GitHub for effective project management and version control. These tools ensured smooth collaboration among team members and efficient progress tracking." },
-      { title: "Outcome", description: "Our solution provided a more detailed and accurate evaluation of long-term data trends. This significantly enhanced operational decision-making and strategic planning for Sharewell." }
+      { title: "💡 The 'Why'", description: "Project Management course + Sharewell needed help = your boy stepped up. We built a Flask app to make their drilling tools less... chaotic." },
+      { title: "🔍 The Problem", description: "Sharewell had data. Lots of it. Scattered everywhere. Like my browser tabs at 3 AM. We analyzed their operational mess and figured out what was broken." },
+      { title: "🛠️ The Fix", description: "Integrated downhole drilling data into one clean app. Think of it like Spotify Wrapped, but for holes in the ground." },
+      { title: "🧩 Tech Stack", description: "SQL, JavaScript, Python, Flask, Express, Node.js — basically threw everything at it until it worked. (It did.)" },
+      { title: "☁️ Cloud Stuff", description: "Deployed on AWS EC2 with RDS for the database. Because 'localhost' doesn't impress recruiters." },
+      { title: "📊 Project Management", description: "Jira for tickets, GitHub for code, coffee for survival. Classic combo." },
+      { title: "🎉 The W", description: "Delivered accurate data trends that actually helped decision-making. Client happy. Professor happy. We passed. Everyone wins." }
     ],
   },
   {
@@ -55,24 +55,24 @@ const projects = [
       shortDesc: "Made a Vue.js platform for Community Health Workers because heroes deserve good software too. Tracks clients, manages events, and doesn't crash (most of the time). Built with Node.js and MongoDB because SQL felt too mainstream that semester. 💪",
       fullDesc: [
         { 
-          title: "Introduction", 
-          description: "A team of three, including myself, enhanced an existing data platform for Community Health Workers (CHWs) within non-profit organizations in the Houston area. The platform's primary objective is to address fundamental client needs, including provisions such as food aid and adult education assistance. The enhancements were made using Vue.js framework, Node.js for backend, and MongoDB for NoSQL databases." 
+          title: "🦸 The Mission", 
+          description: "Teamed up to help Community Health Workers in Houston do their thing better. Food aid, education, client tracking — all in one app that doesn't suck." 
         },
         { 
-          title: "Core Features", 
-          description: "Our team added features to the platform that facilitate event management, allowing CHWs to create, organize, and oversee events that offer crucial services. These services can be meticulously associated with specific events, and the platform tracks their utilization by clients. CHWs also have access to lists of existing clients and events, enabling them to efficiently review and update pertinent information." 
+          title: "✨ Features We Added", 
+          description: "Event management, service tracking, client lists — basically turned chaos into organized chaos. CHWs can now find info without digging through spreadsheets." 
         },
         { 
-          title: "User Roles and Permissions", 
-          description: "Our team ensured data security by enhancing the system's user roles and permissions, granting varying levels of access to authorized personnel." 
+          title: "🔐 Security (Because Duh)", 
+          description: "Added roles and permissions so not everyone can see everything. Intern can't delete the database. You're welcome." 
         },
         { 
-          title: "Multi-Organization Support", 
-          description: "Our team optimized the platform to accommodate multiple non-profit organizations, consolidating their data in a shared database. Each organization benefits from a dedicated instance, easily configured through environment variables, guaranteeing tailored functionality and data separation for each entity." 
+          title: "🏢 Multi-Org Support", 
+          description: "One database, multiple non-profits, zero drama. Each org gets their own sandbox to play in." 
         },
         { 
-          title: "File Upload and Data Optimization", 
-          description: "Our team added new features to the existing application to enhance the client information management process. These include a file upload feature for profile pictures, allowing for a more comprehensive client profile and personalization, and data optimization techniques. Different roles have specific permissions related to profile pictures, ensuring data security and access control." 
+          title: "📸 Profile Pics & Polish", 
+          description: "File uploads for profile pictures because clients deserve to be more than just a row in a table. Also optimized the heck out of everything." 
         }
       ]
     },
@@ -87,28 +87,28 @@ const projects = [
       "shortDesc": "Created a Discord bot because I had strong opinions about server management. Pulse handles roles, logging, custom colors, and basically keeps your Discord from becoming chaos. Runs 24/7 on a Linux VPS because bots don't need sleep (unlike me). 🤖",
         "fullDesc": [
           {
-            "title": "Server Administration",
-            "description": "Pulse Bot offers an unparalleled suite of tools for server administration. From managing roles and permissions to overseeing user behavior with kick and ban commands, Pulse provides everything you need for meticulous server management."
+            "title": "👑 Server Admin Stuff",
+            "description": "Kick, ban, manage roles — all the power tools for keeping your server from turning into a dumpster fire. Great for mods who've seen things."
           },
           {
-            "title": "Color Change",
-            "description": "Delight in the ability to personalize your server presence with Pulse's color change command. Users can pick their favorite hues for a custom experience, while admins can assign colors to roles for quick identification and flair."
+            "title": "🎨 Be Your Own Rainbow",
+            "description": "Let users pick their name colors because self-expression matters. Admins can also assign role colors for that aesthetic chef's kiss."
           },
           {
-            "title": "Logging",
-            "description": "Maintain a clear record of server activity with Pulse's thorough logging. Transparency and oversight are effortless, as Pulse captures detailed information about server events for review and moderation."
+            "title": "📝 Everything Gets Logged",
+            "description": "Who deleted what? Who joined when? Pulse remembers everything. It's like having a very paranoid but helpful friend."
           },
           {
-            "title": "Custom Embeds & Role Reactions",
-            "description": "Pulse enhances server interaction by allowing the creation of custom embedded messages and role reactions, enabling a more engaging and organized way to communicate important updates or fun server activities."
+            "title": "🎭 Embeds & Role Reactions",
+            "description": "Custom embeds for announcements, role reactions for self-assign. Your server will look so professional people will think you know what you're doing."
           },
           {
-            "title": "Recent Commits Display",
-            "description": "Stay informed on the latest enhancements with Pulse’s recent commits feature. Useful for developers and users alike, this function allows everyone to track updates, bug fixes, and new features as they are rolled out, ensuring the community is always in the loop with the bot's evolution."
+            "title": "🔧 Dev Transparency",
+            "description": "Recent commits display so users can see updates in real-time. It's like patch notes but cooler."
           },
           {
-            "title": "And More!",
-            "description": "Pulse Bot is in constant development, adding new features to enrich the functionality and entertainment of your server. Upcoming updates include game patches and free game notifications from stores like Steam, Epic, and GOG, leveraging their respective APIs to keep your gaming community ahead of the curve."
+            "title": "🚀 Coming Soon™",
+            "description": "Free game alerts from Steam, Epic, GOG. Because your wallet needs a break and Pulse has your back."
           }
         ]
       }

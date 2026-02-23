@@ -196,7 +196,7 @@ const Footer = () => {
                             <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># Status: </span>
                             <span style={{ color: themeType === 'dark' ? '#50fa7b' : '#2e7d32' }}>✅ somehow working</span>
                             <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}> @ </span>
-                            <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>parthlad.com</span>
+                            <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>parthlad.netlify.app</span>
                         </Typography>
                     </Box>
 
