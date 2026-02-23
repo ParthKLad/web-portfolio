@@ -48,7 +48,7 @@ if (!document.querySelector('style[data-browser-tab]')) {
   document.head.appendChild(styleSheet);
 }
 
-const phrases = ["a Code Wizard 🧙", "a Bug Whisperer 🐛", "a Coffee-to-Code Converter ☕"];
+const phrases = ["a Code Wizard 🧙", "a Bug Whisperer 🐛", "a Support Engineer @ TCS 🛢️", "a Coffee-to-Code Converter ☕"];
 
 // Theme colors for terminal text
 const terminalThemes = {

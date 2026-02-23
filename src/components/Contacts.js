@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { Box, Typography, TextField, Button, Grow, Grid, Paper } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -207,7 +207,7 @@ const ContactForm = () => {
                   }}
                 >
                   <Typography variant="h5" component="span">
-                    � Wanna chat? Drop me a line!
+                    �   Let's chat! 
                   </Typography>
                 </Box>
                 <Typography
@@ -217,7 +217,7 @@ const ContactForm = () => {
                     mb: 5, // Adding bottom margin for spacing after the name
                   }}
                 >
-                  � Human: Parth K Lad
+                  �   Parth K Lad
                 </Typography>
                 <Typography
                   variant="h6"
@@ -304,7 +304,7 @@ const ContactForm = () => {
                   <input type="hidden" name="form-name" value="contact" />
                   <TextField
                     fullWidth
-                    label="Your alias (or real name, we don't judge)"
+                    label="Name"
                     variant="outlined"
                     name="name"
                     value={name}
@@ -331,7 +331,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="your@email.com (no spam, pinky promise)"
+                    label="Email"
                     variant="outlined"
                     name="email"
                     value={email}
@@ -358,7 +358,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Subject (TL;DR version)"
+                    label="Subject"
                     variant="outlined"
                     name="subject"
                     value={subject}
@@ -385,7 +385,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Pour your heart out (or just say hi)"
+                    label="Message"
                     variant="outlined"
                     multiline
                     rows={4}
@@ -440,7 +440,7 @@ const ContactForm = () => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    $ git push message --force 🚀
+                    $ ./send.sh 📨
                   </Button>
                 </form>
               </Box>
@@ -463,11 +463,11 @@ const ContactForm = () => {
         </IconButton>
         <DialogContent>
           <Box sx={{ borderRadius: "16px", padding: "20px", fontFamily: '"Fira Code", monospace', textAlign: 'center' }}>
-            <span style={{ fontSize: '24px' }}>🚀</span>
+            <span style={{ fontSize: '32px' }}>✅</span>
             <br />
-            <span style={{ color: '#50fa7b' }}>Message.sent()</span> → <span style={{ color: '#8be9fd' }}>return 200 OK</span>
+            <span style={{ color: '#50fa7b' }}>Message sent!</span>
             <br />
-            <span style={{ fontSize: '12px', color: '#6272a4' }}>// Your message is traveling through the interwebs...</span>
+            <span style={{ fontSize: '12px', color: '#6272a4' }}>I'll get back to you soon</span>
           </Box>
         </DialogContent>
       </Dialog>

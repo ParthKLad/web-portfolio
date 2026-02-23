@@ -60,8 +60,8 @@ function About() {
                   animation: "dynamic 2s infinite",
                 }}
               >
-                Hey there! 👋 I'm Parth Lad — a developer who runs on coffee, 
-                Stack Overflow, and the occasional "it works on my machine" excuse.
+                👋 Hey! I'm Parth — Support Engineer at TCS, keeping Exxon's systems happy. 
+                Part-time bug whisperer, full-time coffee consumer.
               </Typography>
             </Grow>
             <Button
@@ -103,16 +103,7 @@ function About() {
                   textIndent: "2em",
                 }}
               >
-                So here's the deal — I started coding because I wanted to build cool stuff, 
-                stayed because debugging gives me a weird sense of accomplishment (and Stockholm syndrome). 
-                I'm fluent in the ancient arts of HTML, CSS, and JavaScript, and I've befriended 
-                React and Vue along the way. On the backend, Node.js and Express are my trusty sidekicks 
-                for building things that actually work (most of the time). I've also tamed databases 
-                with AWS RDS and deployed apps to the cloud using EC2 — basically, I make things 
-                live on the internet and pray they don't break at 3 AM. When I'm not googling 
-                "why isn't this working" or closing 47 browser tabs, I'm probably learning something 
-                new or pretending I understand Kubernetes. Long story short: I build stuff, break stuff, 
-                fix stuff, and somehow get paid for it. 🚀
+                So here's the deal — I started coding because I wanted to build cool stuff but I stayed because debugging gives me a weird sense of accomplishment (and Stockholm syndrome). Currently, I'm a Support Engineer at Tata Consultancy Services where I kept Exxon's systems running smoother than their oil pipelines (okay, maybe not THAT smooth, but we try). I'm fluent in the ancient arts of HTML, CSS, and JavaScript, and I've befriended React and Vue along the way. On the backend, Node.js and Express are my trusty sidekicks for building things that actually work (most of the time). I've also tamed databases with AWS RDS and deployed apps to the cloud using EC2. Basically, I make things live on the internet and pray they don't break at 3 AM. When I'm not firefighting tickets or explaining to users that "have you tried turning it off and on again?" actually works, I'm closing 47 browser tabs or pretending I understand Kubernetes. Long story short: I build stuff, break stuff, fix stuff, and somehow get paid for it. 
               </Typography>
             </Collapse>
             <br />
