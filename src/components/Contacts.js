@@ -2,7 +2,7 @@
 import { Box, Typography, TextField, Button, Grow, Grid, Paper } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Send } from "@mui/icons-material";
+import { Send, Chat, Person, Email } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Dialog from "@mui/material/Dialog";
@@ -206,38 +206,80 @@ const ContactForm = () => {
                     },
                   }}
                 >
-                  <Typography variant="h5" component="span">
-                    �   Let's chat! 
+                  <Typography variant="h5" component="span" sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    gap: 1,
+                    cursor: 'default',
+                    '&:hover': { 
+                      transform: 'scale(1.1) rotate(-2deg)', 
+                      transition: 'transform 0.3s ease' 
+                    }
+                  }}>
+                    <Chat sx={{ 
+                      animation: 'wiggle 0.5s ease-in-out infinite',
+                      '@keyframes wiggle': {
+                        '0%, 100%': { transform: 'rotate(-5deg)' },
+                        '50%': { transform: 'rotate(5deg)' }
+                      }
+                    }} /> Slide into my DMs
                   </Typography>
                 </Box>
                 <Typography
                   variant="h6"
                   gutterBottom
                   sx={{
-                    mb: 5, // Adding bottom margin for spacing after the name
+                    mb: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1,
+                    cursor: 'default',
+                    '&:hover': { 
+                      color: theme.palette.mode === 'dark' ? '#8be9fd' : '#0277bd', 
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.2s ease' 
+                    }
                   }}
                 >
-                  �   Parth K Lad
+                  <Person sx={{ 
+                    '&:hover': { animation: 'spin 0.5s ease' },
+                    '@keyframes spin': { '100%': { transform: 'rotate(360deg)' } }
+                  }} /> Parth (yes, that's me)
                 </Typography>
-                <Typography
-                  variant="h6"
-                  gutterBottom
+                <Box
+                  component="a"
+                  href="mailto:parth.k.lad@outlook.com"
                   sx={{
-                    mb: 5, // Adding bottom margin for spacing after the email
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1,
+                    mb: 2,
+                    color: theme.palette.mode === 'dark' ? '#fff' : '#2C2F33',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    border: `1px solid ${theme.palette.mode === 'dark' ? '#333' : '#ccc'}`,
+                    '&:hover': { 
+                      color: theme.palette.mode === 'dark' ? '#0d0d0d' : '#fff',
+                      backgroundColor: theme.palette.mode === 'dark' ? '#8be9fd' : '#0277bd',
+                      transform: 'translateY(-3px) scale(1.02)',
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                      transition: 'all 0.3s ease'
+                    }
                   }}
                 >
-                  📧:{" "}
-                  <a
-                    href="mailto:parth.k.lad@outlook.com"
-                    style={{
-                      color: theme.palette.mode === "dark" ? "#fff" : "#2C2F33", // Change color based on theme
-                      textDecoration: "none", // Remove underline
-                    }}
-                  >
-                    {" "}
-                    Parth.K.Lad@outlook.com
-                  </a>
-                </Typography>
+                  <Email sx={{ 
+                    animation: 'float 2s ease-in-out infinite',
+                    '@keyframes float': {
+                      '0%, 100%': { transform: 'translateY(0)' },
+                      '50%': { transform: 'translateY(-3px)' }
+                    }
+                  }} /> parth.k.lad@outlook.com
+                </Box>
                 <Box
                   sx={{
                     display: "flex",
@@ -252,7 +294,7 @@ const ContactForm = () => {
                 >
                   <IconButton
                     onClick={() =>
-                      window.open("https://www.linkedin.com/in/ladparthk/")
+                      window.open("https://www.linkedin.com/in/parthklad/")
                     }
                     sx={{
                       backgroundColor: "#0077B5", // LinkedIn blue for all modes
@@ -304,7 +346,7 @@ const ContactForm = () => {
                   <input type="hidden" name="form-name" value="contact" />
                   <TextField
                     fullWidth
-                    label="Name"
+                    label="Your alias (or real name, we don't judge)"
                     variant="outlined"
                     name="name"
                     value={name}
@@ -331,7 +373,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Email"
+                    label="your@email.com (no spam, pinky promise)"
                     variant="outlined"
                     name="email"
                     value={email}
@@ -358,7 +400,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Subject"
+                    label="Subject (TL;DR version)"
                     variant="outlined"
                     name="subject"
                     value={subject}
@@ -385,7 +427,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Message"
+                    label="Pour your heart out (or just say hi)"
                     variant="outlined"
                     multiline
                     rows={4}
@@ -440,7 +482,7 @@ const ContactForm = () => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    $ ./send.sh 📨
+                    $ git push message --force 🚀
                   </Button>
                 </form>
               </Box>
@@ -463,11 +505,11 @@ const ContactForm = () => {
         </IconButton>
         <DialogContent>
           <Box sx={{ borderRadius: "16px", padding: "20px", fontFamily: '"Fira Code", monospace', textAlign: 'center' }}>
-            <span style={{ fontSize: '32px' }}>✅</span>
+            <span style={{ fontSize: '24px' }}>🚀</span>
             <br />
-            <span style={{ color: '#50fa7b' }}>Message sent!</span>
+            <span style={{ color: '#50fa7b' }}>Message.sent()</span> → <span style={{ color: '#8be9fd' }}>return 200 OK</span>
             <br />
-            <span style={{ fontSize: '12px', color: '#6272a4' }}>I'll get back to you soon</span>
+            <span style={{ fontSize: '12px', color: '#6272a4' }}>// Your message is traveling through the interwebs...</span>
           </Box>
         </DialogContent>
       </Dialog>
