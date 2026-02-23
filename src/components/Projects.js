@@ -34,7 +34,7 @@ const projects = [
         Sharewell_dash,
         Sharewell_tool   
     ],
-    shortDesc: "In a Project Management course, my team and I developed a Flask-based application for Sharewell to enhance their drilling tools’ efficiency. We analyzed Sharewell’s challenges, integrated advanced drilling data, and utilized a robust tech stack including SQL, JavaScript, Python, Flask, Express, and Node.js. We deployed our application on AWS EC2 and used AWS RDS for our SQL database. Our project management was facilitated by Jira and GitHub, and our solution significantly enhanced Sharewell’s operational decision-making and strategic planning.",
+    shortDesc: "Built a Flask app for drilling data because apparently, holes in the ground need software too. Turned complex drilling metrics into pretty dashboards that even non-engineers could understand. Deployed on AWS because 'it works on my machine' wasn't good enough. 🛢️",
     fullDesc: [
       { title: "Introduction", description: "In a Project Management course, my team and I embarked on a mission to develop a custom Flask-based application for Sharewell. Our goal was to enhance the precision and efficiency of their drilling tools." },
       { title: "Problem Analysis", description: "We conducted a thorough analysis of Sharewell's operational challenges. This helped us understand the issues at hand and guided our solution development process." },
@@ -52,7 +52,7 @@ const projects = [
         Data_client,
         Data_Event
       ],
-      shortDesc: "In an Application Development course, my team and I significantly enhanced an existing platform for Community Health Workers (CHWs) in Houston’s non-profit organizations. We utilized the Vue.js framework, Node.js for the backend, and MongoDB for NoSQL databases. The improved platform effectively addresses client needs, facilitates efficient event management, and ensures robust data security.",
+      shortDesc: "Made a Vue.js platform for Community Health Workers because heroes deserve good software too. Tracks clients, manages events, and doesn't crash (most of the time). Built with Node.js and MongoDB because SQL felt too mainstream that semester. 💪",
       fullDesc: [
         { 
           title: "Introduction", 
@@ -84,7 +84,7 @@ const projects = [
         embed,
         info_server,
       ],
-      "shortDesc": "Pulse, a dynamic Discord bot, streamlines server management, enhances user engagement with interactive features, and brings fun to your community. It offers comprehensive role management, detailed logging, personalized color themes, and custom communication tools. Hosted on a Linux-based VPS, Pulse ensures reliable, around-the-clock operation for an uninterrupted Discord experience.",
+      "shortDesc": "Created a Discord bot because I had strong opinions about server management. Pulse handles roles, logging, custom colors, and basically keeps your Discord from becoming chaos. Runs 24/7 on a Linux VPS because bots don't need sleep (unlike me). 🤖",
         "fullDesc": [
           {
             "title": "Server Administration",

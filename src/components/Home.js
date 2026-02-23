@@ -48,7 +48,7 @@ if (!document.querySelector('style[data-browser-tab]')) {
   document.head.appendChild(styleSheet);
 }
 
-const phrases = ["a Developer", "an IT Specialist"];
+const phrases = ["a Code Wizard 🧙", "a Bug Whisperer 🐛", "a Coffee-to-Code Converter ☕"];
 
 // Theme colors for terminal text
 const terminalThemes = {
@@ -209,7 +209,7 @@ function Home({ handleNavItemClicked, navItems }) {
                 marginTop: '8px',
               }}
             >
-              Welcome to my portfolio • Available commands below
+              Welcome, fellow human (or bot, I don't judge) 🤖
             </Typography>
           </Box>
 
@@ -297,7 +297,7 @@ function Home({ handleNavItemClicked, navItems }) {
                 marginBottom: '10px',
               }}
             >
-              # Quick commands (click to run):
+              # Quick commands (try clicking, they won't bite):
             </Typography>
             <Box sx={{ 
               display: 'flex', 
@@ -420,7 +420,7 @@ function Home({ handleNavItemClicked, navItems }) {
           transition: 'all 0.3s ease',
         }}
       >
-        $ ./seeking-new-opportunities.sh
+        $ ./hire-me-please.sh 🙏
       </Button>
     </Container>
   );

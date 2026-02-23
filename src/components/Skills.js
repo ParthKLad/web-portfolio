@@ -66,6 +66,15 @@ function Skills() {
     'Operating System': '💽',
   };
 
+  const categoryDescriptions = {
+    'Frontend-End': 'The pretty stuff people actually see',
+    'Backend-End': 'The magic behind the curtain',
+    'Database': 'Where data goes to be organized',
+    'Tools': 'My digital toolbox',
+    'Cloud': 'Basically other people\'s computers',
+    'Operating System': 'The OS wars I\'ve survived',
+  };
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography 
@@ -93,7 +102,7 @@ function Skills() {
                 textAlign="center" 
                 variant="h6" 
                 sx={{ 
-                  mb: 2,
+                  mb: 1,
                   fontFamily: '"Fira Code", monospace',
                   fontSize: '14px',
                   display: 'flex',
@@ -105,6 +114,18 @@ function Skills() {
                 <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}>#</span>
                 {categoryEmojis[category]}
                 <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>{category}</span>
+              </Typography>
+              <Typography 
+                sx={{ 
+                  fontFamily: '"Fira Code", monospace',
+                  fontSize: '11px',
+                  textAlign: 'center',
+                  color: themeType === 'dark' ? '#6272a4' : '#888',
+                  mb: 2,
+                  fontStyle: 'italic',
+                }}
+              >
+                // {categoryDescriptions[category]}
               </Typography>
               <Grid container spacing={2} justifyContent="center">
                 {skills.map((skill) => (

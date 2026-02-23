@@ -60,8 +60,8 @@ function About() {
                   animation: "dynamic 2s infinite",
                 }}
               >
-                Hello World! I'm Parth Lad, and my expertise lies in web
-                development and Information Technology.
+                Hey there! 👋 I'm Parth Lad — a developer who runs on coffee, 
+                Stack Overflow, and the occasional "it works on my machine" excuse.
               </Typography>
             </Grow>
             <Button
@@ -103,26 +103,16 @@ function About() {
                   textIndent: "2em",
                 }}
               >
-                I bring a strong foundation in front-end technologies, including
-                HTML, CSS, and JavaScript. I have advanced skills in popular
-                frameworks like React and Vue, enhancing my web development
-                capabilities. In the realm of back-end development, I excel in
-                creating efficient and scalable server-side applications with
-                Node.js and Express. Additionally, I possess extensive
-                experience in database management, utilizing AWS RDS to host SQL
-                databases for reliable and easily accessible data storage
-                solutions. My technical abilities extend to deploying
-                applications on cloud platforms such as AWS EC2. This enhances
-                my capability to develop responsive and user-centric websites. I
-                am also adept at configuring and managing complex cloud
-                environments, which bolsters application performance and
-                security. Passionate about technology and committed to
-                continuous learning, I keep abreast of the latest trends in web
-                development. My quick learning aptitude and eagerness to tackle
-                complex challenges drive my efforts to deliver innovative and
-                efficient solutions. With a broad skill set and a strong
-                dedication, I am well-equipped to develop projects that meet and
-                surpass contemporary development standards.
+                So here's the deal — I started coding because I wanted to build cool stuff, 
+                stayed because debugging gives me a weird sense of accomplishment (and Stockholm syndrome). 
+                I'm fluent in the ancient arts of HTML, CSS, and JavaScript, and I've befriended 
+                React and Vue along the way. On the backend, Node.js and Express are my trusty sidekicks 
+                for building things that actually work (most of the time). I've also tamed databases 
+                with AWS RDS and deployed apps to the cloud using EC2 — basically, I make things 
+                live on the internet and pray they don't break at 3 AM. When I'm not googling 
+                "why isn't this working" or closing 47 browser tabs, I'm probably learning something 
+                new or pretending I understand Kubernetes. Long story short: I build stuff, break stuff, 
+                fix stuff, and somehow get paid for it. 🚀
               </Typography>
             </Collapse>
             <br />

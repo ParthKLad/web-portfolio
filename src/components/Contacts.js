@@ -207,7 +207,7 @@ const ContactForm = () => {
                   }}
                 >
                   <Typography variant="h5" component="span">
-                    📝 Get in touch
+                    � Wanna chat? Drop me a line!
                   </Typography>
                 </Box>
                 <Typography
@@ -217,7 +217,7 @@ const ContactForm = () => {
                     mb: 5, // Adding bottom margin for spacing after the name
                   }}
                 >
-                  👨‍💻: Parth K Lad
+                  � Human: Parth K Lad
                 </Typography>
                 <Typography
                   variant="h6"
@@ -304,7 +304,7 @@ const ContactForm = () => {
                   <input type="hidden" name="form-name" value="contact" />
                   <TextField
                     fullWidth
-                    label="Name" // New field for name
+                    label="Your alias (or real name, we don't judge)"
                     variant="outlined"
                     name="name"
                     value={name}
@@ -331,7 +331,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Email"
+                    label="your@email.com (no spam, pinky promise)"
                     variant="outlined"
                     name="email"
                     value={email}
@@ -358,7 +358,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Subject"
+                    label="Subject (TL;DR version)"
                     variant="outlined"
                     name="subject"
                     value={subject}
@@ -385,7 +385,7 @@ const ContactForm = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Message"
+                    label="Pour your heart out (or just say hi)"
                     variant="outlined"
                     multiline
                     rows={4}
@@ -440,7 +440,7 @@ const ContactForm = () => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    $ ./send-message.sh
+                    $ git push message --force 🚀
                   </Button>
                 </form>
               </Box>
@@ -462,8 +462,12 @@ const ContactForm = () => {
           <CloseIcon />
         </IconButton>
         <DialogContent>
-          <Box sx={{ borderRadius: "16px", padding: "20px" }}>
-            🎉 Form submitted successfully!
+          <Box sx={{ borderRadius: "16px", padding: "20px", fontFamily: '"Fira Code", monospace', textAlign: 'center' }}>
+            <span style={{ fontSize: '24px' }}>🚀</span>
+            <br />
+            <span style={{ color: '#50fa7b' }}>Message.sent()</span> → <span style={{ color: '#8be9fd' }}>return 200 OK</span>
+            <br />
+            <span style={{ fontSize: '12px', color: '#6272a4' }}>// Your message is traveling through the interwebs...</span>
           </Box>
         </DialogContent>
       </Dialog>
