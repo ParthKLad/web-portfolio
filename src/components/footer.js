@@ -8,10 +8,10 @@ const Footer = () => {
 
     // Pipeline steps
     const pipelineSteps = [
-        { name: 'VS Code', icon: '💻', desc: 'Write code' },
-        { name: 'Git', icon: '📦', desc: 'Commit changes' },
-        { name: 'GitHub', icon: '🐙', desc: 'Push to repo' },
-        { name: 'Netlify', icon: '🚀', desc: 'Auto deploy' },
+        { name: 'VS Code', icon: '💻', desc: 'cry here' },
+        { name: 'Git', icon: '📦', desc: 'blame past me' },
+        { name: 'GitHub', icon: '🐙', desc: 'yeet to cloud' },
+        { name: 'Netlify', icon: '🚀', desc: 'pray it works' },
     ];
 
     return (
@@ -52,9 +52,14 @@ const Footer = () => {
                             textAlign: 'center',
                             color: themeType === 'dark' ? '#50fa7b' : '#2e7d32',
                             mb: 2,
+                            animation: 'pulse 2s ease-in-out infinite',
+                            '@keyframes pulse': {
+                                '0%, 100%': { opacity: 1 },
+                                '50%': { opacity: 0.7 }
+                            }
                         }}
                     >
-                        # 🔄 CI/CD Pipeline
+                        # 🔄 how this magic happens (spoiler: it's not magic)
                     </Typography>
 
                     {/* Pipeline visualization */}
@@ -119,6 +124,11 @@ const Footer = () => {
                                             fontSize: '18px',
                                             color: themeType === 'dark' ? '#50fa7b' : '#2e7d32',
                                             mx: 0.5,
+                                            animation: 'slide 1s ease-in-out infinite',
+                                            '@keyframes slide': {
+                                                '0%, 100%': { transform: 'translateX(0)' },
+                                                '50%': { transform: 'translateX(5px)' }
+                                            }
                                         }}
                                     >
                                         →
@@ -161,32 +171,32 @@ const Footer = () => {
                                 lineHeight: 1.8,
                             }}
                         >
-                            <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># How this site is built & updated</span>
+                            <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># The behind-the-scenes chaos</span>
                             {'\n'}
-                            <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># ==================================</span>
+                            <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># ============================</span>
                             {'\n\n'}
-                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>1.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>💻 Development</span>
+                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>1.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>💻 Suffering</span>
                             {'\n   └─ '}
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Code written in VS Code with React.js + MUI</span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Wrestling with React until it cooperates</span>
                             {'\n\n'}
-                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>2.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>📦 Version Control</span>
+                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>2.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>📦 Covering My Tracks</span>
                             {'\n   └─ '}
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Changes staged, committed, and pushed with Git</span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>git commit -m "fixed it" (narrator: he didn't)</span>
                             {'\n\n'}
-                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>3.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>🐙 GitHub Repository</span>
+                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>3.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>🐙 Yeet to Cloud</span>
                             {'\n   └─ '}
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Push triggers Netlify webhook automatically</span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Force push and hope GitHub forgives me</span>
                             {'\n\n'}
-                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>4.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>🚀 Netlify CI/CD</span>
+                            <span style={{ color: themeType === 'dark' ? '#bd93f9' : '#7c3aed' }}>4.</span> <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>🚀 Fingers Crossed</span>
                             {'\n   └─ '}
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Builds and deploys to production in ~30 seconds</span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Netlify does its thing (usually works first try... jk)</span>
                             {'\n\n'}
                             <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># ──────────────────────────────────</span>
                             {'\n'}
                             <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}># Status: </span>
-                            <span style={{ color: themeType === 'dark' ? '#50fa7b' : '#2e7d32' }}>✅ LIVE</span>
+                            <span style={{ color: themeType === 'dark' ? '#50fa7b' : '#2e7d32' }}>✅ somehow working</span>
                             <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}> @ </span>
-                            <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>parthlad.netlify.app</span>
+                            <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>parthlad.com</span>
                         </Typography>
                     </Box>
 
@@ -211,14 +221,14 @@ const Footer = () => {
                         >
                             <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>$</span>
                             <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}> echo "</span>
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Crafted with</span>
-                            <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}> ❤️ </span>
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>&& lots of</span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>Hacked together with</span>
+                            <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}> 🔥 </span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>stress &&</span>
                             <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}> ☕ </span>
-                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>by</span>
-                            <span style={{ color: themeType === 'dark' ? '#50fa7b' : '#2e7d32' }}> Parth Lad</span>
+                            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>too much caffeine by</span>
+                            <span style={{ color: themeType === 'dark' ? '#50fa7b' : '#2e7d32' }}> Parth</span>
                             <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>"</span>
-                            <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}> # © {year}</span>
+                            <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}> # © {year} (probably)</span>
                         </Typography>
                     </Box>
                 </Paper>

@@ -285,50 +285,63 @@ const ContactForm = () => {
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
-                    justifyContent: "start",
-                    gap: 2,
+                    justifyContent: "center",
+                    gap: 3,
                     padding: "10px",
                     flexWrap: "wrap",
-                    marginLeft: "-7px",
                   }}
                 >
-                  <IconButton
-                    onClick={() =>
-                      window.open("https://www.linkedin.com/in/parthklad/")
-                    }
-                    sx={{
-                      backgroundColor: "#0077B5", // LinkedIn blue for all modes
-                      color: "white", // White icon color for contrast
-                      padding: "2px", // Reduce the padding to shrink the circle size
-                      fontSize: "2.5rem", // Increase the icon size to make it slightly larger
-                      "@media (max-width:600px)": { fontSize: "1.5rem" }, // Adjust for mobile sizes
-                      "&:hover": {
-                        backgroundColor: "#005582", // A slightly darker shade of LinkedIn blue for hover
-                      },
-                    }}
-                  >
-                    <LinkedInIcon sx={{ fontSize: "inherit" }} />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => window.open("https://github.com/ParthKLad")}
-                    sx={{
-                      backgroundColor: "#763EC6", // Custom purple
-                      color: "white", // Set GitHub icon color to white for visibility
-                      padding: "2px", // Reduce the padding to shrink the circle size
-                      fontSize: "2.5rem", // Make it smaller
-                      "@media (max-width:600px)": { fontSize: "1.5rem" }, // Smaller for mobile
-                      "&:hover": {
-                        backgroundColor:
-                          theme.palette.mode === "dark" ? "#6228A4" : "#5d28a4", // Adjust hover color for visibility, slightly darker purple
-                      },
-                      padding: "2px",
-                    }}
-                  >
-                    <GitHubIcon
-                      sx={{ fontSize: "inherit", color: "inherit" }}
-                    />{" "}
-                    {/* Ensure the icon color matches the specified `color` in `sx` */}
-                  </IconButton>
+                  <Box sx={{ textAlign: 'center' }}>
+                    <IconButton
+                      onClick={() =>
+                        window.open("https://www.linkedin.com/in/parthklad/")
+                      }
+                      sx={{
+                        backgroundColor: "#0077B5",
+                        color: "white",
+                        padding: "8px",
+                        fontSize: "2.5rem",
+                        "@media (max-width:600px)": { fontSize: "1.5rem" },
+                        transition: 'all 0.3s ease',
+                        "&:hover": {
+                          backgroundColor: "#005582",
+                          transform: 'rotate(360deg) scale(1.2)',
+                        },
+                      }}
+                    >
+                      <LinkedInIcon sx={{ fontSize: "inherit" }} />
+                    </IconButton>
+                    <Typography variant="caption" sx={{ display: 'block', mt: 0.5, opacity: 0.7 }}>
+                      stalk me professionally
+                    </Typography>
+                  </Box>
+                  <Box sx={{ textAlign: 'center' }}>
+                    <IconButton
+                      onClick={() => window.open("https://github.com/ParthKLad")}
+                      sx={{
+                        backgroundColor: "#763EC6",
+                        color: "white",
+                        padding: "8px",
+                        fontSize: "2.5rem",
+                        "@media (max-width:600px)": { fontSize: "1.5rem" },
+                        transition: 'all 0.3s ease',
+                        "&:hover": {
+                          backgroundColor: "#6228A4",
+                          animation: 'shake 0.5s ease-in-out',
+                          '@keyframes shake': {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '25%': { transform: 'translateX(-5px) rotate(-5deg)' },
+                            '75%': { transform: 'translateX(5px) rotate(5deg)' },
+                          }
+                        },
+                      }}
+                    >
+                      <GitHubIcon sx={{ fontSize: "inherit", color: "inherit" }} />
+                    </IconButton>
+                    <Typography variant="caption" sx={{ display: 'block', mt: 0.5, opacity: 0.7 }}>
+                      see my spaghetti code
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             </Grid>
