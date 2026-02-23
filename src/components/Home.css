@@ -1,16 +1,74 @@
+/* Terminal Window Styles */
+.terminal-window {
+  animation: terminalSlideIn 0.6s ease-out;
+}
+
+@keyframes terminalSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.terminal-header {
+  border-bottom: 1px solid #4a4a4a;
+}
+
+.terminal-body {
+  background: linear-gradient(180deg, #1e1e1e 0%, #252525 100%);
+}
+
+.terminal-line {
+  animation: typeIn 0.5s ease-out;
+}
+
+@keyframes typeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scanline effect */
+.terminal-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 .console-text {
-  background-color: rgb(36, 36, 36); /* Light transparent black background */
-  color: rgb(236, 243, 236); /* Light greenish text color */
-  font-family: "Courier New", Courier, monospace; /* Monospace font for console-like appearance */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  box-sizing: border-box; /* Includes padding and border in width */
+  background-color: rgb(36, 36, 36);
+  color: rgb(236, 243, 236);
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .window-controls {
-  position: absolute; /* Position the controls absolutely relative to the parent container */
-  top: 10px; /* Position from the top of the container */
-  left: 10px; /* Position from the left of the container */
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .window-controls span {
@@ -19,7 +77,7 @@
   height: 12px;
   border-radius: 50%;
   margin-right: 5px;
-  cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+  cursor: pointer;
 }
 
 .close {

@@ -3,7 +3,6 @@ import {
   Typography,
   Container,
   Button,
-  IconButton,
   useTheme,
   useMediaQuery,
   Box,
@@ -89,26 +88,111 @@ function Home({ handleNavItemClicked, navItems }) {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        position: "relative", // Set position for absolute positioning of nav buttons
       }}
     >
-      <Box sx={{
-        position: "absolute",
-        top: 4,
-        left: 4,
-        display: 'flex',
-        gap: '4px',
+      {/* SSH Terminal Window */}
+      <Box className="terminal-window" sx={{
+        width: isMobile ? '95%' : '80%',
+        maxWidth: '700px',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        boxShadow: '0 20px 68px rgba(0, 0, 0, 0.55)',
+        backgroundColor: '#1e1e1e',
       }}>
-        <IconButton size="small" className="browser-tab-red" sx={{ width: 12, height: 12, backgroundColor: "red", '&:hover': { backgroundColor: "#ff5f57" }, borderRadius: '50%', padding: 0 }} />
-        <IconButton size="small" className="browser-tab-yellow" sx={{ width: 12, height: 12, backgroundColor: "yellow", '&:hover': { backgroundColor: "#ffbd2e" }, borderRadius: '50%', padding: 0 }} />
-        <IconButton size="small" className="browser-tab-green" sx={{ width: 12, height: 12, backgroundColor: "green", '&:hover': { backgroundColor: "#27c93f" }, borderRadius: '50%', padding: 0 }} />
+        {/* Terminal Header */}
+        <Box className="terminal-header" sx={{
+          backgroundColor: '#3c3c3c',
+          padding: '10px 14px',
+          display: 'flex',
+          alignItems: 'center',
+          position: 'relative',
+        }}>
+          {/* Window Controls */}
+          <Box sx={{ display: 'flex', gap: '8px' }}>
+            <Box className="browser-tab-red" sx={{ width: 12, height: 12, backgroundColor: '#fc605b', borderRadius: '50%', cursor: 'pointer', '&:hover': { backgroundColor: '#ff5f57' } }} />
+            <Box className="browser-tab-yellow" sx={{ width: 12, height: 12, backgroundColor: '#fecb2f', borderRadius: '50%', cursor: 'pointer', '&:hover': { backgroundColor: '#ffbd2e' } }} />
+            <Box className="browser-tab-green" sx={{ width: 12, height: 12, backgroundColor: '#2aca3e', borderRadius: '50%', cursor: 'pointer', '&:hover': { backgroundColor: '#27c93f' } }} />
+          </Box>
+          {/* Terminal Title */}
+          <Typography sx={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            color: '#9a9a9a',
+            fontSize: '13px',
+            fontFamily: 'monospace',
+          }}>
+            parth@portfolio: ~
+          </Typography>
+        </Box>
+        
+        {/* Terminal Body */}
+        <Box className="terminal-body" sx={{
+          padding: isMobile ? '20px 15px' : '30px 25px',
+          backgroundColor: '#1e1e1e',
+          minHeight: '200px',
+        }}>
+          <Typography 
+            className="terminal-line"
+            sx={{ 
+              fontFamily: '"Fira Code", "Courier New", Courier, monospace',
+              color: '#50fa7b',
+              fontSize: isMobile ? '14px' : '18px',
+              marginBottom: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <span style={{ color: '#ff79c6' }}>parth@portfolio</span>
+            <span style={{ color: '#f8f8f2' }}>:</span>
+            <span style={{ color: '#8be9fd' }}>~</span>
+            <span style={{ color: '#f8f8f2' }}>$ </span>
+            <span style={{ color: '#f8f8f2' }}>echo "Hello, my name is Parth Lad"</span>
+          </Typography>
+          <Typography 
+            sx={{ 
+              fontFamily: '"Fira Code", "Courier New", Courier, monospace',
+              color: '#f8f8f2',
+              fontSize: isMobile ? '14px' : '18px',
+              marginBottom: '20px',
+              paddingLeft: '10px',
+            }}
+          >
+            Hello, my name is Parth Lad
+          </Typography>
+          
+          <Typography 
+            className="terminal-line"
+            sx={{ 
+              fontFamily: '"Fira Code", "Courier New", Courier, monospace',
+              color: '#50fa7b',
+              fontSize: isMobile ? '14px' : '18px',
+              marginBottom: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <span style={{ color: '#ff79c6' }}>parth@portfolio</span>
+            <span style={{ color: '#f8f8f2' }}>:</span>
+            <span style={{ color: '#8be9fd' }}>~</span>
+            <span style={{ color: '#f8f8f2' }}>$ </span>
+            <span style={{ color: '#f8f8f2' }}>whoami</span>
+          </Typography>
+          <Typography 
+            sx={{ 
+              fontFamily: '"Fira Code", "Courier New", Courier, monospace',
+              color: '#f8f8f2',
+              fontSize: isMobile ? '14px' : '18px',
+              marginBottom: '20px',
+              paddingLeft: '10px',
+            }}
+          >
+            {phrase}<span className="blinking-cursor">|</span>
+          </Typography>
+        </Box>
       </Box>
-      <Typography variant={isMobile ? "h5" : "h4"} gutterBottom component="div" sx={{ textAlign: "center", width: "100%" }}>
-        $Hello, my name is Parth Lad
-      </Typography>
-      <Typography variant="h4" gutterBottom component="div" sx={{ textAlign: "center", width: "100%" }}>
-        $I am {phrase}
-      </Typography>
       <Button
         variant="contained"
         sx={{
