@@ -49,6 +49,36 @@ if (!document.querySelector('style[data-browser-tab]')) {
 
 const phrases = ["a Developer", "an IT Specialist"];
 
+// Theme colors for terminal
+const terminalThemes = {
+  dark: {
+    windowBg: '#1e1e1e',
+    headerBg: '#3c3c3c',
+    headerBorder: '#4a4a4a',
+    titleColor: '#9a9a9a',
+    bodyBg: '#1e1e1e',
+    prompt: '#50fa7b',
+    username: '#ff79c6',
+    separator: '#f8f8f2',
+    path: '#8be9fd',
+    text: '#f8f8f2',
+    shadow: '0 20px 68px rgba(0, 0, 0, 0.55)',
+  },
+  light: {
+    windowBg: '#f5f5f5',
+    headerBg: '#e0e0e0',
+    headerBorder: '#d0d0d0',
+    titleColor: '#666666',
+    bodyBg: '#fafafa',
+    prompt: '#2e7d32',
+    username: '#c2185b',
+    separator: '#333333',
+    path: '#0277bd',
+    text: '#333333',
+    shadow: '0 20px 68px rgba(0, 0, 0, 0.15)',
+  },
+};
+
 function Home({ handleNavItemClicked, navItems }) {
   const [phrase, setPhrase] = useState("");
   const [index, setIndex] = useState(0);
@@ -57,6 +87,7 @@ function Home({ handleNavItemClicked, navItems }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { themeType } = useThemeContext();
+  const colors = terminalThemes[themeType] || terminalThemes.dark;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -91,21 +122,24 @@ function Home({ handleNavItemClicked, navItems }) {
       }}
     >
       {/* SSH Terminal Window */}
-      <Box className="terminal-window" sx={{
+      <Box className={`terminal-window ${themeType === 'light' ? 'terminal-light' : ''}`} sx={{
         width: isMobile ? '95%' : '80%',
         maxWidth: '700px',
         borderRadius: '10px',
         overflow: 'hidden',
-        boxShadow: '0 20px 68px rgba(0, 0, 0, 0.55)',
-        backgroundColor: '#1e1e1e',
+        boxShadow: colors.shadow,
+        backgroundColor: colors.windowBg,
+        transition: 'all 0.3s ease',
       }}>
         {/* Terminal Header */}
         <Box className="terminal-header" sx={{
-          backgroundColor: '#3c3c3c',
+          backgroundColor: colors.headerBg,
           padding: '10px 14px',
           display: 'flex',
           alignItems: 'center',
           position: 'relative',
+          borderBottom: `1px solid ${colors.headerBorder}`,
+          transition: 'all 0.3s ease',
         }}>
           {/* Window Controls */}
           <Box sx={{ display: 'flex', gap: '8px' }}>
@@ -118,45 +152,50 @@ function Home({ handleNavItemClicked, navItems }) {
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            color: '#9a9a9a',
+            color: colors.titleColor,
             fontSize: '13px',
             fontFamily: 'monospace',
+            transition: 'color 0.3s ease',
           }}>
             parth@portfolio: ~
           </Typography>
         </Box>
         
         {/* Terminal Body */}
-        <Box className="terminal-body" sx={{
+        <Box className={`terminal-body ${themeType === 'light' ? 'terminal-body-light' : ''}`} sx={{
           padding: isMobile ? '20px 15px' : '30px 25px',
-          backgroundColor: '#1e1e1e',
+          backgroundColor: colors.bodyBg,
           minHeight: '200px',
+          transition: 'all 0.3s ease',
+          position: 'relative',
         }}>
           <Typography 
             className="terminal-line"
             sx={{ 
               fontFamily: '"Fira Code", "Courier New", Courier, monospace',
-              color: '#50fa7b',
+              color: colors.prompt,
               fontSize: isMobile ? '14px' : '18px',
               marginBottom: '12px',
               display: 'flex',
               alignItems: 'center',
               flexWrap: 'wrap',
+              transition: 'color 0.3s ease',
             }}
           >
-            <span style={{ color: '#ff79c6' }}>parth@portfolio</span>
-            <span style={{ color: '#f8f8f2' }}>:</span>
-            <span style={{ color: '#8be9fd' }}>~</span>
-            <span style={{ color: '#f8f8f2' }}>$ </span>
-            <span style={{ color: '#f8f8f2' }}>echo "Hello, my name is Parth Lad"</span>
+            <span style={{ color: colors.username, transition: 'color 0.3s ease' }}>parth@portfolio</span>
+            <span style={{ color: colors.separator, transition: 'color 0.3s ease' }}>:</span>
+            <span style={{ color: colors.path, transition: 'color 0.3s ease' }}>~</span>
+            <span style={{ color: colors.separator, transition: 'color 0.3s ease' }}>$ </span>
+            <span style={{ color: colors.text, transition: 'color 0.3s ease' }}>echo "Hello, my name is Parth Lad"</span>
           </Typography>
           <Typography 
             sx={{ 
               fontFamily: '"Fira Code", "Courier New", Courier, monospace',
-              color: '#f8f8f2',
+              color: colors.text,
               fontSize: isMobile ? '14px' : '18px',
               marginBottom: '20px',
               paddingLeft: '10px',
+              transition: 'color 0.3s ease',
             }}
           >
             Hello, my name is Parth Lad
@@ -166,27 +205,29 @@ function Home({ handleNavItemClicked, navItems }) {
             className="terminal-line"
             sx={{ 
               fontFamily: '"Fira Code", "Courier New", Courier, monospace',
-              color: '#50fa7b',
+              color: colors.prompt,
               fontSize: isMobile ? '14px' : '18px',
               marginBottom: '12px',
               display: 'flex',
               alignItems: 'center',
               flexWrap: 'wrap',
+              transition: 'color 0.3s ease',
             }}
           >
-            <span style={{ color: '#ff79c6' }}>parth@portfolio</span>
-            <span style={{ color: '#f8f8f2' }}>:</span>
-            <span style={{ color: '#8be9fd' }}>~</span>
-            <span style={{ color: '#f8f8f2' }}>$ </span>
-            <span style={{ color: '#f8f8f2' }}>whoami</span>
+            <span style={{ color: colors.username, transition: 'color 0.3s ease' }}>parth@portfolio</span>
+            <span style={{ color: colors.separator, transition: 'color 0.3s ease' }}>:</span>
+            <span style={{ color: colors.path, transition: 'color 0.3s ease' }}>~</span>
+            <span style={{ color: colors.separator, transition: 'color 0.3s ease' }}>$ </span>
+            <span style={{ color: colors.text, transition: 'color 0.3s ease' }}>whoami</span>
           </Typography>
           <Typography 
             sx={{ 
               fontFamily: '"Fira Code", "Courier New", Courier, monospace',
-              color: '#f8f8f2',
+              color: colors.text,
               fontSize: isMobile ? '14px' : '18px',
               marginBottom: '20px',
               paddingLeft: '10px',
+              transition: 'color 0.3s ease',
             }}
           >
             {phrase}<span className="blinking-cursor">|</span>

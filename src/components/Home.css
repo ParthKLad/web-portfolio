@@ -16,10 +16,26 @@
 
 .terminal-header {
   border-bottom: 1px solid #4a4a4a;
+  transition: all 0.3s ease;
 }
 
 .terminal-body {
   background: linear-gradient(180deg, #1e1e1e 0%, #252525 100%);
+  transition: all 0.3s ease;
+}
+
+/* Light mode terminal styles */
+.terminal-light .terminal-header {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.terminal-body-light {
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%) !important;
+}
+
+/* Remove scanline effect in light mode */
+.terminal-body-light::before {
+  display: none;
 }
 
 .terminal-line {
