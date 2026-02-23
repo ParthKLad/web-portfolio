@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, TextField, Button, Grow, Grid } from "@mui/material";
+import { Box, Typography, TextField, Button, Grow, Grid, Paper } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Send } from "@mui/icons-material";
@@ -10,9 +10,11 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import DialogContent from "@mui/material/DialogContent";
 import ConfettiExplosion from "react-confetti-explosion";
+import { useThemeContext } from "../context/ThemeContext";
 
 const ContactForm = () => {
   const theme = useTheme();
+  const { themeType } = useThemeContext();
   const [checked, setChecked] = useState(false);
   const [name, setName] = useState(""); // Add state for name
   const [email, setEmail] = useState("");
@@ -132,16 +134,29 @@ const ContactForm = () => {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom textAlign="center">
-        Contact
+      <Typography 
+        variant="h4" 
+        gutterBottom 
+        textAlign="center"
+        sx={{
+          fontFamily: '"Fira Code", monospace',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 1,
+        }}
+      >
+        <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>$</span>
+        <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>./</span>
+        <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>contact.sh</span>
       </Typography>
       <br></br>
       <Grow in={checked} style={{ transformOrigin: "0 0 0" }}>
-        <Box
+        <Paper
+          elevation={3}
           sx={{
             maxWidth: 1150,
             margin: "auto",
-            backgroundColor: theme.palette.mode === "dark" ? "#252424" : "#fff",
             borderRadius: "16px",
           }}
         >
@@ -398,31 +413,40 @@ const ContactForm = () => {
                     }}
                   />
                   <Button
-                    variant="contained"
+                    className="terminal-cmd-btn"
                     endIcon={<Send />}
                     type="submit"
                     sx={{
-                      borderRadius: 8,
+                      fontFamily: '"Fira Code", monospace',
+                      fontSize: '14px',
+                      textTransform: 'none',
+                      padding: '10px 24px',
                       marginTop: "20px",
-                      backgroundColor: "rgb(20, 206, 220)",
-                      "&:hover": { 
-                        backgroundColor: "rgb(17,185,197)",
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                      backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
+                      color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
+                      border: `2px solid ${themeType === 'dark' ? '#8be9fd' : '#0277bd'}`,
+                      borderRadius: '6px',
+                      '&:hover': {
+                        backgroundColor: themeType === 'dark' ? '#8be9fd' : '#0277bd',
+                        color: themeType === 'dark' ? '#0d0d0d' : '#fff',
+                        transform: 'translateY(-3px)',
+                        boxShadow: `0 6px 20px ${themeType === 'dark' ? 'rgba(139, 233, 253, 0.3)' : 'rgba(2, 119, 189, 0.3)'}`,
                       },
                       "&:disabled": {
-                        backgroundColor: "rgba(20, 206, 220, 0.5)",
+                        backgroundColor: themeType === 'dark' ? 'rgba(13, 13, 13, 0.5)' : 'rgba(232, 232, 232, 0.5)',
+                        color: themeType === 'dark' ? 'rgba(139, 233, 253, 0.3)' : 'rgba(2, 119, 189, 0.3)',
+                        borderColor: themeType === 'dark' ? 'rgba(139, 233, 253, 0.3)' : 'rgba(2, 119, 189, 0.3)',
                       },
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    Send
+                    $ ./send-message.sh
                   </Button>
                 </form>
               </Box>
             </Grid>
           </Grid>
-        </Box>
+        </Paper>
       </Grow>
       {runConfetti && <ConfettiExplosion />}
       <Dialog open={open} onClose={handleClose} onTouchEnd={handleClose}>

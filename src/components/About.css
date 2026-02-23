@@ -68,4 +68,22 @@
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
   }
-  
+
+/* Terminal command buttons */
+.terminal-cmd-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-cmd-btn::before {
+  content: '>';
+  margin-right: 6px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.2s ease;
+}
+
+.terminal-cmd-btn:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}

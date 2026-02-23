@@ -88,8 +88,19 @@ function Navbar({ refs }) {
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Logo and Title: Clicking redirects to the home section */}
           <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-          <Typography variant="h5" className="led-effect" sx={{ color: themeType === 'dark' ? '#0982B5' : '#0982B5', transition: 'color 0.3s' }}>Parth</Typography>
-          <Typography variant="h5" className="led-effect" sx={{ color: themeType === 'dark' ? '#FFF' : '#0982B5', transition: 'color 0.3s', ml: 0.5 }}>Lad</Typography>
+          <Typography variant="h6" sx={{ 
+            fontFamily: '"Fira Code", monospace',
+            color: themeType === 'dark' ? '#8be9fd' : '#0277bd', 
+            transition: 'color 0.3s',
+            display: 'flex',
+            alignItems: 'center',
+          }}>
+            <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>~</span>
+            <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>/</span>
+            parth
+            <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>_</span>
+            lad
+          </Typography>
         </Box>
           {/* Mobile-specific Toolbar layout */}
           {isMobile ? (
@@ -112,37 +123,46 @@ function Navbar({ refs }) {
             </Box>
           ) : (
             // Non-mobile navigation layout
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             {navItems.map((item, index) => (
               <Button
                 key={index}
                 onClick={() => handleNavItemClicked(item.name, item.ref)}
-                className="nav-item" // Added a class for targeting
+                className="nav-item terminal-nav-btn"
                 sx={{
-                  color: 'inherit',
+                  fontFamily: '"Fira Code", monospace',
+                  fontSize: '13px',
+                  textTransform: 'none',
+                  padding: '6px 12px',
+                  color: activeNav === item.name 
+                    ? (themeType === 'dark' ? '#8be9fd' : '#0277bd')
+                    : (themeType === 'dark' ? '#f8f8f2' : '#333'),
+                  backgroundColor: activeNav === item.name 
+                    ? (themeType === 'dark' ? 'rgba(139, 233, 253, 0.1)' : 'rgba(2, 119, 189, 0.1)')
+                    : 'transparent',
+                  border: `1px solid ${activeNav === item.name 
+                    ? (themeType === 'dark' ? '#8be9fd' : '#0277bd')
+                    : 'transparent'}`,
+                  borderRadius: '4px',
                   position: 'relative',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: '-3px',
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    backgroundColor: 'transparent', // Default state is transparent
-                    opacity: 0,
-                    transition: 'opacity 300ms, backgroundColor 300ms', // Added backgroundColor to the transition
+                  '&:hover': {
+                    backgroundColor: themeType === 'dark' ? 'rgba(139, 233, 253, 0.15)' : 'rgba(2, 119, 189, 0.1)',
+                    color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
                   },
-                  '&:hover::after': {
-                    opacity: 1,
-                    backgroundColor: themeType === 'dark' ? '#10f3e8' : '#10f3e8', // LED color on hover
+                  '&::before': {
+                    content: '">"',
+                    marginRight: '4px',
+                    opacity: activeNav === item.name ? 1 : 0,
+                    transition: 'opacity 0.2s ease',
                   },
+                  transition: 'all 0.2s ease',
                 }}
               >
-                {item.name}
+                {item.name.toLowerCase()}
               </Button>
               ))}
               {/* Theme mode toggle button for non-mobile */}
-              <IconButton onClick={toggleTheme} color="inherit">
+              <IconButton onClick={toggleTheme} color="inherit" sx={{ ml: 1 }}>
                 {themeType === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Box>
@@ -185,16 +205,43 @@ function Navbar({ refs }) {
               color: themeType === 'dark' ? '#FFF' : '#000',
             }}
           >
-            <List>
+            <List sx={{ pt: 4 }}>
               {/* List of navigation items in the drawer */}
               {navItems.map((item, index) => (
                 <ListItem 
                   button 
                   key={index} 
                   onClick={() => handleNavItemClicked(item.name, item.ref)}
-                  style={{ color: themeType === 'dark' ? '#FFF' : '#000' }}
+                  sx={{
+                    fontFamily: '"Fira Code", monospace',
+                    color: activeNav === item.name 
+                      ? (themeType === 'dark' ? '#8be9fd' : '#0277bd')
+                      : (themeType === 'dark' ? '#f8f8f2' : '#333'),
+                    backgroundColor: activeNav === item.name 
+                      ? (themeType === 'dark' ? 'rgba(139, 233, 253, 0.1)' : 'rgba(2, 119, 189, 0.1)')
+                      : 'transparent',
+                    borderLeft: activeNav === item.name 
+                      ? `3px solid ${themeType === 'dark' ? '#8be9fd' : '#0277bd'}`
+                      : '3px solid transparent',
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      backgroundColor: themeType === 'dark' ? 'rgba(139, 233, 253, 0.15)' : 'rgba(2, 119, 189, 0.1)',
+                    },
+                  }}
                 >
-                  <ListItemText primary={item.name} />
+                  <Typography sx={{ 
+                    fontFamily: '"Fira Code", monospace', 
+                    fontSize: '14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}>
+                    <span style={{ 
+                      color: themeType === 'dark' ? '#6272a4' : '#888',
+                      marginRight: '8px',
+                      opacity: activeNav === item.name ? 1 : 0.5,
+                    }}>$</span>
+                    ./{item.name.toLowerCase()}.sh
+                  </Typography>
                 </ListItem>
               ))}
             </List>

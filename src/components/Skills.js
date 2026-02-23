@@ -1,9 +1,9 @@
 import React from 'react';
-import { Typography, Grid, Paper, useTheme, Container } from '@mui/material';
+import { Typography, Grid, Paper, Container, Box } from '@mui/material';
 import { motion } from 'framer-motion';
-import { styled } from '@mui/system';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useThemeContext } from '../context/ThemeContext';
 
 import htmlIcon from '../images/html.png';
 import cssIcon from '../images/css.png';
@@ -45,6 +45,7 @@ const skills = [
 AOS.init();
 
 function Skills() {
+  const { themeType } = useThemeContext();
 
   // Utility function to group skills by category
   const categories = skills.reduce((groups, skill) => {
@@ -67,15 +68,43 @@ function Skills() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom textAlign="center">
-        My Skills
+      <Typography 
+        variant="h4" 
+        gutterBottom 
+        textAlign="center"
+        sx={{
+          fontFamily: '"Fira Code", monospace',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 1,
+        }}
+      >
+        <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>$</span>
+        <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>cat</span>
+        <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>skills.json</span>
       </Typography>
       <Grid container spacing={3} justifyContent="center">
         {Object.entries(categories).map(([category, skills]) => (
           <Grid item xs={12} sm={6} md={4} key={category}>
             <Paper elevation={3} sx={{ p: 2, margin: 'auto', flexGrow: 1 }}>
-              <Typography gutterBottom textAlign="center" variant="h6" sx={{ mb: 2 }}>
-                {categoryEmojis[category]} {category}
+              <Typography 
+                gutterBottom 
+                textAlign="center" 
+                variant="h6" 
+                sx={{ 
+                  mb: 2,
+                  fontFamily: '"Fira Code", monospace',
+                  fontSize: '14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
+                }}
+              >
+                <span style={{ color: themeType === 'dark' ? '#6272a4' : '#888' }}>#</span>
+                {categoryEmojis[category]}
+                <span style={{ color: themeType === 'dark' ? '#8be9fd' : '#0277bd' }}>{category}</span>
               </Typography>
               <Grid container spacing={2} justifyContent="center">
                 {skills.map((skill) => (

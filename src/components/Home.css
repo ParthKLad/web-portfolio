@@ -1,6 +1,19 @@
 /* Terminal Window Styles */
 .terminal-window {
   animation: terminalSlideIn 0.6s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-window:not(.terminal-light) {
+  box-shadow: 
+    0 20px 68px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(80, 250, 123, 0.05),
+    inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-light {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 68px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes terminalSlideIn {
@@ -20,8 +33,20 @@
 }
 
 .terminal-body {
-  background: linear-gradient(180deg, #1e1e1e 0%, #252525 100%);
+  background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
   transition: all 0.3s ease;
+}
+
+/* CRT Screen curve effect */
+.terminal-body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
+  pointer-events: none;
 }
 
 /* Light mode terminal styles */
@@ -30,7 +55,11 @@
 }
 
 .terminal-body-light {
-  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%) !important;
+  background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 50%, #fafafa 100%) !important;
+}
+
+.terminal-body-light::after {
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.03) 100%);
 }
 
 /* Remove scanline effect in light mode */
@@ -39,13 +68,17 @@
 }
 
 .terminal-line {
-  animation: typeIn 0.5s ease-out;
+  animation: typeIn 0.4s ease-out;
+}
+
+.ssh-banner {
+  animation: typeIn 0.3s ease-out;
 }
 
 @keyframes typeIn {
   0% {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-5px);
   }
   100% {
     opacity: 1;
@@ -53,7 +86,7 @@
   }
 }
 
-/* Scanline effect */
+/* Scanline effect - more subtle */
 .terminal-body::before {
   content: '';
   position: absolute;
@@ -63,13 +96,19 @@
   bottom: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
     transparent 1px,
-    transparent 2px
+    transparent 3px
   );
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Text glow effect for dark mode */
+.terminal-window:not(.terminal-light) .terminal-body * {
+  text-shadow: 0 0 1px currentColor;
 }
 
 .console-text {
@@ -121,7 +160,60 @@
 .blinking-cursor {
   display: inline-block;
   width: 2px;
+  height: 1em;
   background-color: currentColor;
   animation: blink 1s step-start infinite;
-  vertical-align: middle;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+/* Block cursor style */
+.blinking-cursor-block {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: #50fa7b;
+  animation: blink 1s step-start infinite;
+  vertical-align: text-bottom;
+}
+
+.terminal-light .blinking-cursor-block {
+  background-color: #2e7d32;
+}
+
+/* Terminal command buttons */
+.terminal-cmd-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-cmd-btn::before {
+  content: '>';
+  margin-right: 6px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.2s ease;
+}
+
+.terminal-cmd-btn:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Opportunity button glow animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(80, 250, 123, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(80, 250, 123, 0.5), 0 0 30px rgba(80, 250, 123, 0.3);
+  }
+}
+
+.opportunity-btn {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.opportunity-btn:hover {
+  animation: none;
 }

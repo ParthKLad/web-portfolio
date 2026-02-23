@@ -6,6 +6,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CardActionArea from '@mui/material/CardActionArea';
 import CloseIcon from '@mui/icons-material/Close';
+import { useThemeContext } from '../context/ThemeContext';
 
 
 //Sharewell images
@@ -120,6 +121,7 @@ function Projects() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const { themeType } = useThemeContext();
 
 
   console.log(projects);
@@ -157,8 +159,21 @@ function Projects() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h4" textAlign="center" gutterBottom>
-        My Projects
+      <Typography 
+        variant="h4" 
+        textAlign="center" 
+        gutterBottom
+        sx={{
+          fontFamily: '"Fira Code", monospace',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 1,
+        }}
+      >
+        <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>$</span>
+        <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>ls</span>
+        <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>~/projects</span>
       </Typography>
       <Grid container spacing={3} justifyContent="center">
       {projects.map((project, index) => (

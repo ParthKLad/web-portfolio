@@ -12,10 +12,12 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DownloadIcon from "@mui/icons-material/Download";
 import "./About.css";
+import { useThemeContext } from "../context/ThemeContext";
 
 function About() {
   const [expanded, setExpanded] = React.useState(false);
   const [showResumeOptions, setShowResumeOptions] = React.useState(false);
+  const { themeType } = useThemeContext();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -28,8 +30,21 @@ function About() {
   return (
     <Box sx={{ maxWidth: 1200, mx: "auto", p: 3, textAlign: "center" }}>
       <Paper elevation={3} sx={{ p: 3, my: 2 }}>
-        <Typography variant="h4" gutterBottom align="center">
-          About Me
+        <Typography 
+          variant="h4" 
+          gutterBottom 
+          align="center"
+          sx={{
+            fontFamily: '"Fira Code", monospace',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 1,
+          }}
+        >
+          <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>$</span>
+          <span style={{ color: themeType === 'dark' ? '#f1fa8c' : '#ca8a04' }}>cat</span>
+          <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>about.txt</span>
         </Typography>
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12}>
@@ -50,17 +65,30 @@ function About() {
               </Typography>
             </Grow>
             <Button
+              className="terminal-cmd-btn"
               onClick={handleExpandClick}
-              endIcon={<ExpandMoreIcon />}
+              endIcon={<ExpandMoreIcon sx={{ 
+                transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease'
+              }} />}
               sx={{
                 mb: 2,
-                color: "#14CEDC",
-                "&:hover": {
-                  color: "#11B9C5",
+                fontFamily: '"Fira Code", monospace',
+                fontSize: '13px',
+                textTransform: 'none',
+                padding: '6px 14px',
+                backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
+                color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
+                border: `1px solid ${themeType === 'dark' ? '#333' : '#ccc'}`,
+                borderRadius: '4px',
+                '&:hover': {
+                  backgroundColor: themeType === 'dark' ? '#1a1a1a' : '#ddd',
+                  transform: 'translateY(-2px)',
                 },
+                transition: 'all 0.2s ease',
               }}
             >
-              {expanded ? "Less About Me" : "More About Me"}
+              {expanded ? "cat about.txt --less" : "cat about.txt --more"}
             </Button>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <Typography
@@ -100,21 +128,28 @@ function About() {
             <br />
             <Box sx={{ mt: 2 }}>
               <Button
-                variant="contained"
+                className="terminal-cmd-btn"
                 startIcon={<DownloadIcon />}
                 onClick={handleResumeClick}
                 sx={{
-                  backgroundColor: "rgb(20, 206, 220)",
-                  "&:hover": { 
-                    backgroundColor: "rgb(17,185,197)",
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                  fontFamily: '"Fira Code", monospace',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                  padding: '10px 20px',
+                  backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
+                  color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
+                  border: `2px solid ${themeType === 'dark' ? '#8be9fd' : '#0277bd'}`,
+                  borderRadius: '6px',
+                  '&:hover': {
+                    backgroundColor: themeType === 'dark' ? '#8be9fd' : '#0277bd',
+                    color: themeType === 'dark' ? '#0d0d0d' : '#fff',
+                    transform: 'translateY(-3px)',
+                    boxShadow: `0 6px 20px ${themeType === 'dark' ? 'rgba(139, 233, 253, 0.3)' : 'rgba(2, 119, 189, 0.3)'}`,
                   },
-                  borderRadius: 8,
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
                 }}
               >
-                Download Resume
+                $ ./download-resume.sh
               </Button>
               
               <Collapse in={showResumeOptions} timeout="auto" unmountOnExit>
@@ -125,40 +160,50 @@ function About() {
                   justifyContent="center"
                 >
                   <Button
-                    variant="contained"
+                    className="terminal-cmd-btn"
                     startIcon={<DownloadIcon />}
                     href="/resume/Lad_Resume.pdf"
                     download="Parth_Lad_Resume_Software.pdf"
                     sx={{
-                      backgroundColor: "rgb(20, 206, 220)",
-                      "&:hover": { 
-                        backgroundColor: "rgb(17,185,197)",
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                      fontFamily: '"Fira Code", monospace',
+                      fontSize: '13px',
+                      textTransform: 'none',
+                      padding: '8px 16px',
+                      backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
+                      color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
+                      border: `1px solid ${themeType === 'dark' ? '#333' : '#ccc'}`,
+                      borderRadius: '4px',
+                      '&:hover': {
+                        backgroundColor: themeType === 'dark' ? '#1a1a1a' : '#ddd',
+                        transform: 'translateY(-2px)',
                       },
-                      borderRadius: 8,
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.2s ease',
                     }}
                   >
-                    Software Resume
+                    software-resume.pdf
                   </Button>
                   <Button
-                    variant="contained"
+                    className="terminal-cmd-btn"
                     startIcon={<DownloadIcon />}
                     href="/resume/Lad_Resume_IT.pdf"
                     download="Parth_Lad_Resume_IT.pdf"
                     sx={{
-                      backgroundColor: "rgb(20, 206, 220)",
-                      "&:hover": { 
-                        backgroundColor: "rgb(17,185,197)",
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 8px 16px rgba(20, 206, 220, 0.15)'
+                      fontFamily: '"Fira Code", monospace',
+                      fontSize: '13px',
+                      textTransform: 'none',
+                      padding: '8px 16px',
+                      backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
+                      color: themeType === 'dark' ? '#bd93f9' : '#7c3aed',
+                      border: `1px solid ${themeType === 'dark' ? '#333' : '#ccc'}`,
+                      borderRadius: '4px',
+                      '&:hover': {
+                        backgroundColor: themeType === 'dark' ? '#1a1a1a' : '#ddd',
+                        transform: 'translateY(-2px)',
                       },
-                      borderRadius: 8,
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.2s ease',
                     }}
                   >
-                    IT Resume
+                    it-resume.pdf
                   </Button>
                 </Stack>
               </Collapse>
