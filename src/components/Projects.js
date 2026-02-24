@@ -88,27 +88,27 @@ const projects = [
         "fullDesc": [
           {
             "title": "👑 Server Admin Stuff",
-            "description": "Kick, ban, manage roles — all the power tools for keeping your server from turning into a dumpster fire. Great for mods who've seen things."
+            "description": "Kick, ban, manage roles — all the power trips you need for keeping your server from becoming a lawless wasteland. Mods who've witnessed Discord drama will weep tears of joy."
           },
           {
             "title": "🎨 Be Your Own Rainbow",
-            "description": "Let users pick their name colors because self-expression matters. Admins can also assign role colors for that aesthetic chef's kiss."
+            "description": "Let users pick their name colors because we're all just trying to stand out in a sea of gray usernames. Admins can assign role colors too for maximum ✨aesthetic✨ energy."
           },
           {
             "title": "📝 Everything Gets Logged",
-            "description": "Who deleted what? Who joined when? Pulse remembers everything. It's like having a very paranoid but helpful friend."
+            "description": "Who deleted what? Who rage-quit at 3am? Pulse remembers everything like that one friend who never forgets that embarrassing thing you said 5 years ago."
           },
           {
             "title": "🎭 Embeds & Role Reactions",
-            "description": "Custom embeds for announcements, role reactions for self-assign. Your server will look so professional people will think you know what you're doing."
+            "description": "Gorgeous custom embeds and role reactions that'll make your server look so professional, people will assume there's an actual adult running things."
           },
           {
             "title": "🔧 Dev Transparency",
-            "description": "Recent commits display so users can see updates in real-time. It's like patch notes but cooler."
+            "description": "Recent commits display so users can watch me fix bugs in real-time. It's like a reality show but sadder and with more semicolons."
           },
           {
             "title": "🚀 Coming Soon™",
-            "description": "Free game alerts from Steam, Epic, GOG. Because your wallet needs a break and Pulse has your back."
+            "description": "Free game alerts from Steam, Epic, GOG. Because your backlog isn't big enough and Pulse believes in enabling your poor life choices."
           }
         ]
       }
@@ -216,7 +216,7 @@ function Projects() {
      <CloseIcon />
    </IconButton>
    <DialogContent sx={{ overflowY: 'auto', maxHeight: '80vh', position: 'relative' }}>
-     <div style={{ position: 'relative' }}>
+     <div style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#000' }}>
        <IconButton 
          onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedProject.images.length) % selectedProject.images.length)} 
          sx={{ 
@@ -233,6 +233,11 @@ function Projects() {
          component="img"
          image={selectedProject.images[currentImageIndex]}
          alt={`Image ${currentImageIndex + 1}`}
+         sx={{ 
+           maxHeight: '400px', 
+           width: '100%', 
+           objectFit: 'contain' 
+         }}
        />
        <IconButton 
          onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProject.images.length)} 
