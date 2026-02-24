@@ -1,0 +1,155 @@
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a0a;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease-out;
+}
+
+.boot-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.terminal {
+  width: 90%;
+  max-width: 800px;
+  height: 70vh;
+  background-color: #0d1117;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  box-shadow: 0 0 40px rgba(20, 206, 220, 0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.terminal::before {
+  content: '● ● ●';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  background: #161b22;
+  color: #6e7681;
+  font-size: 12px;
+  letter-spacing: 4px;
+  border-bottom: 1px solid #30363d;
+}
+
+.terminal-content {
+  padding: 50px 20px 20px 20px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 14px;
+  color: #58a6ff;
+  line-height: 1.6;
+  height: calc(100% - 50px);
+  overflow-y: auto;
+  white-space: pre;
+}
+
+.terminal-line {
+  color: #c9d1d9;
+  animation: fadeIn 0.1s ease-in;
+}
+
+.terminal-line:nth-child(1) {
+  color: #f0883e;
+  font-weight: bold;
+}
+
+.terminal-line:nth-child(n+16):nth-child(-n+20) {
+  color: #14CEDC;
+  font-weight: bold;
+}
+
+.terminal-line:nth-child(22) {
+  color: #7ee787;
+}
+
+.terminal-line:nth-child(n+25):nth-child(-n+28) {
+  color: #f0883e;
+}
+
+.terminal-line:last-child {
+  color: #7ee787;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  color: #14CEDC;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.skip-hint {
+  position: absolute;
+  bottom: 30px;
+  color: #6e7681;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styling for terminal */
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .terminal-content {
+    font-size: 10px;
+  }
+  
+  .terminal {
+    width: 95%;
+    height: 80vh;
+  }
+}
