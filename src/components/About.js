@@ -7,7 +7,6 @@ import {
   Button,
   Collapse,
   Grow,
-  Stack,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -16,15 +15,10 @@ import { useThemeContext } from "../context/ThemeContext";
 
 function About() {
   const [expanded, setExpanded] = React.useState(false);
-  const [showResumeOptions, setShowResumeOptions] = React.useState(false);
   const { themeType } = useThemeContext();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
-  };
-
-  const handleResumeClick = () => {
-    setShowResumeOptions(!showResumeOptions);
   };
 
   return (
@@ -111,7 +105,8 @@ function About() {
               <Button
                 className="terminal-cmd-btn"
                 startIcon={<DownloadIcon />}
-                onClick={handleResumeClick}
+                href="/resume/Parth_Lad_Resume.pdf"
+                download="Parth_Lad_Resume.pdf"
                 sx={{
                   fontFamily: '"Fira Code", monospace',
                   fontSize: '14px',
@@ -132,62 +127,6 @@ function About() {
               >
                 $ ./download-resume.sh
               </Button>
-              
-              <Collapse in={showResumeOptions} timeout="auto" unmountOnExit>
-                <Stack 
-                  direction={{ xs: 'column', sm: 'row' }} 
-                  spacing={2} 
-                  sx={{ mt: 2 }}
-                  justifyContent="center"
-                >
-                  <Button
-                    className="terminal-cmd-btn"
-                    startIcon={<DownloadIcon />}
-                    href="/resume/Lad_Resume.pdf"
-                    download="Parth_Lad_Resume_Software.pdf"
-                    sx={{
-                      fontFamily: '"Fira Code", monospace',
-                      fontSize: '13px',
-                      textTransform: 'none',
-                      padding: '8px 16px',
-                      backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
-                      color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
-                      border: `1px solid ${themeType === 'dark' ? '#333' : '#ccc'}`,
-                      borderRadius: '4px',
-                      '&:hover': {
-                        backgroundColor: themeType === 'dark' ? '#1a1a1a' : '#ddd',
-                        transform: 'translateY(-2px)',
-                      },
-                      transition: 'all 0.2s ease',
-                    }}
-                  >
-                    software-resume.pdf
-                  </Button>
-                  <Button
-                    className="terminal-cmd-btn"
-                    startIcon={<DownloadIcon />}
-                    href="/resume/Lad_Resume_IT.pdf"
-                    download="Parth_Lad_Resume_IT.pdf"
-                    sx={{
-                      fontFamily: '"Fira Code", monospace',
-                      fontSize: '13px',
-                      textTransform: 'none',
-                      padding: '8px 16px',
-                      backgroundColor: themeType === 'dark' ? '#0d0d0d' : '#e8e8e8',
-                      color: themeType === 'dark' ? '#bd93f9' : '#7c3aed',
-                      border: `1px solid ${themeType === 'dark' ? '#333' : '#ccc'}`,
-                      borderRadius: '4px',
-                      '&:hover': {
-                        backgroundColor: themeType === 'dark' ? '#1a1a1a' : '#ddd',
-                        transform: 'translateY(-2px)',
-                      },
-                      transition: 'all 0.2s ease',
-                    }}
-                  >
-                    it-resume.pdf
-                  </Button>
-                </Stack>
-              </Collapse>
             </Box>
           </Grid>
         </Grid>

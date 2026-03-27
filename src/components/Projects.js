@@ -41,7 +41,7 @@ const projects = [
       { title: "🛠️ The Fix", description: "Integrated downhole drilling data into one clean app. Think of it like Spotify Wrapped, but for holes in the ground." },
       { title: "🧩 Tech Stack", description: "SQL, JavaScript, Python, Flask, Express, Node.js — basically threw everything at it until it worked. (It did.)" },
       { title: "☁️ Cloud Stuff", description: "Deployed on AWS EC2 with RDS for the database. Because 'localhost' doesn't impress recruiters." },
-      { title: "📊 Project Management", description: "Jira for tickets, GitHub for code, coffee for survival. Classic combo." },
+      { title: "📊 Project Management", description: "Jira for tickets, GitHub for code, Stack Overflow for sanity. Classic combo." },
       { title: "🎉 The W", description: "Delivered accurate data trends that actually helped decision-making. Client happy. Professor happy. We passed. Everyone wins." }
     ],
   },

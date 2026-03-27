@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -7,15 +7,12 @@ import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
 import Footer from "./components/footer"; // Ensure this is correctly capitalized if the file name is Footer.js
 import UpArrow from "./components/UpArrow";
-import BootScreen from "./components/BootScreen";
 import { ThemeProvider } from "./context/ThemeContext";
 import useIntersectionObserver from "./hooks/useIntersectionObserver";
 import "./style.css";
 import "./App.css";
 
 function App() {
-  const [bootComplete, setBootComplete] = useState(false);
-  
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
@@ -52,10 +49,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="App">
-        {!bootComplete && (
-          <BootScreen onComplete={() => setBootComplete(true)} />
-        )}
-        <>
+<>
           <Navbar
             refs={{
               homeRef,
