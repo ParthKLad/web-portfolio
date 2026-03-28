@@ -8,6 +8,7 @@ import {
   Collapse,
   Grow,
 } from "@mui/material";
+import { motion } from "framer-motion";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DownloadIcon from "@mui/icons-material/Download";
 import "./About.css";
@@ -23,6 +24,12 @@ function About() {
 
   return (
     <Box sx={{ maxWidth: 1200, mx: "auto", p: 3, textAlign: "center" }}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
       <Paper elevation={3} sx={{ p: 3, my: 2 }}>
         <Typography 
           variant="h4" 
@@ -54,8 +61,7 @@ function About() {
                   animation: "dynamic 2s infinite",
                 }}
               >
-                👋 Hey! I'm Parth — Support Engineer at TCS, keeping Exxon's systems happy. 
-                Part-time bug whisperer, full-time coffee consumer.
+                👋 Hey, I'm Parth. CS grad, Support Engineer at TCS, and the person Exxon calls when things break. I build things, fix things, and occasionally break things on purpose just to fix them again.
               </Typography>
             </Grow>
             <Button
@@ -85,20 +91,27 @@ function About() {
               {expanded ? "cat about.txt --less" : "cat about.txt --more"}
             </Button>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <Typography
-                paragraph
-                align="left"
-                sx={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontWeight: "400",
-                  lineHeight: "1.6",
-                  marginTop: "1em",
-                  marginBottom: "1em",
-                  textIndent: "2em",
-                }}
-              >
-                So here's the deal — I started coding because I wanted to build cool stuff but I stayed because debugging gives me a weird sense of accomplishment (and Stockholm syndrome). Currently, I'm a Support Engineer at Tata Consultancy Services where I kept Exxon's systems running smoother than their oil pipelines (okay, maybe not THAT smooth, but we try). I'm fluent in the ancient arts of HTML, CSS, and JavaScript, and I've befriended React and Vue along the way. Python and NumPy are my go-to tools when data needs crunching. On the backend, Node.js and Express are my trusty sidekicks for building REST APIs that actually work (most of the time). I've wrangled both SQL databases and NoSQL rebels like MongoDB — because why choose when you can have both headaches? I've also tamed databases with AWS RDS and deployed apps to the cloud using EC2. Basically, I make things live on the internet and pray they don't break at 3 AM. When I'm not firefighting tickets or explaining to users that "have you tried turning it off and on again?" actually works, I'm closing 47 browser tabs or pretending I understand Kubernetes. Long story short: I build stuff, break stuff, fix stuff, and somehow get paid for it. 
-              </Typography>
+              {[
+                "You know that ticket nobody can figure out, the one that's been quietly aging in the queue while everyone hopes it resolves itself? That one tends to find its way to me. As a Support Engineer at TCS, I became the person teams escalate to when something breaks in a way that defies logic, documentation, and the will to live. I don't mind. Turns out I'm good at it.",
+                "A big chunk of that work lives in device management and endpoint environments at Exxon. I know the space well enough to find what's wrong, why it's wrong, and which policy silently broke it six weeks ago. Outside of that, I've built a Flask app for drilling data analytics deployed on AWS, a full Vue.js platform for Community Health Workers with role-based access and multi-org support, and a Discord bot running 24/7 on a Linux VPS that handles moderation, logging, and role management. I'd much rather be the one building and shipping things than spending my afternoons explaining why someone's access request is still pending.",
+                "Outside of work I'm either deep in a side project, reading docs I should have opened before I started, or convincing someone that yes, a restart is a legitimate first step. I take the hard problems seriously. Everything else I try to keep light."
+              ].map((text, i) => (
+                <Typography
+                  key={i}
+                  paragraph
+                  align="left"
+                  sx={{
+                    fontFamily: "Roboto, sans-serif",
+                    fontWeight: "400",
+                    lineHeight: "1.6",
+                    marginTop: "1em",
+                    marginBottom: "1em",
+                    textIndent: "2em",
+                  }}
+                >
+                  {text}
+                </Typography>
+              ))}
             </Collapse>
             <br />
             <Box sx={{ mt: 2 }}>
@@ -131,6 +144,7 @@ function About() {
           </Grid>
         </Grid>
       </Paper>
+      </motion.div>
     </Box>
   );
 }

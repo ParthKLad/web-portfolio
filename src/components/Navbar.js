@@ -88,12 +88,15 @@ function Navbar({ refs }) {
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Logo and Title: Clicking redirects to the home section */}
           <Box onClick={() => handleNavItemClicked('Home', refs.homeRef)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-          <Typography variant="h6" sx={{ 
+          <Typography variant="h6" sx={{
             fontFamily: '"Fira Code", monospace',
-            color: themeType === 'dark' ? '#8be9fd' : '#0277bd', 
+            color: themeType === 'dark' ? '#8be9fd' : '#0277bd',
             transition: 'color 0.3s',
             display: 'flex',
             alignItems: 'center',
+            '&:hover': {
+              color: themeType === 'dark' ? '#50fa7b' : '#2e7d32',
+            },
           }}>
             <span style={{ color: themeType === 'dark' ? '#ff79c6' : '#c2185b' }}>~</span>
             <span style={{ color: themeType === 'dark' ? '#f8f8f2' : '#333' }}>/</span>
